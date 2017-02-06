@@ -16,7 +16,9 @@ namespace Teretan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Loader());
+            DB_Handler.Init();
+            Application.Run(new Main());
+            DB_Handler.Dispose();
         }
     }
 }

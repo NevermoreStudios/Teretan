@@ -17,6 +17,9 @@ namespace Teretan
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DB_Handler.Init();
+            List<User> lu = DB_Handler.GetUser("SELECT * FROM Users");
+            List<Product> lp = DB_Handler.GetProduct("SELECT * FROM Products");
+            List<Order> lo = DB_Handler.GetOrder("SELECT * FROM Orders");
             Application.Run(new Main());
             DB_Handler.Dispose();
         }

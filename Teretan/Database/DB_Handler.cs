@@ -37,6 +37,13 @@ namespace Teretan
             return reader;
         }
 
+        public static int Count(SQLiteDataReader Read)
+        {
+            int i = 0;
+            while (Read.Read()) { i++; }
+            return i;
+        }
+
         public static List<User> GetUser(string query)
         {
             List<User> ReturnList = new List<User>();
@@ -79,8 +86,8 @@ namespace Teretan
             SQLiteDataReader reader = ExecuteRead(query);
             while (reader.Read())
             {
-                Console.WriteLine(reader["Dates"]);
-                ReturnList.Add(new Order(Convert.ToInt32(reader["IDProducts"]),
+                ReturnList.Add(new Order(Convert.ToInt32(reader["ID"]), 
+                    Convert.ToInt32(reader["IDProducts"]),
                     Convert.ToInt32(reader["IDUsers"]),
                     DateTime.ParseExact(Convert.ToString(reader["Dates"]),"dd-MM-yyyy", CultureInfo.InvariantCulture)));
             }
@@ -99,6 +106,48 @@ namespace Teretan
             string q = String.Format("INSERT INTO Products (Name, Description) VALUES('{0}', '{1}');",
                 Product.Name,Product.Description);
             ExecuteNoQuery(q);
+        }
+
+        public static void AddOrder(Order Order)
+        {
+            string q = String.Format("INSERT INTO Orders (IDUsers, IDProducts, Dates) VALUES('{0}', '{1}','{2:dd/MM/yyyy}');",
+                Order.IDUser,Order.IDProduct,Order.Date);
+            ExecuteNoQuery(q);
+        }
+
+        public static void RemoveUser(User User)
+        {
+            string q = String.Format("DELETE FROM Users WHERE ID={0};",User.ID);
+            ExecuteNoQuery(q);
+        }
+
+        public static void RemoveProduct(Product Product)
+        {
+            string q = String.Format("DELETE FROM Products WHERE ID={0};", Product.ID);
+            ExecuteNoQuery(q);
+        }
+
+        public static void RemoveOrder(Order Order)
+        {
+            string q = String.Format("DELETE FROM Orders WHERE ID={0};", Order.ID);
+            ExecuteNoQuery(q);
+        }
+
+        public static bool CheckProduct(Product Product)
+        {
+            string q = String.Format("SELECT * FROM ORDERS WHERE IDProducts={0};", Product.ID);
+            SQLiteDataReader read= ExecuteRead(q);
+            return Count(read)==0;
+        }
+
+        public static void DeepRemoveUser(User User)
+        {
+            List<Order> dep=GetOrder("SELECT * FROM Orders WHERe IDUsers=" + User.ID.ToString());
+            RemoveUser(User);
+            foreach (Order item in dep)
+            {
+                RemoveOrder(item);
+            }
         }
     }
 }

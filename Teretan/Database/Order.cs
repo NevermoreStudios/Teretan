@@ -8,13 +8,15 @@ namespace Teretan
 {
     public class Order
     {
-        public Order(int IDProduct, int IDUser, DateTime Date)
+        public Order(int ID,int IDProduct, int IDUser, DateTime Date)
         {
+            this.ID = ID;
             this.IDProduct = IDProduct;
             this.IDUser = IDUser;
             this.Date = Date;
         }
 
+        public int ID;
         public int IDProduct;
         public int IDUser;
         public DateTime Date;

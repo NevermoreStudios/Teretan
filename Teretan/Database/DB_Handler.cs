@@ -149,5 +149,19 @@ namespace Teretan
                 RemoveOrder(item);
             }
         }
+
+        public static void UpdateUser(User User)
+        {
+            string q = String.Format("UPDATE Users SET Name='{0}', Surname='{1}', BirthDate='{2:dd/MM/yyyy}', Height='{3}', WaistWidth='{4}', ShoulderWidth='{5}', ArmsLength='{6}', LegsLength='{7}', email='{8}', SubscriptionDate='{9:dd/MM/yyyy}', SubscriptionLength='{10}', Notes='{11}' WHERE ID={12};",
+                User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght, User.e_mail, User.Subscription_Date, User.Subscription_Lenght.Days, User.Notes,User.ID);
+            ExecuteNoQuery(q);
+        }
+
+        public static void UpdateProduct(Product Product)
+        {
+            string q = String.Format("UPDATE Products SET Name={0}, Description={1} WHERE ID={2};",
+                Product.Name, Product.Description,Product.ID);
+            ExecuteNoQuery(q);
+        }
     }
 }

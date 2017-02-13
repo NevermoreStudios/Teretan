@@ -23,7 +23,10 @@ namespace Teretan
             List<User> lu = DB_Handler.GetUser("SELECT * FROM Users");
             List<Product> lp = DB_Handler.GetProduct("SELECT * FROM Products");
             List<Order> lo = DB_Handler.GetOrder("SELECT * FROM Orders");
-            DB_Handler.DeepRemoveUser(lu[2]);
+            Console.WriteLine(Util.GetNotif().Count);
+            Console.WriteLine(Preferences.get("Yellow"));
+            Console.WriteLine(Preferences.get("Red"));
+            new Notifications().Show();
 
             //end lazini baza testovi
 

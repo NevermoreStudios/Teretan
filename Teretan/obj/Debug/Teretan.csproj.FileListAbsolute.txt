@@ -7,3 +7,13 @@ C:\Users\Bojana Ristic\Documents\Visual Studio 2015\Projects\Teretan\Teretan\obj
 C:\Users\Bojana Ristic\Documents\Visual Studio 2015\Projects\Teretan\Teretan\obj\Debug\Teretan.exe
 C:\Users\Bojana Ristic\Documents\Visual Studio 2015\Projects\Teretan\Teretan\obj\Debug\Teretan.pdb
 C:\Users\Bojana Ristic\Documents\Visual Studio 2015\Projects\Teretan\Teretan\obj\Debug\Teretan.csprojResolveAssemblyReference.cache
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\bin\Debug\Teretan.exe.config
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\obj\Debug\Teretan.exe
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\obj\Debug\Teretan.pdb
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\obj\Debug\Teretan.csprojResolveAssemblyReference.cache
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\obj\Debug\Teretan.Properties.Resources.resources
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\obj\Debug\Teretan.csproj.GenerateResource.Cache
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\bin\Debug\Teretan.exe
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\bin\Debug\Teretan.pdb
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\bin\Debug\System.Data.SQLite.xml
+C:\Users\lpremovic15\Desktop\Teretan-master\Teretan\obj\Debug\Teretan.Notifications.resources

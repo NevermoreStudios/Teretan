@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Teretan.Forms
+namespace Teretan
 {
-    public partial class Preferences : Form
+    public partial class AddProduct : Form
     {
-        public Preferences()
+        public AddProduct()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DB_Handler.AddProduct(new Product(0, textBox1.Text, textBox2.Text));
+            this.Close();
         }
     }
 }

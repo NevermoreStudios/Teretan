@@ -159,7 +159,7 @@ namespace Teretan
 
         public static void UpdateProduct(Product Product)
         {
-            string q = String.Format("UPDATE Products SET Name={0}, Description={1} WHERE ID={2};",
+            string q = String.Format("UPDATE Products SET Name='{0}', Description='{1}' WHERE ID='{2}';",
                 Product.Name, Product.Description,Product.ID);
             ExecuteNoQuery(q);
         }

@@ -1,84 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Teretan
 {
     public partial class Products : Form
     {
+        List<Product> products;
+
         public Products()
         {
+            products = Database.GetProducts();
             InitializeComponent();
-        }
-        List<Product> lp = new List<Product>();
-
-        private void Products_Load(object sender, EventArgs e)
-        {
-            load();
+            Reload(true);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Reload()
         {
-            new AddProduct().ShowDialog();
-            load();
+            Reload(false);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Reload(bool first)
         {
-            string id =dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),
-                name = dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
-                desc = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-            Product sel = new Product(Convert.ToInt32(id), name, desc);
-            new EditProduct(sel).ShowDialog();
-            load();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),
-                name = dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
-                desc = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-            Product sel = new Product(Convert.ToInt32(id), name, desc);
-            if (DB_Handler.CheckProduct(sel))
+            if(!first)
             {
-                if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + sel.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    DB_Handler.RemoveProduct(sel);
-                }
+                products = Database.GetProducts();
+                grid.Rows.Clear();
+                grid.Columns.Clear();
+            }
+            grid.Columns.Add("id", I18N.String("id"));
+            grid.Columns.Add("name", I18N.String("name"));
+            grid.Columns.Add("desc", I18N.String("description"));
+            grid.Columns[0].Visible = false;
+            foreach(Product p in products)
+            {
+                grid.Rows.Add(new string[] { p.ID.ToString(), p.Name, p.Description });
+            }
+            grid.AutoResizeColumns();
+            grid.AutoResizeRows();
+        }
+
+        private void AddProduct(object sender, EventArgs e)
+        {
+            new EditProduct().ShowDialog();
+            Reload();
+        }
+
+        private void EditProduct(object sender, EventArgs e)
+        {
+            // TODO: I18N
+            if(grid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Neki korisnici su kupili ovaj proizvod i nije ga moguce obrisati");
+                new EditProduct(new Product(grid.SelectedRows[0])).ShowDialog();
+                Reload();
             }
-            load();
         }
 
-        private void load()
+        private void DeleteProduct(object sender, EventArgs e)
         {
-            lp.Clear();
-            dataGridView1.Rows.Clear();
-            dataGridView1.Columns.Clear();
-            lp = DB_Handler.GetProduct("SELECT * FROM Products");
-            dataGridView1.Columns.Add("ID", "ID");
-            dataGridView1.Columns.Add("Name", "Name");
-            dataGridView1.Columns.Add("Description", "Description");
-            dataGridView1.Columns[0].Visible = false;
-            for (int i = 0; i < lp.Count; i++)
+            // TODO: I18N
+            if (grid.SelectedRows.Count == 0)
             {
-                string[] arr = new string[3];
-                arr[0] = lp[i].ID.ToString(); ;
-                arr[1] = lp[i].Name;
-                arr[2] = lp[i].Description;
-                dataGridView1.Rows.Add(arr);
+                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            dataGridView1.AutoResizeColumns();
-            dataGridView1.AutoResizeRows();
+            else
+            {
+                Product sel = new Product(grid.SelectedRows[0]);
+                if (Database.CheckProduct(sel))
+                {
+                    MessageBox.Show("Neki korisnici su kupili ovaj proizvod i nije ga moguce obrisati");
+                }
+                else
+                {
+                    if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + sel.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Database.RemoveProduct(sel);
+                    }
+                }
+                Reload();
+            }
         }
     }
 }

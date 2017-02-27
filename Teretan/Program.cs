@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Teretan
@@ -16,19 +14,19 @@ namespace Teretan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DB_Handler.Init();
+            I18N.Init();
+            Database.Init();
+            Preferences.Init();
 
-            //lazini baza testovi
-
-            List<User> lu = DB_Handler.GetUser("SELECT * FROM Users");
-            List<Product> lp = DB_Handler.GetProduct("SELECT * FROM Products");
-            List<Order> lo = DB_Handler.GetOrder("SELECT * FROM Orders");
+            // lazini baza testovi
+            List<User> lu = Database.GetUsers();
+            List<Product> lp = Database.GetProducts();
+            List<Order> lo = Database.GetOrders();
             new Products().Show();
-
-            //end lazini baza testovi
+            // end lazini baza testovi
 
             Application.Run(new Main());
-            DB_Handler.Dispose();
+            Database.Dispose();
         }
     }
 }

@@ -1,32 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Teretan
 {
     public partial class EditProduct : Form
     {
-        public EditProduct(Product p)
+        Product product;
+        bool edit;
+
+        public EditProduct()
         {
             InitializeComponent();
-            textBox1.Text = p.Name;
-            textBox2.Text = p.Description;
-            Prod = p;
+            product = new Product(0, "", "");
         }
 
-        Product Prod;
-
-        private void button1_Click(object sender, EventArgs e)
+        public EditProduct(Product product)
         {
-            DB_Handler.UpdateProduct(new Product(Prod.ID, textBox1.Text, textBox2.Text));
-            this.Close();
+            InitializeComponent();
+            edit = true;
+            nameBox.Text = product.Name;
+            descBox.Text = product.Description;
+            this.product = product;
         }
 
+        private void Edit(object sender, EventArgs e)
+        {
+            Product newProduct = new Product(product.ID, nameBox.Text, descBox.Text);
+            if (edit)
+            {
+                Database.UpdateProduct(newProduct);
+            }
+            else
+            {
+                Database.AddProduct(newProduct);
+            }
+            Close();
+        }
     }
 }

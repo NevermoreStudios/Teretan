@@ -30,13 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.yellowVal = new System.Windows.Forms.NumericUpDown();
+            this.redVal = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.saveButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.yellowVal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.redVal)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -57,19 +57,19 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Markiraj crveno na manje od:";
             // 
-            // numericUpDown1
+            // yellowVal
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(164, 9);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown1.TabIndex = 2;
+            this.yellowVal.Location = new System.Drawing.Point(164, 9);
+            this.yellowVal.Name = "yellowVal";
+            this.yellowVal.Size = new System.Drawing.Size(45, 20);
+            this.yellowVal.TabIndex = 2;
             // 
-            // numericUpDown2
+            // redVal
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(164, 35);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(45, 20);
-            this.numericUpDown2.TabIndex = 3;
+            this.redVal.Location = new System.Drawing.Point(164, 35);
+            this.redVal.Name = "redVal";
+            this.redVal.Size = new System.Drawing.Size(45, 20);
+            this.redVal.TabIndex = 3;
             // 
             // label3
             // 
@@ -89,34 +89,34 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "dana";
             // 
-            // button1
+            // saveButton
             // 
-            this.button1.Location = new System.Drawing.Point(197, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.saveButton.Location = new System.Drawing.Point(197, 65);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 6;
+            this.saveButton.Text = "OK";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.Save);
             // 
             // PreferencesF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 100);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.redVal);
+            this.Controls.Add(this.yellowVal);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PreferencesF";
             this.Text = "Preferences";
             this.Load += new System.EventHandler(this.PreferencesF_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yellowVal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.redVal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,10 +126,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown yellowVal;
+        private System.Windows.Forms.NumericUpDown redVal;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveButton;
     }
 }

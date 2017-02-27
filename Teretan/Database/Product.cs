@@ -1,21 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Teretan
 {
     public class Product
     {
-        public Product(int ID,string Name,string Description)
+        public int ID { get; }
+        public string Name { get; }
+        public string Description { get; }
+
+        public Product(int ID, string Name, string Description)
         {
             this.ID = ID;
             this.Name = Name;
             this.Description = Description;
         }
-        public int ID;
-        public string Name;
-        public string Description;
+
+        public Product(DataGridViewRow row) : this(
+            Convert.ToInt32(row.Cells[0].Value),
+            row.Cells[1].Value.ToString(),
+            row.Cells[2].Value.ToString()
+        ) { }
     }
 }

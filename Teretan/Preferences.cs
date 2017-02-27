@@ -1,31 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Teretan
 {
     public static class Preferences
     {
+        private static Dictionary<string, string> preferences;
 
-        public static void Set(string key,string value)
+        public static void Init()
         {
-            string q = String.Format("UPDATE Preferences SET Key='{0}',Value='{1}' WHERE Key='{0}';", key, value);
-            DB_Handler.ExecuteNoQuery(q);
+            preferences = Database.GetPreferences();
         }
 
-        public static string get(string key)
+        public static void Set(string key, string value)
         {
-            string s="";
-            string q = String.Format("SELECT * FROM Preferences WHERE Key='{0}';", key);
-            SQLiteDataReader reader = DB_Handler.ExecuteRead(q);
-            while (reader.Read())
-            {
-                s = Convert.ToString(reader["Value"]);
-            }
-            return s;
+            preferences[key] = value;
+            Database.SetPreference(key, value);
+        }
+
+        public static string Get(string key)
+        {
+            return preferences[key];
         }
     }
 }

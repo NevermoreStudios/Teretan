@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Teretan
 {
     public class Order
     {
-        public Order(int ID,int IDProduct, int IDUser, DateTime Date)
+        public int ID { get; }
+        public int Product { get; }
+        public int User { get; }
+        public DateTime Date { get; }
+
+        public Order(int ID, int Product, int User, DateTime Date)
         {
             this.ID = ID;
-            this.IDProduct = IDProduct;
-            this.IDUser = IDUser;
+            this.Product = Product;
+            this.User = User;
             this.Date = Date;
         }
-
-        public int ID;
-        public int IDProduct;
-        public int IDUser;
-        public DateTime Date;
     }
 }

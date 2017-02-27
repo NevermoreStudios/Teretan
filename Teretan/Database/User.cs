@@ -1,14 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Teretan
 {
     public class User
     {
-        public User(int ID,string Name,string Surname,DateTime BirthDate,float Height,float WaistWidth,float ShoulderWidth,float ArmsLenght,float LegsLenght,string e_mail,DateTime Subscription_Date,TimeSpan Subscription_Lenght,string Notes)
+        public int ID { get; }
+        public string Name { get; }
+        public string Surname { get; }
+        public DateTime BirthDate { get; }
+        public float Height { get; }
+        public float WaistWidth { get; }
+        public float ShoulderWidth { get; }
+        public float ArmsLenght { get; }
+        public float LegsLenght { get; }
+        public string Email { get; }
+        public DateTime SubscriptionDate { get; }
+        public TimeSpan SubscriptionLength { get; }
+        public string Notes { get; }
+
+        public User(int ID, string Name, string Surname, DateTime BirthDate, float Height, float WaistWidth, float ShoulderWidth, float ArmsLenght, float LegsLenght, string Email, DateTime SubscriptionDate, TimeSpan SubscriptionLength, string Notes)
         {
             this.ID = ID;
             this.Name = Name;
@@ -19,23 +29,41 @@ namespace Teretan
             this.ShoulderWidth = ShoulderWidth;
             this.ArmsLenght = ArmsLenght;
             this.LegsLenght = LegsLenght;
-            this.e_mail = e_mail;
-            this.Subscription_Date = Subscription_Date;
-            this.Subscription_Lenght = Subscription_Lenght;
+            this.Email = Email;
+            this.SubscriptionDate = SubscriptionDate;
+            this.SubscriptionLength = SubscriptionLength;
             this.Notes = Notes;
         }
-        public int ID;
-        public string Name;
-        public string Surname;
-        public DateTime BirthDate;
-        public float Height;
-        public float WaistWidth;
-        public float ShoulderWidth;
-        public float ArmsLenght;
-        public float LegsLenght;
-        public string e_mail;
-        public DateTime Subscription_Date;
-        public TimeSpan Subscription_Lenght;
-        public string Notes;
+        
+        public int GetSubLeft()
+        {
+            return SubscriptionDate
+                .Add(SubscriptionLength)
+                .Subtract(DateTime.Now)
+                .Days;
+        }
+
+        public int GetAge()
+        {
+            DateTime today = DateTime.Today;
+            // Calculate the age.
+            int age = today.Year - BirthDate.Year;
+            // Do stuff with it.
+            if (BirthDate > today.AddYears(-age))
+            {
+                --age;
+            }
+            return age;
+        }
+
+        public bool IsRed()
+        {
+            return GetSubLeft() <= int.Parse(Preferences.Get("red"));
+        }
+
+        public bool IsYellow()
+        {
+            return GetSubLeft() <= int.Parse(Preferences.Get("yellow"));
+        }
     }
 }

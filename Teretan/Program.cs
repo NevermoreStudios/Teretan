@@ -18,13 +18,6 @@ namespace Teretan
             Database.Init();
             Preferences.Init();
 
-            // lazini baza testovi
-            List<User> lu = Database.GetUsers();
-            List<Product> lp = Database.GetProducts();
-            List<Order> lo = Database.GetOrders();
-            new Products().Show();
-            // end lazini baza testovi
-
             Application.Run(new Main());
             Database.Dispose();
         }

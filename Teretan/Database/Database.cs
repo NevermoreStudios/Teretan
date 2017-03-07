@@ -84,7 +84,6 @@ namespace Teretan
         ";
 
         private static SQLiteConnection DBConnection;
-        private static List<Product> productCache;
 
         public static void Init()
         {
@@ -170,10 +169,6 @@ namespace Teretan
 
         public static List<Product> GetProducts(string query, params object[] args)
         {
-            if (productCache != null)
-            {
-                return productCache;
-            }
             List<Product> ret = new List<Product>();
             SQLiteDataReader reader = ExecuteRead(query, args);
             while (reader.Read())
@@ -184,7 +179,6 @@ namespace Teretan
                     reader.GetString(2)
                 ));
             }
-            productCache = ret;
             return ret;
         }
 
@@ -232,7 +226,6 @@ namespace Teretan
 
         public static void AddProduct(Product Product)
         {
-            productCache = null;
             ExecuteNoQuery(QUERY_INSERT_PRODUCT, Product.Name, Product.Description);
         }
 
@@ -248,7 +241,6 @@ namespace Teretan
 
         public static void RemoveProduct(Product Product)
         {
-            productCache = null;
             ExecuteNoQuery(QUERY_DELETE_PRODUCT, Product.ID);
         }
 
@@ -279,7 +271,6 @@ namespace Teretan
 
         public static void UpdateProduct(Product Product)
         {
-            productCache = null;
             ExecuteNoQuery(QUERY_UPDATE_PRODUCT, Product.Name, Product.Description, Product.ID);
         }
     }

@@ -23,9 +23,9 @@ namespace Teretan
          */
         const string QUERY_INSERT_USER = "INSERT INTO `users` (`name`, `surname`, `birthdate`, `height`, `waist_width`, " +
             "`shoulder_width`, `arms_length`, `legs_length`, `email`, `subscription_date`, `subscription_length`, `notes`)" +
-            "VALUES('{0}', '{1}', '{2:yyyy-mm-dd hh:mm:ss.fff}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9:yyyy-mm-dd hh:mm:ss.fff}', '{10}', '{11}')";
+            "VALUES('{0}', '{1}', '{2:yyyy-MM-dd hh:mm:ss}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9:yyyy-MM-dd hh:mm:ss}', '{10}', '{11}')";
         const string QUERY_INSERT_PRODUCT = "INSERT INTO `products` (`name`, `description`) VALUES('{0}', '{1}')";
-        const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy-mm-dd hh:mm:ss.fff}')";
+        const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy-MM-dd hh:mm:ss}')";
 
         /**
          * Delete queries
@@ -37,7 +37,7 @@ namespace Teretan
         /**
          * Update queries
          */
-        const string QUERY_UPDATE_USER = "UPDATE `users` SET `name`='{0}', `surname`='{1}', `birthdate`='{2:yyyy-mm-dd hh:mm:ss.fff}', `height`='{3}', `waist_width`='{4}', `shoulder_width`='{5}', `arms_length`='{6}', `legs_length`='{7}', `email`='{8}', `subscription_date`='{9:yyyy-mm-dd hh:mm:ss.fff}', `subscription_length`='{10}', `notes`='{11}' WHERE `id`={12}";
+        const string QUERY_UPDATE_USER = "UPDATE `users` SET `name`='{0}', `surname`='{1}', `birthdate`='{2:yyyy-MM-dd hh:mm:ss}', `height`='{3}', `waist_width`='{4}', `shoulder_width`='{5}', `arms_length`='{6}', `legs_length`='{7}', `email`='{8}', `subscription_date`='{9:yyyy-MM-dd hh:mm:ss}', `subscription_length`='{10}', `notes`='{11}' WHERE `id`={12}";
         const string QUERY_UPDATE_PRODUCT = "UPDATE `products` SET `name`='{0}', `description`='{1}' WHERE `id`='{2}'";
         const string QUERY_UPDATE_PREFERENCE = "UPDATE `preferences` SET `key`='{0}', `value`='{1}' WHERE `key`='{0}'";
 
@@ -78,8 +78,8 @@ namespace Teretan
         );
         ";
         const string QUERY_CREATE_PREFERENCES = @"
-        INSERT INTO `preferences` VALUES('red', '0');
-        INSERT INTO `preferences` VALUES('yellow', '0');
+        INSERT INTO `preferences` VALUES('red', '3');
+        INSERT INTO `preferences` VALUES('yellow', '10');
         INSERT INTO `preferences` VALUES('lang', 'en');
         ";
 

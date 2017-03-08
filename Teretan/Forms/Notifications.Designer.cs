@@ -39,14 +39,14 @@
             this.notificationList.FormattingEnabled = true;
             this.notificationList.Location = new System.Drawing.Point(13, 13);
             this.notificationList.Name = "notificationList";
-            this.notificationList.Size = new System.Drawing.Size(259, 238);
+            this.notificationList.Size = new System.Drawing.Size(711, 238);
             this.notificationList.TabIndex = 0;
             // 
             // Notifications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(736, 262);
             this.Controls.Add(this.notificationList);
             this.Name = "Notifications";
             this.Text = "Notifications";

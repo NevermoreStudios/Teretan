@@ -14,8 +14,8 @@ namespace Teretan
         public float ArmsLenght { get; }
         public float LegsLenght { get; }
         public string Email { get; }
-        public DateTime SubscriptionDate { get; }
-        public TimeSpan SubscriptionLength { get; }
+        public DateTime SubscriptionDate { get; set; }
+        public TimeSpan SubscriptionLength { get; set; }
         public string Notes { get; }
 
         public User(int ID, string Name, string Surname, DateTime BirthDate, float Height, float WaistWidth, float ShoulderWidth, float ArmsLenght, float LegsLenght, string Email, DateTime SubscriptionDate, TimeSpan SubscriptionLength, string Notes)

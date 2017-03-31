@@ -68,6 +68,7 @@ namespace Teretan
             labelShoulderWidth.Text = u.ShoulderWidth.ToString();
             labelArmsLenght.Text = u.ArmsLenght.ToString();
             labelLegsLenght.Text = u.LegsLenght.ToString();
+            labelWeight.Text = u.Weight.ToString();
             listBox1.Items.Clear();
             lo = Database.GetOrders("SELECT * FROM `orders` WHERE user='{0}'", u.ID.ToString());
             foreach (Order item in lo)
@@ -98,6 +99,7 @@ namespace Teretan
             labelShoulderWidth.Text = "";
             labelArmsLenght.Text = "";
             labelLegsLenght.Text = "";
+            labelWeight.Text = "";
             listBox1.Items.Clear();
             
             labelSubscriptionDate.Text = "";
@@ -146,6 +148,7 @@ namespace Teretan
             Filter.Columns.Add("shoulder_width", "shoulder_width");
             Filter.Columns.Add("arms_length", "arms_lenght");
             Filter.Columns.Add("legs_length", "legs_lenght");
+            Filter.Columns.Add("weight", "weight");
             Filter.Columns.Add("email", "email");
             Filter.Columns.Add("notes", "notes");
         }
@@ -254,7 +257,7 @@ namespace Teretan
                 btnRemoveOrder.Enabled = true;
                 btnExtend.Enabled = true;
                 textBox1.ReadOnly = true;
-                Database.AddUser(new User(0, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), textBoxemail.Text, DateTime.Now, new TimeSpan(0), textBox1.Text));
+                Database.AddUser(new User(0, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text),Convert.ToSingle(textBoxW.Text), textBoxemail.Text, DateTime.Now, new TimeSpan(0), textBox1.Text));
                 lu = Database.GetUsers();
                 Fill(lu);
                 LoadUser();
@@ -300,7 +303,7 @@ namespace Teretan
                 btnRemoveOrder.Enabled = true;
                 btnExtend.Enabled = true;
                 textBox1.ReadOnly = true;
-                Database.UpdateUser(new User(u.ID, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), textBoxemail.Text, u.SubscriptionDate, u.SubscriptionLength, textBox1.Text));
+                Database.UpdateUser(new User(u.ID, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), Convert.ToSingle(textBoxW.Text), textBoxemail.Text, u.SubscriptionDate, u.SubscriptionLength, textBox1.Text));
                 lu = Database.GetUsers();
                 Fill(lu);
                 LoadUser();
@@ -360,7 +363,7 @@ namespace Teretan
                     {
                         if (!string.IsNullOrWhiteSpace((string)cell.Value))
                         {
-                            if (cell.ColumnIndex == 2 || cell.ColumnIndex == 3 || cell.ColumnIndex == 4 || cell.ColumnIndex == 5 || cell.ColumnIndex == 6)
+                            if (cell.ColumnIndex == 2 || cell.ColumnIndex == 3 || cell.ColumnIndex == 4 || cell.ColumnIndex == 5 || cell.ColumnIndex == 6 || cell.ColumnIndex == 7)
                             {
                                 if (!and) { and = true; }
                                 else { Q += " AND "; }

@@ -13,12 +13,13 @@ namespace Teretan
         public float ShoulderWidth { get; }
         public float ArmsLenght { get; }
         public float LegsLenght { get; }
+        public float Weight { get; }
         public string Email { get; }
         public DateTime SubscriptionDate { get; set; }
         public TimeSpan SubscriptionLength { get; set; }
         public string Notes { get; }
 
-        public User(int ID, string Name, string Surname, DateTime BirthDate, float Height, float WaistWidth, float ShoulderWidth, float ArmsLenght, float LegsLenght, string Email, DateTime SubscriptionDate, TimeSpan SubscriptionLength, string Notes)
+        public User(int ID, string Name, string Surname, DateTime BirthDate, float Height, float WaistWidth, float ShoulderWidth, float ArmsLenght, float LegsLenght,float Weight, string Email, DateTime SubscriptionDate, TimeSpan SubscriptionLength, string Notes)
         {
             this.ID = ID;
             this.Name = Name;
@@ -33,6 +34,7 @@ namespace Teretan
             this.SubscriptionDate = SubscriptionDate;
             this.SubscriptionLength = SubscriptionLength;
             this.Notes = Notes;
+            this.Weight = Weight;
         }
         
         public int GetSubLeft()

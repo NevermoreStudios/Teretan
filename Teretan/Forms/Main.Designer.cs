@@ -33,6 +33,7 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBoxemail = new System.Windows.Forms.TextBox();
             this.textBoxll = new System.Windows.Forms.TextBox();
             this.textBoxal = new System.Windows.Forms.TextBox();
@@ -81,8 +82,10 @@
             this.btnPreferences = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
+            this.textBoxW = new System.Windows.Forms.TextBox();
+            this.labelWeight = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Users)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Filter)).BeginInit();
             this.groupBox.SuspendLayout();
@@ -155,6 +158,9 @@
             // groupBox
             // 
             this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox.Controls.Add(this.textBoxW);
+            this.groupBox.Controls.Add(this.labelWeight);
+            this.groupBox.Controls.Add(this.label18);
             this.groupBox.Controls.Add(this.dateTimePicker1);
             this.groupBox.Controls.Add(this.textBoxemail);
             this.groupBox.Controls.Add(this.textBoxll);
@@ -202,6 +208,15 @@
             this.groupBox.Size = new System.Drawing.Size(478, 573);
             this.groupBox.TabIndex = 4;
             this.groupBox.TabStop = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(108, 75);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePicker1.TabIndex = 37;
+            this.dateTimePicker1.Tag = "TextBox";
             // 
             // textBoxemail
             // 
@@ -666,15 +681,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(108, 75);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
-            this.dateTimePicker1.TabIndex = 37;
-            this.dateTimePicker1.Tag = "TextBox";
-            // 
             // label16
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -684,6 +690,34 @@
             this.label16.Size = new System.Drawing.Size(381, 13);
             this.label16.TabIndex = 12;
             this.label16.Text = "!= NIJE JEDNAKO   = JEDNAKO   >= VECE JEDNAKO   <= MANJE JEDNAKO";
+            // 
+            // textBoxW
+            // 
+            this.textBoxW.Location = new System.Drawing.Point(342, 188);
+            this.textBoxW.Name = "textBoxW";
+            this.textBoxW.Size = new System.Drawing.Size(100, 20);
+            this.textBoxW.TabIndex = 40;
+            this.textBoxW.Tag = "TextBox";
+            this.textBoxW.Text = "Text Box";
+            // 
+            // labelWeight
+            // 
+            this.labelWeight.AutoSize = true;
+            this.labelWeight.Location = new System.Drawing.Point(339, 191);
+            this.labelWeight.Name = "labelWeight";
+            this.labelWeight.Size = new System.Drawing.Size(33, 13);
+            this.labelWeight.TabIndex = 39;
+            this.labelWeight.Tag = "Label";
+            this.labelWeight.Text = "Label";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(240, 191);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 13);
+            this.label18.TabIndex = 38;
+            this.label18.Text = "Weight";
             // 
             // Main
             // 
@@ -774,5 +808,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBoxW;
+        private System.Windows.Forms.Label labelWeight;
+        private System.Windows.Forms.Label label18;
     }
 }

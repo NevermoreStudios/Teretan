@@ -22,10 +22,10 @@ namespace Teretan
          * Insert queries
          */
         const string QUERY_INSERT_USER = "INSERT INTO `users` (`name`, `surname`, `birthdate`, `height`, `waist_width`, " +
-            "`shoulder_width`, `arms_length`, `legs_length`, `email`, `subscription_date`, `subscription_length`, `notes`)" +
-            "VALUES('{0}', '{1}', '{2:yyyy-MM-dd hh:mm:ss}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9:yyyy-MM-dd hh:mm:ss}', '{10}', '{11}')";
+            "`shoulder_width`, `arms_length`, `legs_length`,`weight`, `email`, `subscription_date`, `subscription_length`, `notes`)" +
+            "VALUES('{0}', '{1}', '{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}','{9}', '{10:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{11}', '{12}')";
         const string QUERY_INSERT_PRODUCT = "INSERT INTO `products` (`name`, `description`) VALUES('{0}', '{1}')";
-        const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy-MM-dd hh:mm:ss}')";
+        const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}')";
 
         /**
          * Delete queries
@@ -37,7 +37,7 @@ namespace Teretan
         /**
          * Update queries
          */
-        const string QUERY_UPDATE_USER = "UPDATE `users` SET `name`='{0}', `surname`='{1}', `birthdate`='{2:yyyy-MM-dd hh:mm:ss}', `height`='{3}', `waist_width`='{4}', `shoulder_width`='{5}', `arms_length`='{6}', `legs_length`='{7}', `email`='{8}', `subscription_date`='{9:yyyy-MM-dd hh:mm:ss}', `subscription_length`='{10}', `notes`='{11}' WHERE `id`={12}";
+        const string QUERY_UPDATE_USER = "UPDATE `users` SET `name`='{0}', `surname`='{1}', `birthdate`='{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', `height`='{3}', `waist_width`='{4}', `shoulder_width`='{5}', `arms_length`='{6}', `legs_length`='{7}',`weight`='{8}', `email`='{9}', `subscription_date`='{10:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', `subscription_length`='{11}', `notes`='{12}' WHERE `id`={13}";
         const string QUERY_UPDATE_PRODUCT = "UPDATE `products` SET `name`='{0}', `description`='{1}' WHERE `id`='{2}'";
         const string QUERY_UPDATE_PREFERENCE = "UPDATE `preferences` SET `key`='{0}', `value`='{1}' WHERE `key`='{0}'";
 
@@ -55,6 +55,7 @@ namespace Teretan
 	        `shoulder_width`	    REAL,
 	        `arms_length`	        REAL,
 	        `legs_length`	        REAL,
+            `weight`	            REAL,
 	        `email`	                TEXT,
 	        `subscription_date`	    TEXT,
 	        `subscription_length`	INTEGER,
@@ -153,10 +154,11 @@ namespace Teretan
                     reader.GetFloat(6),
                     reader.GetFloat(7),
                     reader.GetFloat(8),
-                    reader.GetString(9),
-                    reader.GetDateTime(10),
-                    new TimeSpan(reader.GetInt32(11), 0, 0, 0),
-                    reader.GetString(12)
+                    reader.GetFloat(9),
+                    reader.GetString(10),
+                    reader.GetDateTime(11),
+                    new TimeSpan(reader.GetInt32(12), 0, 0, 0),
+                    reader.GetString(13)
                 ));
             }
             return ret;
@@ -221,7 +223,7 @@ namespace Teretan
 
         public static void AddUser(User User)
         {
-            ExecuteNoQuery(QUERY_INSERT_USER, User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Notes);
+            ExecuteNoQuery(QUERY_INSERT_USER, User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght,User.Weight, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Notes);
         }
 
         public static void AddProduct(Product Product)
@@ -266,7 +268,7 @@ namespace Teretan
 
         public static void UpdateUser(User User)
         {
-            ExecuteNoQuery(QUERY_UPDATE_USER, User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Notes, User.ID);
+            ExecuteNoQuery(QUERY_UPDATE_USER, User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght,User.Weight, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Notes, User.ID);
         }
 
         public static void UpdateProduct(Product Product)

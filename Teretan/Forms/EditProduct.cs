@@ -25,16 +25,28 @@ namespace Teretan
 
         private void Edit(object sender, EventArgs e)
         {
-            Product newProduct = new Product(product.ID, nameBox.Text, descBox.Text);
-            if (edit)
+            try
             {
-                Database.UpdateProduct(newProduct);
+                Product newProduct = new Product(product.ID, nameBox.Text, descBox.Text);
+                if (edit)
+                {
+                    Database.UpdateProduct(newProduct);
+                }
+                else
+                {
+                    Database.AddProduct(newProduct);
+                }
             }
-            else
+            catch (Exception)
             {
-                Database.AddProduct(newProduct);
+                MessageBox.Show("Greska: Obavezno Polje nije popunjeno");
             }
             Close();
+        }
+
+        private void EditProduct_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

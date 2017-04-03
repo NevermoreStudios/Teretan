@@ -33,58 +33,73 @@ namespace Teretan
 
         private void Fill(List<User> lu)
         {
-            Users.Rows.Clear();
-            Users.Columns.Clear();
-            Users.Columns.Add("ID", "ID");
-            Users.Columns.Add("Name", "Name");
-            Users.Columns.Add("Surname", "Surname");
-            Users.Columns.Add("BirthDate", "BirthDate");
-            Users.Columns.Add("Email", "Email");
-            Users.Columns.Add("SubscriptionLeft", "SubscriptionLeft");
-            Users.Columns[0].Visible = false;
-            foreach (User usr in lu)
+            try
             {
-                Users.Rows.Add(new string[] { usr.ID.ToString(), usr.Name, usr.Surname, usr.BirthDate.ToShortDateString(), usr.Email, Math.Max(0, usr.GetSubLeft()).ToString() });
-                if (usr.IsRed()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Red; }
-                else if (usr.IsYellow()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Yellow; }
+                Users.Rows.Clear();
+                Users.Columns.Clear();
+                Users.Columns.Add("ID", "ID");
+                Users.Columns.Add("Name", "Name");
+                Users.Columns.Add("Surname", "Surname");
+                Users.Columns.Add("BirthDate", "BirthDate");
+                Users.Columns.Add("Email", "Email");
+                Users.Columns.Add("SubscriptionLeft", "SubscriptionLeft");
+                Users.Columns[0].Visible = false;
+                foreach (User usr in lu)
+                {
+                    Users.Rows.Add(new string[] { usr.ID.ToString(), usr.Name, usr.Surname, usr.BirthDate.ToShortDateString(), usr.Email, Math.Max(0, usr.GetSubLeft()).ToString() });
+                    if (usr.IsRed()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Red; }
+                    else if (usr.IsYellow()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Yellow; }
+                }
+                Users.Sort(Users.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
             }
-            Users.Sort(Users.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
+            catch (Exception)
+            {
+                MessageBox.Show("Greska sa bazom pozovite korisnicku podrsku");
+            }
+            
         }
 
         private void LoadUser(User u)
         {
-            btnAddOrder.Enabled = true;
-            btnRemoveOrder.Enabled = true;
-            btnExtend.Enabled = true;
-            btnRemoveUser.Enabled = true;
-            btnEditUser.Enabled = true;
-            uid = u.ID;
-            labelName.Text = u.Name;
-            labelSurname.Text = u.Surname;
-            labelBithdate.Text = u.BirthDate.ToShortDateString();
-            labelAge.Text = u.GetAge().ToString();
-            labelHeight.Text = u.Height.ToString();
-            labelWaistWidth.Text = u.WaistWidth.ToString();
-            labelShoulderWidth.Text = u.ShoulderWidth.ToString();
-            labelArmsLenght.Text = u.ArmsLenght.ToString();
-            labelLegsLenght.Text = u.LegsLenght.ToString();
-            labelWeight.Text = u.Weight.ToString();
-            listBox1.Items.Clear();
-            lo = Database.GetOrders("SELECT * FROM `orders` WHERE user='{0}'", u.ID.ToString());
-            foreach (Order item in lo)
+            try
             {
-                string product = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", item.Product.ToString())[0].Name;
-                string date = item.Date.ToShortDateString();
-                listBox1.Items.Add(product + " " + date);
+                btnAddOrder.Enabled = true;
+                btnRemoveOrder.Enabled = true;
+                btnExtend.Enabled = true;
+                btnRemoveUser.Enabled = true;
+                btnEditUser.Enabled = true;
+                uid = u.ID;
+                labelName.Text = u.Name;
+                labelSurname.Text = u.Surname;
+                labelBithdate.Text = u.BirthDate.ToShortDateString();
+                labelAge.Text = u.GetAge().ToString();
+                labelHeight.Text = u.Height.ToString();
+                labelWaistWidth.Text = u.WaistWidth.ToString();
+                labelShoulderWidth.Text = u.ShoulderWidth.ToString();
+                labelArmsLenght.Text = u.ArmsLenght.ToString();
+                labelLegsLenght.Text = u.LegsLenght.ToString();
+                labelWeight.Text = u.Weight.ToString();
+                listBox1.Items.Clear();
+                lo = Database.GetOrders("SELECT * FROM `orders` WHERE user='{0}'", u.ID.ToString());
+                foreach (Order item in lo)
+                {
+                    string product = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", item.Product.ToString())[0].Name;
+                    string date = item.Date.ToShortDateString();
+                    listBox1.Items.Add(product + " " + date);
+                }
+                labelSubscriptionDate.Text = u.SubscriptionDate.ToShortDateString();
+                labelSubscriptionLenght.Text = u.SubscriptionLength.Days.ToString();
+                labelSubscriptionLeft.Text = u.GetSubLeft() <= 0 ? "ISTEKLO" : u.GetSubLeft().ToString();
+                if (u.IsRed()) { labelSubscriptionLeft.BackColor = Color.Red; }
+                else if (u.IsYellow()) { labelSubscriptionLeft.BackColor = Color.Yellow; }
+                else labelSubscriptionLeft.BackColor = Color.FromKnownColor(KnownColor.Control);
+                labelEmail.Text = u.Email;
+                textBox1.Text = u.Notes;
             }
-            labelSubscriptionDate.Text = u.SubscriptionDate.ToShortDateString();
-            labelSubscriptionLenght.Text = u.SubscriptionLength.Days.ToString();
-            labelSubscriptionLeft.Text = u.GetSubLeft() <= 0 ? "ISTEKLO" : u.GetSubLeft().ToString();
-            if (u.IsRed()) { labelSubscriptionLeft.BackColor = Color.Red; }
-            else if (u.IsYellow()) { labelSubscriptionLeft.BackColor = Color.Yellow; }
-            else labelSubscriptionLeft.BackColor = Color.FromKnownColor(KnownColor.Control);
-            labelEmail.Text = u.Email;
-            textBox1.Text = u.Notes;
+            catch (Exception)
+            {
+                MessageBox.Show("Greska sa bazom");
+            }
 
         }
         private void LoadUser()
@@ -248,88 +263,102 @@ namespace Teretan
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (addstate)
+            try
             {
-                addstate = !addstate;
-                button1.Text = "Add";
-                SetVis(false);
-                btnAddOrder.Enabled = true;
-                btnRemoveOrder.Enabled = true;
-                btnExtend.Enabled = true;
-                textBox1.ReadOnly = true;
-                Database.AddUser(new User(0, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text),Convert.ToSingle(textBoxW.Text), textBoxemail.Text, DateTime.Now, new TimeSpan(0), textBox1.Text));
-                lu = Database.GetUsers();
-                Fill(lu);
-                LoadUser();
-                putNotif();
-            }
-            else
-            {
-                addstate = !addstate;
-                button1.Text = "Done";
-                SetVis(true);
-                foreach (Control item in Controls[Controls.IndexOfKey("groupBox")].Controls)
+                if (addstate)
                 {
-                    if (item.Tag != null)
+                    addstate = !addstate;
+                    button1.Text = "Add";
+                    SetVis(false);
+                    btnAddOrder.Enabled = true;
+                    btnRemoveOrder.Enabled = true;
+                    btnExtend.Enabled = true;
+                    textBox1.ReadOnly = true;
+                    Database.AddUser(new User(0, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), Convert.ToSingle(textBoxW.Text), textBoxemail.Text, DateTime.Now, new TimeSpan(0), textBox1.Text));
+                    lu = Database.GetUsers();
+                    Fill(lu);
+                    LoadUser();
+                    putNotif();
+                }
+                else
+                {
+                    addstate = !addstate;
+                    button1.Text = "Done";
+                    SetVis(true);
+                    foreach (Control item in Controls[Controls.IndexOfKey("groupBox")].Controls)
                     {
-                        if ((string)item.Tag == "TextBox")
+                        if (item.Tag != null)
                         {
-                            item.Text = "";
+                            if ((string)item.Tag == "TextBox")
+                            {
+                                item.Text = "";
+                            }
                         }
                     }
+                    textBox1.Text = "";
+                    listBox1.Items.Clear();
+                    labelSubscriptionDate.Text = "NONE";
+                    labelSubscriptionLeft.Text = "NONE";
+                    labelSubscriptionLenght.Text = "NONE";
+                    labelAge.Text = "";
+                    btnAddOrder.Enabled = false;
+                    btnRemoveOrder.Enabled = false;
+                    btnExtend.Enabled = false;
+                    textBox1.ReadOnly = false;
                 }
-                textBox1.Text = "";
-                listBox1.Items.Clear();
-                labelSubscriptionDate.Text = "NONE";
-                labelSubscriptionLeft.Text = "NONE";
-                labelSubscriptionLenght.Text = "NONE";
-                labelAge.Text = "";
-                btnAddOrder.Enabled = false;
-                btnRemoveOrder.Enabled = false;
-                btnExtend.Enabled = false;
-                textBox1.ReadOnly = false;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
             }
         }
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {
-            User u = lu.Find(i => i.ID == uid);
-            if (editstate)
+            try
             {
-                editstate = !editstate;
-                btnEditUser.Text = "Edit";
-                SetVis(false);
-                btnAddOrder.Enabled = true;
-                btnRemoveOrder.Enabled = true;
-                btnExtend.Enabled = true;
-                textBox1.ReadOnly = true;
-                Database.UpdateUser(new User(u.ID, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), Convert.ToSingle(textBoxW.Text), textBoxemail.Text, u.SubscriptionDate, u.SubscriptionLength, textBox1.Text));
-                lu = Database.GetUsers();
-                Fill(lu);
-                LoadUser();
-                putNotif();
+                User u = lu.Find(i => i.ID == uid);
+                if (editstate)
+                {
+                    editstate = !editstate;
+                    btnEditUser.Text = "Edit";
+                    SetVis(false);
+                    btnAddOrder.Enabled = true;
+                    btnRemoveOrder.Enabled = true;
+                    btnExtend.Enabled = true;
+                    textBox1.ReadOnly = true;
+                    Database.UpdateUser(new User(u.ID, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), Convert.ToSingle(textBoxW.Text), textBoxemail.Text, u.SubscriptionDate, u.SubscriptionLength, textBox1.Text));
+                    lu = Database.GetUsers();
+                    Fill(lu);
+                    LoadUser();
+                    putNotif();
+                }
+                else
+                {
+                    editstate = !editstate;
+                    btnEditUser.Text = "Done";
+                    SetVis(true);
+                    labelAge.Text = "";
+
+                    textBoxName.Text = u.Name;
+                    textBoxSurname.Text = u.Surname;
+                    dateTimePicker1.Value = u.BirthDate;
+                    textBoxh.Text = u.Height.ToString();
+                    textBoxww.Text = u.WaistWidth.ToString();
+                    textBoxsw.Text = u.ShoulderWidth.ToString();
+                    textBoxal.Text = u.ArmsLenght.ToString();
+                    textBoxll.Text = u.LegsLenght.ToString();
+                    textBoxemail.Text = u.Email;
+
+                    btnAddOrder.Enabled = false;
+                    btnRemoveOrder.Enabled = false;
+                    btnExtend.Enabled = false;
+                    textBox1.ReadOnly = false;
+                }
             }
-            else
+            catch (Exception)
             {
-                editstate = !editstate;
-                btnEditUser.Text = "Done";
-                SetVis(true);
-                labelAge.Text = "";
-
-                textBoxName.Text = u.Name;
-                textBoxSurname.Text = u.Surname;
-                dateTimePicker1.Value = u.BirthDate;
-                textBoxh.Text = u.Height.ToString();
-                textBoxww.Text = u.WaistWidth.ToString();
-                textBoxsw.Text = u.ShoulderWidth.ToString();
-                textBoxal.Text = u.ArmsLenght.ToString();
-                textBoxll.Text = u.LegsLenght.ToString();
-                textBoxemail.Text = u.Email;
-
-                btnAddOrder.Enabled = false;
-                btnRemoveOrder.Enabled = false;
-                btnExtend.Enabled = false;
-                textBox1.ReadOnly = false;
+                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
             }
         }
 
@@ -350,49 +379,56 @@ namespace Teretan
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            bool and = false;
-            String Q = "SELECT * FROM `users` WHERE ";
-            foreach (DataGridViewRow item in Filter.Rows)
+            try
             {
-                if (item.Index != Filter.RowCount - 1)
+                bool and = false;
+                String Q = "SELECT * FROM `users` WHERE ";
+                foreach (DataGridViewRow item in Filter.Rows)
                 {
-                    if (item.Index != 0) { Q += " OR "; }
-                    Q += "(";
-                    and = false;
-                    foreach (DataGridViewCell cell in item.Cells)
+                    if (item.Index != Filter.RowCount - 1)
                     {
-                        if (!string.IsNullOrWhiteSpace((string)cell.Value))
+                        if (item.Index != 0) { Q += " OR "; }
+                        Q += "(";
+                        and = false;
+                        foreach (DataGridViewCell cell in item.Cells)
                         {
-                            if (cell.ColumnIndex == 2 || cell.ColumnIndex == 3 || cell.ColumnIndex == 4 || cell.ColumnIndex == 5 || cell.ColumnIndex == 6 || cell.ColumnIndex == 7)
+                            if (!string.IsNullOrWhiteSpace((string)cell.Value))
                             {
-                                if (!and) { and = true; }
-                                else { Q += " AND "; }
-                                Q += "`";
-                                Q += Filter.Columns[cell.ColumnIndex].Name;
-                                Q += "`";
-                                Q += (string)cell.Value;
+                                if (cell.ColumnIndex == 2 || cell.ColumnIndex == 3 || cell.ColumnIndex == 4 || cell.ColumnIndex == 5 || cell.ColumnIndex == 6 || cell.ColumnIndex == 7)
+                                {
+                                    if (!and) { and = true; }
+                                    else { Q += " AND "; }
+                                    Q += "`";
+                                    Q += Filter.Columns[cell.ColumnIndex].Name;
+                                    Q += "`";
+                                    Q += (string)cell.Value;
+                                }
+                                else
+                                {
+                                    if (!and) { and = true; }
+                                    else { Q += " AND "; }
+                                    Q += "`";
+                                    Q += Filter.Columns[cell.ColumnIndex].Name;
+                                    Q += "` LIKE '";
+                                    Q += (string)cell.Value;
+                                    Q += "'";
+                                }
                             }
-                            else
-                            {
-                                if (!and) { and = true; }
-                                else { Q += " AND "; }
-                                Q += "`";
-                                Q += Filter.Columns[cell.ColumnIndex].Name;
-                                Q += "` LIKE '";
-                                Q += (string)cell.Value;
-                                Q += "'";
-                            }
+
                         }
-
+                        Q += ")";
                     }
-                    Q += ")";
-                }
 
+                }
+                lu = Database.GetUsers(Q);
+                Fill(lu);
+                LoadUser();
+                putNotif();
             }
-            lu = Database.GetUsers(Q);
-            Fill(lu);
-            LoadUser();
-            putNotif();
+            catch (Exception)
+            {
+                MessageBox.Show("Greska: Filter nije u tacnom obliku");
+            }
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)

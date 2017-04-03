@@ -21,18 +21,33 @@ namespace Teretan
         List<Product> p;
         private void button1_Click(object sender, EventArgs e)
         {
-            Database.AddOrder(new Order(0, p[comboBox1.SelectedIndex].ID, uid, dateTimePicker1.Value));
+            try
+            {
+                Database.AddOrder(new Order(0, p[comboBox1.SelectedIndex].ID, uid, dateTimePicker1.Value));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
+            }
             this.Close();
         }
 
         private void AddOrder_Load(object sender, EventArgs e)
         {
-            p = Database.GetProducts();
-            foreach (Product prod in p)
+            try
             {
-                comboBox1.Items.Add(prod.Name);
+                p = Database.GetProducts();
+                foreach (Product prod in p)
+                {
+                    comboBox1.Items.Add(prod.Name);
+                }
+                comboBox1.SelectedIndex = 0;
             }
-            comboBox1.SelectedIndex = 0;
+            catch (Exception)
+            {
+                MessageBox.Show("Nije definisan ni jedan proizvod");
+            }
+            
         }
     }
 }

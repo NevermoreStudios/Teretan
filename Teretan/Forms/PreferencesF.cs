@@ -12,14 +12,28 @@ namespace Teretan
 
         private void PreferencesF_Load(object sender, EventArgs e)
         {
-            yellowVal.Value = int.Parse(Preferences.Get("yellow"));
-            redVal.Value = int.Parse(Preferences.Get("red"));
+            try
+            {
+                yellowVal.Value = int.Parse(Preferences.Get("yellow"));
+                redVal.Value = int.Parse(Preferences.Get("red"));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greska sa preferencama");
+            }
         }
 
         private void Save(object sender, EventArgs e)
         {
-            Preferences.Set("yellow", yellowVal.Value.ToString());
-            Preferences.Set("red", redVal.Value.ToString());
+            try
+            {
+                Preferences.Set("yellow", yellowVal.Value.ToString());
+                Preferences.Set("red", redVal.Value.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greska sa preferencama");
+            }
             Close();
         }
     }

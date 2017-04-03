@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace Teretan
 {
@@ -115,12 +116,28 @@ namespace Teretan
 
         private static void ExecuteNoQuery(string query, params object[] args)
         {
-            Query(query, args).ExecuteNonQuery();
+            try
+            {
+                Query(query, args).ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Generic database no query eror");
+            }
+
         }
 
         private static SQLiteDataReader ExecuteRead(string query, params object[] args)
         {
-            return Query(query, args).ExecuteReader();
+            try
+            {
+                return Query(query, args).ExecuteReader();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Generic database read eror");
+            }
+            return null;
         }
 
         public static int Count(SQLiteDataReader Read)

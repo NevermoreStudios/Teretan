@@ -33,6 +33,9 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.textBoxW = new System.Windows.Forms.TextBox();
+            this.labelWeight = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBoxemail = new System.Windows.Forms.TextBox();
             this.textBoxll = new System.Windows.Forms.TextBox();
@@ -82,10 +85,6 @@
             this.btnPreferences = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBoxW = new System.Windows.Forms.TextBox();
-            this.labelWeight = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Users)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Filter)).BeginInit();
             this.groupBox.SuspendLayout();
@@ -105,14 +104,14 @@
             this.Users.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.Users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Users.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.Users.Location = new System.Drawing.Point(13, 13);
+            this.Users.Location = new System.Drawing.Point(12, 12);
             this.Users.MultiSelect = false;
             this.Users.Name = "Users";
             this.Users.ReadOnly = true;
             this.Users.RowHeadersVisible = false;
             this.Users.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.Users.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Users.Size = new System.Drawing.Size(600, 523);
+            this.Users.Size = new System.Drawing.Size(600, 522);
             this.Users.TabIndex = 0;
             this.Users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Users_CellClick);
             this.Users.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.Users_SortCompare);
@@ -126,7 +125,7 @@
             this.Filter.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.Filter.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Filter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Filter.Location = new System.Drawing.Point(12, 571);
+            this.Filter.Location = new System.Drawing.Point(12, 570);
             this.Filter.MultiSelect = false;
             this.Filter.Name = "Filter";
             this.Filter.RowHeadersVisible = false;
@@ -136,7 +135,7 @@
             // btnFilter
             // 
             this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFilter.Location = new System.Drawing.Point(13, 542);
+            this.btnFilter.Location = new System.Drawing.Point(13, 541);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(75, 23);
             this.btnFilter.TabIndex = 2;
@@ -147,7 +146,7 @@
             // btnClearFilter
             // 
             this.btnClearFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClearFilter.Location = new System.Drawing.Point(94, 542);
+            this.btnClearFilter.Location = new System.Drawing.Point(94, 541);
             this.btnClearFilter.Name = "btnClearFilter";
             this.btnClearFilter.Size = new System.Drawing.Size(75, 23);
             this.btnClearFilter.TabIndex = 3;
@@ -170,22 +169,22 @@
             this.groupBox.Controls.Add(this.textBoxh);
             this.groupBox.Controls.Add(this.textBoxSurname);
             this.groupBox.Controls.Add(this.textBoxName);
+            this.groupBox.Controls.Add(this.label15);
+            this.groupBox.Controls.Add(this.labelSubscriptionLenght);
             this.groupBox.Controls.Add(this.btnExtend);
+            this.groupBox.Controls.Add(this.label11);
+            this.groupBox.Controls.Add(this.labelSubscriptionDate);
             this.groupBox.Controls.Add(this.label13);
             this.groupBox.Controls.Add(this.textBox1);
             this.groupBox.Controls.Add(this.labelEmail);
-            this.groupBox.Controls.Add(this.label12);
-            this.groupBox.Controls.Add(this.labelSubscriptionDate);
-            this.groupBox.Controls.Add(this.btnRemoveOrder);
-            this.groupBox.Controls.Add(this.label15);
-            this.groupBox.Controls.Add(this.btnAddOrder);
             this.groupBox.Controls.Add(this.label14);
-            this.groupBox.Controls.Add(this.listBox1);
             this.groupBox.Controls.Add(this.labelSubscriptionLeft);
+            this.groupBox.Controls.Add(this.label12);
+            this.groupBox.Controls.Add(this.btnRemoveOrder);
+            this.groupBox.Controls.Add(this.btnAddOrder);
+            this.groupBox.Controls.Add(this.listBox1);
             this.groupBox.Controls.Add(this.label10);
-            this.groupBox.Controls.Add(this.labelSubscriptionLenght);
             this.groupBox.Controls.Add(this.labelLegsLenght);
-            this.groupBox.Controls.Add(this.label11);
             this.groupBox.Controls.Add(this.labelArmsLenght);
             this.groupBox.Controls.Add(this.labelWaistWidth);
             this.groupBox.Controls.Add(this.labelShoulderWidth);
@@ -209,6 +208,34 @@
             this.groupBox.TabIndex = 4;
             this.groupBox.TabStop = false;
             // 
+            // textBoxW
+            // 
+            this.textBoxW.Location = new System.Drawing.Point(342, 188);
+            this.textBoxW.Name = "textBoxW";
+            this.textBoxW.Size = new System.Drawing.Size(100, 20);
+            this.textBoxW.TabIndex = 40;
+            this.textBoxW.Tag = "TextBox";
+            this.textBoxW.Text = "Text Box";
+            // 
+            // labelWeight
+            // 
+            this.labelWeight.AutoSize = true;
+            this.labelWeight.Location = new System.Drawing.Point(339, 191);
+            this.labelWeight.Name = "labelWeight";
+            this.labelWeight.Size = new System.Drawing.Size(33, 13);
+            this.labelWeight.TabIndex = 39;
+            this.labelWeight.Tag = "Label";
+            this.labelWeight.Text = "Label";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(240, 191);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 13);
+            this.label18.TabIndex = 38;
+            this.label18.Text = "Weight";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -220,9 +247,9 @@
             // 
             // textBoxemail
             // 
-            this.textBoxemail.Location = new System.Drawing.Point(63, 398);
+            this.textBoxemail.Location = new System.Drawing.Point(108, 149);
             this.textBoxemail.Name = "textBoxemail";
-            this.textBoxemail.Size = new System.Drawing.Size(184, 20);
+            this.textBoxemail.Size = new System.Drawing.Size(100, 20);
             this.textBoxemail.TabIndex = 36;
             this.textBoxemail.Tag = "TextBox";
             this.textBoxemail.Text = "Text Box";
@@ -292,9 +319,10 @@
             // 
             // btnExtend
             // 
-            this.btnExtend.Location = new System.Drawing.Point(6, 344);
+            this.btnExtend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExtend.Location = new System.Drawing.Point(235, 383);
             this.btnExtend.Name = "btnExtend";
-            this.btnExtend.Size = new System.Drawing.Size(459, 36);
+            this.btnExtend.Size = new System.Drawing.Size(237, 48);
             this.btnExtend.TabIndex = 26;
             this.btnExtend.Text = "Extend Subscription";
             this.btnExtend.UseVisualStyleBackColor = true;
@@ -325,7 +353,7 @@
             // labelEmail
             // 
             this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(60, 401);
+            this.labelEmail.Location = new System.Drawing.Point(105, 152);
             this.labelEmail.Name = "labelEmail";
             this.labelEmail.Size = new System.Drawing.Size(33, 13);
             this.labelEmail.TabIndex = 23;
@@ -335,7 +363,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 401);
+            this.label12.Location = new System.Drawing.Point(6, 152);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(32, 13);
             this.label12.TabIndex = 22;
@@ -344,7 +372,7 @@
             // labelSubscriptionDate
             // 
             this.labelSubscriptionDate.AutoSize = true;
-            this.labelSubscriptionDate.Location = new System.Drawing.Point(97, 319);
+            this.labelSubscriptionDate.Location = new System.Drawing.Point(326, 333);
             this.labelSubscriptionDate.Name = "labelSubscriptionDate";
             this.labelSubscriptionDate.Size = new System.Drawing.Size(48, 13);
             this.labelSubscriptionDate.TabIndex = 10;
@@ -352,7 +380,7 @@
             // 
             // btnRemoveOrder
             // 
-            this.btnRemoveOrder.Location = new System.Drawing.Point(96, 269);
+            this.btnRemoveOrder.Location = new System.Drawing.Point(99, 408);
             this.btnRemoveOrder.Name = "btnRemoveOrder";
             this.btnRemoveOrder.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveOrder.TabIndex = 21;
@@ -363,7 +391,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(162, 319);
+            this.label15.Location = new System.Drawing.Point(232, 307);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(101, 13);
             this.label15.TabIndex = 9;
@@ -371,7 +399,7 @@
             // 
             // btnAddOrder
             // 
-            this.btnAddOrder.Location = new System.Drawing.Point(6, 269);
+            this.btnAddOrder.Location = new System.Drawing.Point(9, 408);
             this.btnAddOrder.Name = "btnAddOrder";
             this.btnAddOrder.Size = new System.Drawing.Size(75, 23);
             this.btnAddOrder.TabIndex = 20;
@@ -382,7 +410,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(331, 319);
+            this.label14.Location = new System.Drawing.Point(235, 358);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(80, 13);
             this.label14.TabIndex = 8;
@@ -391,7 +419,7 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 168);
+            this.listBox1.Location = new System.Drawing.Point(9, 307);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(220, 95);
             this.listBox1.TabIndex = 19;
@@ -400,7 +428,7 @@
             // labelSubscriptionLeft
             // 
             this.labelSubscriptionLeft.AutoSize = true;
-            this.labelSubscriptionLeft.Location = new System.Drawing.Point(417, 319);
+            this.labelSubscriptionLeft.Location = new System.Drawing.Point(321, 358);
             this.labelSubscriptionLeft.Name = "labelSubscriptionLeft";
             this.labelSubscriptionLeft.Size = new System.Drawing.Size(48, 13);
             this.labelSubscriptionLeft.TabIndex = 7;
@@ -409,7 +437,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 152);
+            this.label10.Location = new System.Drawing.Point(9, 291);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 18;
@@ -418,7 +446,7 @@
             // labelSubscriptionLenght
             // 
             this.labelSubscriptionLenght.AutoSize = true;
-            this.labelSubscriptionLenght.Location = new System.Drawing.Point(267, 319);
+            this.labelSubscriptionLenght.Location = new System.Drawing.Point(337, 307);
             this.labelSubscriptionLenght.Name = "labelSubscriptionLenght";
             this.labelSubscriptionLenght.Size = new System.Drawing.Size(48, 13);
             this.labelSubscriptionLenght.TabIndex = 6;
@@ -437,7 +465,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 319);
+            this.label11.Location = new System.Drawing.Point(235, 333);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(85, 13);
             this.label11.TabIndex = 5;
@@ -662,6 +690,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(620, 622);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(237, 48);
@@ -681,50 +710,11 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(175, 547);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(381, 13);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "!= NIJE JEDNAKO   = JEDNAKO   >= VECE JEDNAKO   <= MANJE JEDNAKO";
-            // 
-            // textBoxW
-            // 
-            this.textBoxW.Location = new System.Drawing.Point(342, 188);
-            this.textBoxW.Name = "textBoxW";
-            this.textBoxW.Size = new System.Drawing.Size(100, 20);
-            this.textBoxW.TabIndex = 40;
-            this.textBoxW.Tag = "TextBox";
-            this.textBoxW.Text = "Text Box";
-            // 
-            // labelWeight
-            // 
-            this.labelWeight.AutoSize = true;
-            this.labelWeight.Location = new System.Drawing.Point(339, 191);
-            this.labelWeight.Name = "labelWeight";
-            this.labelWeight.Size = new System.Drawing.Size(33, 13);
-            this.labelWeight.TabIndex = 39;
-            this.labelWeight.Tag = "Label";
-            this.labelWeight.Text = "Label";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(240, 191);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(41, 13);
-            this.label18.TabIndex = 38;
-            this.label18.Text = "Weight";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 682);
-            this.Controls.Add(this.label16);
+            this.ClientSize = new System.Drawing.Size(1114, 681);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnPreferences);
@@ -747,7 +737,6 @@
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -807,7 +796,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBoxW;
         private System.Windows.Forms.Label labelWeight;
         private System.Windows.Forms.Label label18;

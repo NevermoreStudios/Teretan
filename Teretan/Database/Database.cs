@@ -22,9 +22,8 @@ namespace Teretan
         /**
          * Insert queries
          */
-        const string QUERY_INSERT_USER = "INSERT INTO `users` (`name`, `surname`, `birthdate`, `height`, `waist_width`, " +
-            "`shoulder_width`, `arms_length`, `legs_length`,`weight`, `email`, `subscription_date`, `subscription_length`, `notes`)" +
-            "VALUES('{0}', '{1}', '{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}','{9}', '{10:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{11}', '{12}')";
+        const string QUERY_INSERT_USER = @"INSERT INTO `users` (`user_id`,`name`,`surname`,`birthdate`,`circumference_neck`,`circumference_chest`,`circumference_waist`,`circumference_hips`,`circumference_biceps_left`,`circumference_biceps_right`,`circumference_thigh_left`,`circumference_thigh_right`,`circumference_calv_left`,`circumference_calv_right`,`body_fat`,`height`,`weight`,`tel`,`email`,`subscription_date`,`subscription_length`,`active`,`notes`)
+            VALUES('{0}', '{1}','{2}', '{3:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{4}', '{5}', '{6}', '{7}', '{8}','{9}', '{10}', '{11}', '{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19:yyyy'-'MM'-'dd' 'HH':'mm':'ss}','{20}','{21}','{22}')";
         const string QUERY_INSERT_PRODUCT = "INSERT INTO `products` (`name`, `description`) VALUES('{0}', '{1}')";
         const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}')";
 
@@ -38,7 +37,7 @@ namespace Teretan
         /**
          * Update queries
          */
-        const string QUERY_UPDATE_USER = "UPDATE `users` SET `name`='{0}', `surname`='{1}', `birthdate`='{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', `height`='{3}', `waist_width`='{4}', `shoulder_width`='{5}', `arms_length`='{6}', `legs_length`='{7}',`weight`='{8}', `email`='{9}', `subscription_date`='{10:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', `subscription_length`='{11}', `notes`='{12}' WHERE `id`={13}";
+        const string QUERY_UPDATE_USER = "UPDATE `users` SET `user_id`={0},`name`={1},`surname`={2},`birthdate`={3},`circumference_neck`={4},`circumference_chest`={5},`circumference_waist`={6},`circumference_hips`={7},`circumference_biceps_left`={8},`circumference_biceps_right`={9},`circumference_thigh_left`={10},`circumference_thigh_right`={11},`circumference_calv_left`={12},`circumference_calv_right`={13},`body_fat`={14},`height`={15},`weight`={16},`tel`={17},`email`={18},`subscription_date`={19},`subscription_length`={20},`active`={21},`notes`={22} WHERE `id`={23}";
         const string QUERY_UPDATE_PRODUCT = "UPDATE `products` SET `name`='{0}', `description`='{1}' WHERE `id`='{2}'";
         const string QUERY_UPDATE_PREFERENCE = "UPDATE `preferences` SET `key`='{0}', `value`='{1}' WHERE `key`='{0}'";
 
@@ -47,20 +46,30 @@ namespace Teretan
          */
         const string QUERY_CREATE = @"
         CREATE TABLE IF NOT EXISTS `users` (
-	        `id`	                INTEGER PRIMARY KEY AUTOINCREMENT,
-	        `name`	                TEXT,
-	        `surname`	            TEXT,
-	        `birthdate`	            TEXT,
-	        `height`	            REAL,
-	        `waist_width`	        REAL,
-	        `shoulder_width`	    REAL,
-	        `arms_length`	        REAL,
-	        `legs_length`	        REAL,
-            `weight`	            REAL,
-	        `email`	                TEXT,
-	        `subscription_date`	    TEXT,
-	        `subscription_length`	INTEGER,
-	        `notes`	                TEXT
+	        `id`	                        INTEGER PRIMARY KEY AUTOINCREMENT,
+            `user_id`                       INTEGER,
+	        `name`	                        TEXT,
+	        `surname`	                    TEXT,
+	        `birthdate`	                    TEXT,
+            `circumference_neck`	        REAL,
+            `circumference_chest`	        REAL,
+            `circumference_waist`	        REAL,
+            `circumference_hips`	        REAL,
+            `circumference_biceps_left`     REAL,
+            `circumference_biceps_right`    REAL,
+            `circumference_thigh_left`      REAL,
+            `circumference_thigh_right`	    REAL,
+            `circumference_calv_left`       REAL,
+            `circumference_calv_right`      REAL,
+            `body_fat`	                    REAL,
+            `height`	                    REAL,
+            `weight`	                    REAL,
+            `tel`	                    TEXT,
+	        `email`	                        TEXT,
+	        `subscription_date`	            TEXT,
+	        `subscription_length`	        INTEGER,
+            `active`                        INTEGER,
+	        `notes`	                        TEXT
         );
         CREATE TABLE IF NOT EXISTS `products` (
 	        `id`	        INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -163,20 +172,30 @@ namespace Teretan
             {
                 ret.Add(new User(
                     reader.GetInt32(0),
-                    reader.GetString(1),
+                    reader.GetInt32(1),
                     reader.GetString(2),
-                    reader.GetDateTime(3),
-                    reader.GetFloat(4),
-                    reader.GetFloat(5),
-                    reader.GetFloat(6),
-                    reader.GetFloat(7),
-                    reader.GetFloat(8),
-                    reader.GetFloat(9),
-                    reader.GetString(10),
-                    reader.GetDateTime(11),
-                    new TimeSpan(reader.GetInt32(12), 0, 0, 0),
-                    reader.GetString(13)
-                ));
+                    reader.GetString(3),
+                    reader.GetDateTime(4),
+                    reader.GetDouble(5),
+                    reader.GetDouble(6),
+                    reader.GetDouble(7),
+                    reader.GetDouble(8),
+                    reader.GetDouble(9),
+                    reader.GetDouble(10),
+                    reader.GetDouble(11),
+                    reader.GetDouble(12),
+                    reader.GetDouble(13),
+                    reader.GetDouble(14),
+                    reader.GetDouble(15),
+                    reader.GetDouble(16),
+                    reader.GetDouble(17),
+                    reader.GetString(18),
+                    reader.GetString(19),
+                    reader.GetDateTime(20),
+                    new TimeSpan(reader.GetInt32(21), 0, 0, 0),
+                    reader.GetString(23),
+                    reader.GetBoolean(22)
+                    ));
             }
             return ret;
         }
@@ -205,7 +224,7 @@ namespace Teretan
         {
             return GetOrders(QUERY_SELECT_ORDERS);
         }
-        
+
         public static List<Order> GetOrders(string query, params object[] args)
         {
             List<Order> ret = new List<Order>();
@@ -240,7 +259,7 @@ namespace Teretan
 
         public static void AddUser(User User)
         {
-            ExecuteNoQuery(QUERY_INSERT_USER, User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght,User.Weight, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Notes);
+            ExecuteNoQuery(QUERY_INSERT_USER, User.ID, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength, User.Active, User.Notes);
         }
 
         public static void AddProduct(Product Product)
@@ -285,7 +304,7 @@ namespace Teretan
 
         public static void UpdateUser(User User)
         {
-            ExecuteNoQuery(QUERY_UPDATE_USER, User.Name, User.Surname, User.BirthDate, User.Height, User.WaistWidth, User.ShoulderWidth, User.ArmsLenght, User.LegsLenght,User.Weight, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Notes, User.ID);
+            ExecuteNoQuery(QUERY_UPDATE_USER, User.ID, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength, User.Active, User.Notes);
         }
 
         public static void UpdateProduct(Product Product)

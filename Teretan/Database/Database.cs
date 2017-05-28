@@ -16,8 +16,8 @@ namespace Teretan
         const string QUERY_SELECT_ORDERS = "SELECT * FROM `orders`";
         const string QUERY_SELECT_PREFERENCES = "SELECT * FROM `preferences`";
 
-        const string QUERY_SELECT_ORDER_USER = "SELECT * FROM `orders` WHERE `user`={0}";
-        const string QUERY_SELECT_ORDER_PRODUCT = "SELECT * FROM `orders` WHERE `product`={0}";
+        const string QUERY_SELECT_ORDER_USER = "SELECT * FROM `orders` WHERE `user`='{0}'";
+        const string QUERY_SELECT_ORDER_PRODUCT = "SELECT * FROM `orders` WHERE `product`='{0}'";
 
         /**
          * Insert queries
@@ -30,14 +30,14 @@ namespace Teretan
         /**
          * Delete queries
          */
-        const string QUERY_DELETE_USER = "DELETE FROM `users` WHERE `id`={0}";
-        const string QUERY_DELETE_PRODUCT = "DELETE FROM `products` WHERE `id`={0}";
-        const string QUERY_DELETE_ORDER = "DELETE FROM `orders` WHERE `id`={0};";
+        const string QUERY_DELETE_USER = "DELETE FROM `users` WHERE `id`='{0}'";
+        const string QUERY_DELETE_PRODUCT = "DELETE FROM `products` WHERE `id`='{0}'";
+        const string QUERY_DELETE_ORDER = "DELETE FROM `orders` WHERE `id`='{0}'";
 
         /**
          * Update queries
          */
-        const string QUERY_UPDATE_USER = "UPDATE `users` SET `user_id`={0},`name`={1},`surname`={2},`birthdate`={3},`circumference_neck`={4},`circumference_chest`={5},`circumference_waist`={6},`circumference_hips`={7},`circumference_biceps_left`={8},`circumference_biceps_right`={9},`circumference_thigh_left`={10},`circumference_thigh_right`={11},`circumference_calv_left`={12},`circumference_calv_right`={13},`body_fat`={14},`height`={15},`weight`={16},`tel`={17},`email`={18},`subscription_date`={19},`subscription_length`={20},`active`={21},`notes`={22} WHERE `id`={23}";
+        const string QUERY_UPDATE_USER = "UPDATE `users` SET `user_id`='{0}',`name`='{1}',`surname`='{2}',`birthdate`='{3:yyyy'-'MM'-'dd' 'HH':'mm':'ss}',`circumference_neck`='{4}',`circumference_chest`='{5}',`circumference_waist`='{6}',`circumference_hips`='{7}',`circumference_biceps_left`='{8}',`circumference_biceps_right`='{9}',`circumference_thigh_left`='{10}',`circumference_thigh_right`='{11}',`circumference_calv_left`='{12}',`circumference_calv_right`='{13}',`body_fat`='{14}',`height`='{15}',`weight`='{16}',`tel`='{17}',`email`='{18}',`subscription_date`='{19:yyyy'-'MM'-'dd' 'HH':'mm':'ss}',`subscription_length`='{20}',`active`='{21}',`notes`='{22}' WHERE `id`='{23}'";
         const string QUERY_UPDATE_PRODUCT = "UPDATE `products` SET `name`='{0}', `description`='{1}' WHERE `id`='{2}'";
         const string QUERY_UPDATE_PREFERENCE = "UPDATE `preferences` SET `key`='{0}', `value`='{1}' WHERE `key`='{0}'";
 
@@ -259,7 +259,7 @@ namespace Teretan
 
         public static void AddUser(User User)
         {
-            ExecuteNoQuery(QUERY_INSERT_USER, User.ID, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength, User.Active, User.Notes);
+            ExecuteNoQuery(QUERY_INSERT_USER, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Active?1:0, User.Notes);
         }
 
         public static void AddProduct(Product Product)
@@ -304,7 +304,7 @@ namespace Teretan
 
         public static void UpdateUser(User User)
         {
-            ExecuteNoQuery(QUERY_UPDATE_USER, User.ID, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength, User.Active, User.Notes);
+            ExecuteNoQuery(QUERY_UPDATE_USER, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Active ? 1 : 0, User.Notes, User.ID);
         }
 
         public static void UpdateProduct(Product Product)

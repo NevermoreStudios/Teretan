@@ -23,9 +23,23 @@ namespace Teretan
             {
                 if (item.Tag != null)
                 {
-                    if ((string)item.Tag == "TextBox")
+                    if ((string)item.Tag == "Tog")
                     {
-                        item.Visible = v;
+                        item.Enabled = v;
+                    }
+                }
+            }
+        }
+
+        private void SetEn(bool v)
+        {
+            foreach (Control item in Controls)
+            {
+                if (item.Tag != null)
+                {
+                    if ((string)item.Tag == "bt")
+                    {
+                        item.Enabled = v;
                     }
                 }
             }
@@ -38,6 +52,7 @@ namespace Teretan
                 Users.Rows.Clear();
                 Users.Columns.Clear();
                 Users.Columns.Add("ID", "ID");
+                Users.Columns.Add("Uid", "ID");
                 Users.Columns.Add("Name", "Name");
                 Users.Columns.Add("Surname", "Surname");
                 Users.Columns.Add("BirthDate", "BirthDate");
@@ -46,8 +61,9 @@ namespace Teretan
                 Users.Columns[0].Visible = false;
                 foreach (User usr in lu)
                 {
-                    Users.Rows.Add(new string[] { usr.ID.ToString(), usr.Name, usr.Surname, usr.BirthDate.ToShortDateString(), usr.Email, Math.Max(0, usr.GetSubLeft()).ToString() });
-                    if (usr.IsRed()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Red; }
+                    Users.Rows.Add(new string[] { usr.ID.ToString(), usr.UID.ToString(), usr.Name, usr.Surname, usr.BirthDate.ToShortDateString(), usr.Email, usr.Active ? usr.GetSubLeft() <= 0 ? "ISTEKLO" : usr.GetSubLeft().ToString() : "NE AKTIVAN" });
+                    if (!usr.Active) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Gray; }
+                    else if (usr.IsRed()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Red; }
                     else if (usr.IsYellow()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Yellow; }
                 }
                 Users.Sort(Users.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
@@ -56,36 +72,55 @@ namespace Teretan
             {
                 MessageBox.Show("Greska sa bazom pozovite korisnicku podrsku");
             }
-            
+
         }
 
         private void LoadUser(User u)
         {
             try
             {
+                uid = u.ID;
+                tbID.Text = u.UID.ToString();
+                tbName.Text = u.Name.ToString();
+                tbSurname.Text = u.Surname.ToString();
+                dtpDate.Value = u.BirthDate;
+                tbAge.Text = u.GetAge().ToString();
+
+                tbNeck.Text = Math.Round(u.circumference_neck, 2).ToString();
+                tbChest.Text = Math.Round(u.circumference_chest,2).ToString();
+                tbWaist.Text = Math.Round(u.circumference_waist,2).ToString();
+                tbHips.Text = Math.Round(u.circumference_hips,2).ToString();
+                tbBicepsL.Text = Math.Round(u.circumference_biceps_left,2).ToString();
+                tbBicepsR.Text = Math.Round(u.circumference_biceps_right,2).ToString();
+                tbTighL.Text = Math.Round(u.circumference_thigh_left,2).ToString();
+                tbTighR.Text = Math.Round(u.circumference_thigh_right,2).ToString();
+                tbCalvL.Text = Math.Round(u.circumference_calv_left,2).ToString();
+                tbCalvR.Text = Math.Round(u.circumference_calv_right,2).ToString();
+                tbFat.Text = Math.Round(u.body_fat,2).ToString();
+                tbHeight.Text = Math.Round(u.Height,2).ToString();
+                tbWeight.Text = Math.Round(u.Weight,2).ToString();
+
+                tbTel.Text = u.Tel;
+                tbEmail.Text = u.Email;
+                cbActive.Checked = u.Active;
+
+                lbOrders.Items.Clear();
+                labelSubscriptionDate.Text = "";
+                labelSubscriptionLenght.Text = "";
+                labelSubscriptionLeft.Text = "";
+                tbNotes.Text = u.Notes;
                 btnAddOrder.Enabled = true;
                 btnRemoveOrder.Enabled = true;
                 btnExtend.Enabled = true;
                 btnRemoveUser.Enabled = true;
                 btnEditUser.Enabled = true;
-                uid = u.ID;
-                labelName.Text = u.Name;
-                labelSurname.Text = u.Surname;
-                labelBithdate.Text = u.BirthDate.ToShortDateString();
-                labelAge.Text = u.GetAge().ToString();
-                labelHeight.Text = u.Height.ToString();
-                labelWaistWidth.Text = u.WaistWidth.ToString();
-                labelShoulderWidth.Text = u.ShoulderWidth.ToString();
-                labelArmsLenght.Text = u.ArmsLenght.ToString();
-                labelLegsLenght.Text = u.LegsLenght.ToString();
-                labelWeight.Text = u.Weight.ToString();
-                listBox1.Items.Clear();
+
                 lo = Database.GetOrders("SELECT * FROM `orders` WHERE user='{0}'", u.ID.ToString());
                 foreach (Order item in lo)
                 {
                     string product = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", item.Product.ToString())[0].Name;
                     string date = item.Date.ToShortDateString();
-                    listBox1.Items.Add(product + " " + date);
+                    lbOrders.Items.Add(product + " " + date);
                 }
                 labelSubscriptionDate.Text = u.SubscriptionDate.ToShortDateString();
                 labelSubscriptionLenght.Text = u.SubscriptionLength.Days.ToString();
@@ -93,8 +128,6 @@ namespace Teretan
                 if (u.IsRed()) { labelSubscriptionLeft.BackColor = Color.Red; }
                 else if (u.IsYellow()) { labelSubscriptionLeft.BackColor = Color.Yellow; }
                 else labelSubscriptionLeft.BackColor = Color.FromKnownColor(KnownColor.Control);
-                labelEmail.Text = u.Email;
-                textBox1.Text = u.Notes;
             }
             catch (Exception)
             {
@@ -105,23 +138,35 @@ namespace Teretan
         private void LoadUser()
         {
             uid = 0;
-            labelName.Text = "";
-            labelSurname.Text ="";
-            labelBithdate.Text = "";
-            labelAge.Text = "";
-            labelHeight.Text = "";
-            labelWaistWidth.Text = "";
-            labelShoulderWidth.Text = "";
-            labelArmsLenght.Text = "";
-            labelLegsLenght.Text = "";
-            labelWeight.Text = "";
-            listBox1.Items.Clear();
-            
+            tbID.Text = "0";
+            tbName.Text = "";
+            tbSurname.Text = "";
+            dtpDate.Value = DateTime.Now;
+            tbAge.Text = "";
+
+            tbNeck.Text = "";
+            tbChest.Text = "";
+            tbWaist.Text = "";
+            tbHips.Text = "";
+            tbBicepsL.Text = "";
+            tbBicepsR.Text = "";
+            tbTighL.Text = "";
+            tbTighR.Text = "";
+            tbCalvL.Text = "";
+            tbCalvR.Text = "";
+            tbFat.Text = "";
+            tbHeight.Text = "";
+            tbWeight.Text = "";
+
+            tbTel.Text = "";
+            tbEmail.Text = "";
+            cbActive.Checked = false;
+
+            lbOrders.Items.Clear();
             labelSubscriptionDate.Text = "";
             labelSubscriptionLenght.Text = "";
             labelSubscriptionLeft.Text = "";
-            labelEmail.Text = "";
-            textBox1.Text = "";
+            tbNotes.Text = "";
             btnAddOrder.Enabled = false;
             btnRemoveOrder.Enabled = false;
             btnExtend.Enabled = false;
@@ -134,13 +179,13 @@ namespace Teretan
             int count = Util.GetNotif().Count;
             if (count > 0)
             {
-                button2.Text = "Notifications (" + count.ToString() + ")";
-                button2.BackColor = Color.Red;
+                btnNotif.Text = "Notifications (" + count.ToString() + ")";
+                btnNotif.BackColor = Color.Red;
             }
             else
             {
-                button2.Text = "Notifications";
-                button2.BackColor = Color.FromKnownColor(KnownColor.Control);
+                btnNotif.Text = "Notifications";
+                btnNotif.BackColor = Color.FromKnownColor(KnownColor.Control);
             }
         }
 
@@ -154,19 +199,7 @@ namespace Teretan
             Setfilter();
         }
 
-        private void Setfilter()
-        {
-            Filter.Columns.Add("name", "name");
-            Filter.Columns.Add("surname", "surname");
-            Filter.Columns.Add("height", "height");
-            Filter.Columns.Add("waist_width", "waist_width");
-            Filter.Columns.Add("shoulder_width", "shoulder_width");
-            Filter.Columns.Add("arms_length", "arms_lenght");
-            Filter.Columns.Add("legs_length", "legs_lenght");
-            Filter.Columns.Add("weight", "weight");
-            Filter.Columns.Add("email", "email");
-            Filter.Columns.Add("notes", "notes");
-        }
+
 
         private void Users_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -178,13 +211,13 @@ namespace Teretan
             catch (Exception) { }
         }
 
-        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void lbOrders_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
-                string nameuser = labelName.Text;
-                Product p = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", lo[listBox1.SelectedIndex].Product.ToString())[0];
-                string date = lo[listBox1.SelectedIndex].Date.ToShortDateString();
+                string nameuser = tbName.Text;
+                Product p = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", lo[lbOrders.SelectedIndex].Product.ToString())[0];
+                string date = lo[lbOrders.SelectedIndex].Date.ToShortDateString();
                 string f = "Name: " + nameuser + "\r\nProduct: " + p.Name + "\r\nDescription: " + p.Description + "\r\nDate: " + date;
                 MessageBox.Show(f);
             }
@@ -193,16 +226,9 @@ namespace Teretan
             }
         }
 
-        private void Users_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
-            if (e.Column.Index == 5)
-            {
-                e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
-                e.Handled = true;//pass by the default sorting
-            }
-        }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void btnNotif_Click(object sender, EventArgs e)
         {
             new Notifications().ShowDialog();
         }
@@ -217,7 +243,7 @@ namespace Teretan
             new PreferencesF().ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             lu = Database.GetUsers();
             Fill(lu);
@@ -236,7 +262,7 @@ namespace Teretan
         {
             try
             {
-                Database.RemoveOrder(lo[listBox1.SelectedIndex]);
+                Database.RemoveOrder(lo[lbOrders.SelectedIndex]);
             }
             catch (Exception)
             {
@@ -261,20 +287,17 @@ namespace Teretan
             putNotif();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bntAddUser_Click(object sender, EventArgs e)
         {
             try
             {
                 if (addstate)
                 {
                     addstate = !addstate;
-                    button1.Text = "Add";
+                    btnAddUser.Text = "Add";
                     SetVis(false);
-                    btnAddOrder.Enabled = true;
-                    btnRemoveOrder.Enabled = true;
-                    btnExtend.Enabled = true;
-                    textBox1.ReadOnly = true;
-                    Database.AddUser(new User(0, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), Convert.ToSingle(textBoxW.Text), textBoxemail.Text, DateTime.Now, new TimeSpan(0), textBox1.Text));
+                    SetEn(true);
+                    Database.AddUser(new User(0,Convert.ToInt32(tbID.Text), tbName.Text, tbSurname.Text, dtpDate.Value, Convert.ToSingle(tbNeck.Text), Convert.ToSingle(tbChest.Text), Convert.ToSingle(tbWaist.Text), Convert.ToSingle(tbHips.Text), Convert.ToSingle(tbBicepsL.Text), Convert.ToSingle(tbBicepsR.Text), Convert.ToSingle(tbTighL.Text), Convert.ToSingle(tbTighR.Text), Convert.ToSingle(tbCalvL.Text), Convert.ToSingle(tbCalvR.Text), Convert.ToSingle(tbFat.Text), Convert.ToSingle(tbHeight.Text), Convert.ToSingle(tbWeight.Text), tbTel.Text,tbEmail.Text, DateTime.Now, new TimeSpan(0), tbNotes.Text,cbActive.Checked));
                     lu = Database.GetUsers();
                     Fill(lu);
                     LoadUser();
@@ -283,28 +306,11 @@ namespace Teretan
                 else
                 {
                     addstate = !addstate;
-                    button1.Text = "Done";
+                    btnAddUser.Text = "Done";
                     SetVis(true);
-                    foreach (Control item in Controls[Controls.IndexOfKey("groupBox")].Controls)
-                    {
-                        if (item.Tag != null)
-                        {
-                            if ((string)item.Tag == "TextBox")
-                            {
-                                item.Text = "";
-                            }
-                        }
-                    }
-                    textBox1.Text = "";
-                    listBox1.Items.Clear();
-                    labelSubscriptionDate.Text = "NONE";
-                    labelSubscriptionLeft.Text = "NONE";
-                    labelSubscriptionLenght.Text = "NONE";
-                    labelAge.Text = "";
-                    btnAddOrder.Enabled = false;
-                    btnRemoveOrder.Enabled = false;
-                    btnExtend.Enabled = false;
-                    textBox1.ReadOnly = false;
+                    SetEn(false);
+                    btnAddUser.Enabled = true;
+                    LoadUser();
                 }
             }
             catch (Exception)
@@ -323,11 +329,8 @@ namespace Teretan
                     editstate = !editstate;
                     btnEditUser.Text = "Edit";
                     SetVis(false);
-                    btnAddOrder.Enabled = true;
-                    btnRemoveOrder.Enabled = true;
-                    btnExtend.Enabled = true;
-                    textBox1.ReadOnly = true;
-                    Database.UpdateUser(new User(u.ID, textBoxName.Text, textBoxSurname.Text, dateTimePicker1.Value, Convert.ToSingle(textBoxh.Text), Convert.ToSingle(textBoxww.Text), Convert.ToSingle(textBoxsw.Text), Convert.ToSingle(textBoxal.Text), Convert.ToSingle(textBoxll.Text), Convert.ToSingle(textBoxW.Text), textBoxemail.Text, u.SubscriptionDate, u.SubscriptionLength, textBox1.Text));
+                    SetEn(true);
+                    Database.UpdateUser(new User(u.ID, Convert.ToInt32(tbID.Text), tbName.Text, tbSurname.Text, dtpDate.Value, Convert.ToSingle(tbNeck.Text), Convert.ToSingle(tbChest.Text), Convert.ToSingle(tbWaist.Text), Convert.ToSingle(tbHips.Text), Convert.ToSingle(tbBicepsL.Text), Convert.ToSingle(tbBicepsR.Text), Convert.ToSingle(tbTighL.Text), Convert.ToSingle(tbTighR.Text), Convert.ToSingle(tbCalvL.Text), Convert.ToSingle(tbCalvR.Text), Convert.ToSingle(tbFat.Text), Convert.ToSingle(tbHeight.Text), Convert.ToSingle(tbWeight.Text), tbTel.Text, tbEmail.Text, u.SubscriptionDate,u.SubscriptionLength, tbNotes.Text, cbActive.Checked));
                     lu = Database.GetUsers();
                     Fill(lu);
                     LoadUser();
@@ -338,22 +341,8 @@ namespace Teretan
                     editstate = !editstate;
                     btnEditUser.Text = "Done";
                     SetVis(true);
-                    labelAge.Text = "";
-
-                    textBoxName.Text = u.Name;
-                    textBoxSurname.Text = u.Surname;
-                    dateTimePicker1.Value = u.BirthDate;
-                    textBoxh.Text = u.Height.ToString();
-                    textBoxww.Text = u.WaistWidth.ToString();
-                    textBoxsw.Text = u.ShoulderWidth.ToString();
-                    textBoxal.Text = u.ArmsLenght.ToString();
-                    textBoxll.Text = u.LegsLenght.ToString();
-                    textBoxemail.Text = u.Email;
-
-                    btnAddOrder.Enabled = false;
-                    btnRemoveOrder.Enabled = false;
-                    btnExtend.Enabled = false;
-                    textBox1.ReadOnly = false;
+                    SetEn(false);
+                    btnEditUser.Enabled = true;
                 }
             }
             catch (Exception)
@@ -377,6 +366,23 @@ namespace Teretan
 
         }
 
+        private void Setfilter()
+        {
+            Filter.Columns.Add("user_id", "ID");
+            Filter.Columns.Add("name", "Name");
+            Filter.Columns.Add("surname", "Surname");
+            Filter.Columns.Add("email", "E-mail");
+        }
+
+        private void Users_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            if (e.Column.Index == 0)
+            {
+                e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
+                e.Handled = true;//pass by the default sorting
+            }
+        }
+
         private void btnFilter_Click(object sender, EventArgs e)
         {
             try
@@ -394,14 +400,15 @@ namespace Teretan
                         {
                             if (!string.IsNullOrWhiteSpace((string)cell.Value))
                             {
-                                if (cell.ColumnIndex == 2 || cell.ColumnIndex == 3 || cell.ColumnIndex == 4 || cell.ColumnIndex == 5 || cell.ColumnIndex == 6 || cell.ColumnIndex == 7)
+                                if (cell.ColumnIndex == 0)
                                 {
                                     if (!and) { and = true; }
                                     else { Q += " AND "; }
                                     Q += "`";
                                     Q += Filter.Columns[cell.ColumnIndex].Name;
-                                    Q += "`";
+                                    Q += "` ='";
                                     Q += (string)cell.Value;
+                                    Q += "'";
                                 }
                                 else
                                 {

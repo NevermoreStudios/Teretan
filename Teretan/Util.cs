@@ -11,7 +11,7 @@ namespace Teretan
                        ret = new List<User>();
             foreach(User u in users)
             {
-                if (u.IsRed())
+                if (u.IsRed() && u.Active)
                 {
                     ret.Add(u);
                 }

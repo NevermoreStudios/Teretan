@@ -278,10 +278,11 @@ namespace Teretan
             foreach (DataGridViewRow r in Users.Rows)
             {
                 User u = Database.GetUsers("SELECT * FROM `users` WHERE ID='{0}'", r.Cells[0].Value)[0];
-                if (u.IsRed()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Red; }
+                if (!u.Active) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Gray; }
+                else if (u.IsRed()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Red; }
                 else if (u.IsYellow()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Yellow; }
                 else { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.White; }
-                r.Cells[5].Value = u.GetSubLeft();
+                r.Cells[6].Value = u.Active ? u.GetSubLeft() <= 0 ? "ISTEKLO" : u.GetSubLeft().ToString() : "NE AKTIVAN";
             }
             LoadUser(lu.Find(i => i.ID == uid));
             putNotif();

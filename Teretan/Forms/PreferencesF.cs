@@ -8,6 +8,7 @@ namespace Teretan
         public PreferencesF()
         {
             InitializeComponent();
+            I18N.TranslateControls(this);
         }
 
         private void PreferencesF_Load(object sender, EventArgs e)
@@ -17,9 +18,9 @@ namespace Teretan
                 yellowVal.Value = int.Parse(Preferences.Get("yellow"));
                 redVal.Value = int.Parse(Preferences.Get("red"));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska sa preferencama");
+                 Util.DBError(ex);
             }
         }
 
@@ -30,9 +31,9 @@ namespace Teretan
                 Preferences.Set("yellow", yellowVal.Value.ToString());
                 Preferences.Set("red", redVal.Value.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska sa preferencama");
+                Util.DBError(ex);
             }
             Close();
         }

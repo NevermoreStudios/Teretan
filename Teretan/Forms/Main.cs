@@ -1,437 +1,584 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Teretan
 {
+    /// <summary>
+    /// Main form of the project. Everything happens here.
+    /// </summary>
+    /// <seealso cref="Form" />
     public partial class Main : Form
     {
+        private List<User> Users;
+        private List<Order> Orders;
+        private bool AddState = false;
+        private bool EditState = false;
+        private User CurrentUser;
+        private List<DataControl> Data = new List<DataControl>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Main"/> class.
+        /// </summary>
         public Main()
         {
             InitializeComponent();
-            uid = 1;
+            I18N.TranslateControls(this);
+            InitData();
         }
-        private static List<User> lu;
-        private static List<Order> lo;
-        int uid;
-        bool addstate = false;
-        bool editstate = false;
-        private void SetVis(bool v)
+
+        /// <summary>
+        /// Initializes the control to property bindings.
+        /// </summary>
+        private void InitData()
         {
-            foreach (Control item in Controls[Controls.IndexOfKey("groupBox")].Controls)
+            PropertyInfo[] userprops = typeof(User).GetProperties();
+            Dictionary<string, PropertyInfo> temp = new Dictionary<string, PropertyInfo>();
+            foreach (PropertyInfo p in userprops)
             {
-                if (item.Tag != null)
+                temp.Add(p.Name, p);
+            }
+            foreach (Control c in properties.Controls)
+            {
+                if (c.Tag != null)
                 {
-                    if ((string)item.Tag == "Tog")
+                    string[] split = c.Tag.ToString().Split(',');
+                    foreach (string s in split)
                     {
-                        item.Enabled = v;
+                        if (s.StartsWith("input-"))
+                        {
+                            string[] split2 = s.Split('-');
+                            int type = 0;
+                            if (int.TryParse(split2[1], out type))
+                            {
+                                Data.Add(new DataControl(c, temp[split2[2]], type));
+                                break;
+                            }
+                        }
                     }
                 }
             }
         }
-
-        private void SetEn(bool v)
+        
+        /// <summary>
+        /// Sets if add/edit/remove controls should be enabled.
+        /// </summary>
+        /// <param name="v">If the controls should be enabled</param>
+        /// <param name="c">Control to convert to a "Done" button</param>
+        private void SetEn(bool v, Control c)
         {
-            foreach (Control item in Controls)
+            btnAddUser.Enabled = v;
+            btnEditUser.Enabled = v;
+            btnRemoveUser.Enabled = v;
+            if(!v)
             {
-                if (item.Tag != null)
+                c.Text = I18N.String("done");
+                c.Enabled = true;
+            }
+            foreach(Control control in properties.Controls)
+            {
+                if(!(control == tbAge || control is Label || control is ListBox))
                 {
-                    if ((string)item.Tag == "bt")
-                    {
-                        item.Enabled = v;
-                    }
+                    control.Enabled = !v;
                 }
             }
+            btnExtend.Enabled = CurrentUser.Active && !v;
         }
 
-        private void Fill(List<User> lu)
+        /// <summary>
+        /// Enables/disables controls available to non-new users.
+        /// </summary>
+        /// <param name="v">If controls available to non-new users should be enabled</param>
+        private void SetNew(bool v)
+        {
+            btnAddOrder.Enabled = v;
+            btnRemoveOrder.Enabled = v;
+        }
+
+        /// <summary>
+        /// Updates the background of a table row depending on user's activity status.
+        /// </summary>
+        /// <param name="user">User located in the row</param>
+        /// <param name="index">Index of the row</param>
+        private void UpdateRowBack(User user, int index)
+        {
+            UserList.Rows[index].DefaultCellStyle.BackColor = !user.Active ?
+                Color.Gray :
+                    user.IsRed() ?
+                        Color.Red :
+                            user.IsYellow() ?
+                                Color.Yellow :
+                                Color.White;
+        }
+
+        /// <summary>
+        /// Fills the table rows with user data
+        /// </summary>
+        private void Fill()
         {
             try
             {
-                Users.Rows.Clear();
-                Users.Columns.Clear();
-                Users.Columns.Add("ID", "ID");
-                Users.Columns.Add("Uid", "ID");
-                Users.Columns.Add("Name", "Name");
-                Users.Columns.Add("Surname", "Surname");
-                Users.Columns.Add("BirthDate", "BirthDate");
-                Users.Columns.Add("Email", "Email");
-                Users.Columns.Add("SubscriptionLeft", "SubscriptionLeft");
-                Users.Columns[0].Visible = false;
-                foreach (User usr in lu)
+                UserList.Rows.Clear();
+                foreach (User usr in Users)
                 {
-                    Users.Rows.Add(new string[] { usr.ID.ToString(), usr.UID.ToString(), usr.Name, usr.Surname, usr.BirthDate.ToShortDateString(), usr.Email, usr.Active ? usr.GetSubLeft() <= 0 ? "ISTEKLO" : usr.GetSubLeft().ToString() : "NE AKTIVAN" });
-                    if (!usr.Active) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Gray; }
-                    else if (usr.IsRed()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Red; }
-                    else if (usr.IsYellow()) { Users.Rows[Users.Rows.Count - 1].DefaultCellStyle.BackColor = Color.Yellow; }
+                    UserList.Rows.Add(new string[] { usr.ID.ToString(), usr.UID.ToString(), usr.Name,
+                        usr.Surname, usr.BirthDate.ToShortDateString(), usr.Email,
+                        usr.Active ?
+                            usr.Expired() ?
+                                I18N.String("expired") :
+                                usr.GetSubLeft().ToString() :
+                            I18N.String("inactive")
+                    });
+                    UpdateRowBack(usr, UserList.Rows.Count - 1);
                 }
-                Users.Sort(Users.Columns[1], System.ComponentModel.ListSortDirection.Ascending);
+                UserList.Sort(UserList.Columns[1], ListSortDirection.Ascending);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska sa bazom pozovite korisnicku podrsku");
+                Util.ThrowError(ex);
+                Util.ShowError("unknown-error");
             }
-
         }
 
-        private void LoadUser(User u)
+        /// <summary>
+        /// Loads data about a user into the edit form.
+        /// </summary>
+        /// <param name="u">The user to load into the forms</param>
+        /// <param name="newUser">If the user is new</param>
+        private void LoadUser(User u, bool newUser)
         {
+            CurrentUser = u;
             try
             {
-                uid = u.ID;
-                tbID.Text = u.UID.ToString();
-                tbName.Text = u.Name.ToString();
-                tbSurname.Text = u.Surname.ToString();
-                dtpDate.Value = u.BirthDate;
-                tbAge.Text = u.GetAge().ToString();
-
-                tbNeck.Text = Math.Round(u.circumference_neck, 2).ToString();
-                tbChest.Text = Math.Round(u.circumference_chest,2).ToString();
-                tbWaist.Text = Math.Round(u.circumference_waist,2).ToString();
-                tbHips.Text = Math.Round(u.circumference_hips,2).ToString();
-                tbBicepsL.Text = Math.Round(u.circumference_biceps_left,2).ToString();
-                tbBicepsR.Text = Math.Round(u.circumference_biceps_right,2).ToString();
-                tbTighL.Text = Math.Round(u.circumference_thigh_left,2).ToString();
-                tbTighR.Text = Math.Round(u.circumference_thigh_right,2).ToString();
-                tbCalvL.Text = Math.Round(u.circumference_calv_left,2).ToString();
-                tbCalvR.Text = Math.Round(u.circumference_calv_right,2).ToString();
-                tbFat.Text = Math.Round(u.body_fat,2).ToString();
-                tbHeight.Text = Math.Round(u.Height,2).ToString();
-                tbWeight.Text = Math.Round(u.Weight,2).ToString();
-
-                tbTel.Text = u.Tel;
-                tbEmail.Text = u.Email;
-                cbActive.Checked = u.Active;
+                foreach(DataControl d in Data)
+                {
+                    d.UpdateControl(ref u);
+                }
+                UpdateSubscriptionStatus();
+                SetNew(!newUser);
 
                 lbOrders.Items.Clear();
-                labelSubscriptionDate.Text = "";
-                labelSubscriptionLenght.Text = "";
-                labelSubscriptionLeft.Text = "";
-                tbNotes.Text = u.Notes;
-                btnAddOrder.Enabled = true;
-                btnRemoveOrder.Enabled = true;
-                btnExtend.Enabled = true;
-                btnRemoveUser.Enabled = true;
-                btnEditUser.Enabled = true;
-
-                lo = Database.GetOrders("SELECT * FROM `orders` WHERE user='{0}'", u.ID.ToString());
-                foreach (Order item in lo)
+                Orders = Database.GetOrdersByUser(u);
+                foreach (Order item in Orders)
                 {
-                    string product = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", item.Product.ToString())[0].Name;
+                    string product = Database.GetProductById(item.Product).Name;
                     string date = item.Date.ToShortDateString();
                     lbOrders.Items.Add(product + " " + date);
                 }
-                labelSubscriptionDate.Text = u.SubscriptionDate.ToShortDateString();
-                labelSubscriptionLenght.Text = u.SubscriptionLength.Days.ToString();
-                labelSubscriptionLeft.Text = u.GetSubLeft() <= 0 ? "ISTEKLO" : u.GetSubLeft().ToString();
-                if (u.IsRed()) { labelSubscriptionLeft.BackColor = Color.Red; }
-                else if (u.IsYellow()) { labelSubscriptionLeft.BackColor = Color.Yellow; }
-                else labelSubscriptionLeft.BackColor = Color.FromKnownColor(KnownColor.Control);
+                
+                labelSubscriptionStatus.BackColor = u.IsRed() ?
+                    Color.Red :
+                    u.IsYellow() ?
+                        Color.Yellow :
+                        Color.FromKnownColor(KnownColor.Control);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska sa bazom");
+                Util.DBError(ex);
             }
 
         }
+
+        /// <summary>
+        /// Loads a new user into the edit form.
+        /// </summary>
         private void LoadUser()
         {
-            uid = 0;
-            tbID.Text = "0";
-            tbName.Text = "";
-            tbSurname.Text = "";
-            dtpDate.Value = DateTime.Now;
-            tbAge.Text = "";
-
-            tbNeck.Text = "";
-            tbChest.Text = "";
-            tbWaist.Text = "";
-            tbHips.Text = "";
-            tbBicepsL.Text = "";
-            tbBicepsR.Text = "";
-            tbTighL.Text = "";
-            tbTighR.Text = "";
-            tbCalvL.Text = "";
-            tbCalvR.Text = "";
-            tbFat.Text = "";
-            tbHeight.Text = "";
-            tbWeight.Text = "";
-
-            tbTel.Text = "";
-            tbEmail.Text = "";
-            cbActive.Checked = false;
-
-            lbOrders.Items.Clear();
-            labelSubscriptionDate.Text = "";
-            labelSubscriptionLenght.Text = "";
-            labelSubscriptionLeft.Text = "";
-            tbNotes.Text = "";
-            btnAddOrder.Enabled = false;
-            btnRemoveOrder.Enabled = false;
-            btnExtend.Enabled = false;
-            btnRemoveUser.Enabled = false;
-            btnEditUser.Enabled = false;
+            LoadUser(new User(), true);
         }
 
-        private void putNotif()
+        /// <summary>
+        /// Loads a non-new user into the edit form.
+        /// </summary>
+        /// <param name="user">The user to load</param>
+        private void LoadUser(User user)
+        {
+            LoadUser(user, false);
+        }
+
+        /// <summary>
+        /// Updates the user's subscription status after loading and extending.
+        /// </summary>
+        private void UpdateSubscriptionStatus()
+        {
+            if(CurrentUser.Expired())
+            {
+                labelSubscriptionExpiry.Text = "";
+                labelSubscriptionStatus.Text = I18N.String("expired");
+            }
+            else
+            {
+                labelSubscriptionExpiry.Text = CurrentUser.SubscriptionExpiry.ToString();
+                labelSubscriptionStatus.Text = CurrentUser.GetSubLeft().ToString();
+            }
+        }
+
+        /// <summary>
+        /// Updates notifications
+        /// </summary>
+        private void UpdateNotification()
         {
             int count = Util.GetNotif().Count;
+            string i18n = I18N.String("notifications");
             if (count > 0)
             {
-                btnNotif.Text = "Notifications (" + count.ToString() + ")";
+                btnNotif.Text = $"{i18n} ({count})";
                 btnNotif.BackColor = Color.Red;
             }
             else
             {
-                btnNotif.Text = "Notifications";
+                btnNotif.Text = i18n;
                 btnNotif.BackColor = Color.FromKnownColor(KnownColor.Control);
             }
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Refreshes the form when the user table updates.
+        /// </summary>
+        /// <param name="q">Query used to get the userlist</param>
+        private void RefreshUser(string q)
         {
-            SetVis(false);
-            lu = Database.GetUsers();
-            Fill(lu);
+            Users = q == null ? Database.GetUsers() : Database.GetUsers(q);
+            Fill();
             LoadUser();
-            putNotif();
-            Setfilter();
+            UpdateNotification();
         }
 
+        /// <summary>
+        /// Refreshes the form when the user table updates.
+        /// </summary>
+        private void RefreshUser()
+        {
+            RefreshUser(null);
+        }
 
+        /// <summary>
+        /// Populates the user object with values from controls
+        /// </summary>
+        /// <returns>Populated <see cref="User"/> object</returns>
+        private void PopulateUser()
+        {
+            foreach (DataControl d in Data)
+            {
+                d.UpdateUser(ref CurrentUser);
+            }
+        }
 
+        /// <summary>
+        /// Validates the input from controls
+        /// </summary>
+        /// <returns>If the input is valid</returns>
+        private bool ValidateUser()
+        {
+            // TODO: Implement
+            return true;
+        }
+
+        /// <summary>
+        /// Sets the columns in the filter table up.
+        /// </summary>
+        private void SetColumns()
+        {
+            UserList.Columns.Add("ID", I18N.String("id"));
+            UserList.Columns.Add("Uid", I18N.String("id"));
+            UserList.Columns.Add("Name", I18N.String("name"));
+            UserList.Columns.Add("Surname", I18N.String("surname"));
+            UserList.Columns.Add("BirthDate", I18N.String("birthdate"));
+            UserList.Columns.Add("Email", I18N.String("email"));
+            UserList.Columns.Add("SubscriptionLeft", I18N.String("subscription-left"));
+            UserList.Columns[0].Visible = false;
+
+            Filter.Columns.Add("user_id", I18N.String("id"));
+            Filter.Columns.Add("name", I18N.String("name"));
+            Filter.Columns.Add("surname", I18N.String("surname"));
+            Filter.Columns.Add("email", I18N.String("email"));
+        }
+
+        /// <summary>
+        /// Handles the Load event of the Main control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void Main_Load(object sender, EventArgs e)
+        {
+            SetColumns();
+            RefreshUser();
+        }
+
+        /// <summary>
+        /// Handles the CellClick event of the Users control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
         private void Users_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                int id = Convert.ToInt32(Users.Rows[e.RowIndex].Cells[0].Value);
-                LoadUser(lu.Find(i => i.ID == id));
+                if(AddState || EditState)
+                {
+                    AddState = EditState = false;
+                    btnAddUser.Text = I18N.String("add");
+                    btnEditUser.Text = I18N.String("edit");
+                }
+                if(e.RowIndex != -1)
+                {
+                    int id = Convert.ToInt32(UserList.Rows[e.RowIndex].Cells[0].Value);
+                    LoadUser(Users.Find(i => i.ID == id));
+                    SetEn(true, null);
+                }
             }
-            catch (Exception) { }
+            catch (Exception ex)
+            {
+                Util.ThrowError(ex);
+                Util.ShowError("unknown-error");
+            }
         }
 
+        /// <summary>
+        /// Handles the MouseDoubleClick event of the lbOrders control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void lbOrders_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
-                string nameuser = tbName.Text;
-                Product p = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", lo[lbOrders.SelectedIndex].Product.ToString())[0];
-                string date = lo[lbOrders.SelectedIndex].Date.ToShortDateString();
-                string f = "Name: " + nameuser + "\r\nProduct: " + p.Name + "\r\nDescription: " + p.Description + "\r\nDate: " + date;
-                MessageBox.Show(f);
+                Order o = Orders[lbOrders.SelectedIndex];
+                Product p = Database.GetProductById(o.Product);
+                MessageBox.Show(
+                    I18N.String(
+                        "form-message-order",
+                        CurrentUser.Name,
+                        p.Name,
+                        p.Description,
+                        o.Date.ToShortDateString()
+                    )
+                );
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Util.DBError(ex);
             }
         }
 
-
-
+        /// <summary>
+        /// Handles the Click event of the btnNotif control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnNotif_Click(object sender, EventArgs e)
         {
             new Notifications().ShowDialog();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnProducts control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnProducts_Click(object sender, EventArgs e)
         {
             new Products().ShowDialog();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnPreferences control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnPreferences_Click(object sender, EventArgs e)
         {
             new PreferencesF().ShowDialog();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            lu = Database.GetUsers();
-            Fill(lu);
-            LoadUser();
-            putNotif();
-        }
-
+        /// <summary>
+        /// Handles the Click event of the btnAddOrder control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
-            new AddOrder(uid).ShowDialog();
-            LoadUser(lu.Find(i => i.ID == uid));
-
+            new AddOrder(CurrentUser.ID).ShowDialog();
+            LoadUser(CurrentUser);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnRemoveOrder control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnRemoveOrder_Click(object sender, EventArgs e)
         {
             try
             {
-                Database.RemoveOrder(lo[lbOrders.SelectedIndex]);
+                Database.RemoveOrder(Orders[lbOrders.SelectedIndex]);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Util.DBError(ex);
             }
-
-            LoadUser(lu.Find(i => i.ID == uid));
+            LoadUser(CurrentUser);
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnExtend control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnExtend_Click(object sender, EventArgs e)
         {
-            new ExtendSub(uid).ShowDialog();
-            lu = Database.GetUsers();
-            foreach (DataGridViewRow r in Users.Rows)
+            new ExtendSub(CurrentUser.ID).ShowDialog();
+            Users = Database.GetUsers();
+            foreach (DataGridViewRow r in UserList.Rows)
             {
-                User u = Database.GetUsers("SELECT * FROM `users` WHERE ID='{0}'", r.Cells[0].Value)[0];
-                if (!u.Active) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Gray; }
-                else if (u.IsRed()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Red; }
-                else if (u.IsYellow()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Yellow; }
-                else { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.White; }
-                r.Cells[6].Value = u.Active ? u.GetSubLeft() <= 0 ? "ISTEKLO" : u.GetSubLeft().ToString() : "NE AKTIVAN";
+                User u = Database.GetUserById(int.Parse((string)r.Cells[0].Value));
+                UpdateRowBack(u, r.Index);
+                r.Cells[6].Value = u.Active ? u.Expired() ? I18N.String("expired") : u.GetSubLeft().ToString() : I18N.String("inactive");
             }
-            LoadUser(lu.Find(i => i.ID == uid));
-            putNotif();
+            CurrentUser = Users.Find(u => u.ID == CurrentUser.ID);
+            UpdateSubscriptionStatus();
+            UpdateNotification();
         }
 
+        /// <summary>
+        /// Handles the Click event of the bntAddUser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void bntAddUser_Click(object sender, EventArgs e)
         {
             try
             {
-                if (addstate)
+                PopulateUser();
+                if(!ValidateUser())
                 {
-                    addstate = !addstate;
-                    btnAddUser.Text = "Add";
-                    SetVis(false);
-                    SetEn(true);
-                    Database.AddUser(new User(0,Convert.ToInt32(tbID.Text), tbName.Text, tbSurname.Text, dtpDate.Value, Convert.ToSingle(tbNeck.Text), Convert.ToSingle(tbChest.Text), Convert.ToSingle(tbWaist.Text), Convert.ToSingle(tbHips.Text), Convert.ToSingle(tbBicepsL.Text), Convert.ToSingle(tbBicepsR.Text), Convert.ToSingle(tbTighL.Text), Convert.ToSingle(tbTighR.Text), Convert.ToSingle(tbCalvL.Text), Convert.ToSingle(tbCalvR.Text), Convert.ToSingle(tbFat.Text), Convert.ToSingle(tbHeight.Text), Convert.ToSingle(tbWeight.Text), tbTel.Text,tbEmail.Text, DateTime.Now, new TimeSpan(0), tbNotes.Text,cbActive.Checked));
-                    lu = Database.GetUsers();
-                    Fill(lu);
-                    LoadUser();
-                    putNotif();
+                    Util.ShowError("field-required");
+                    return;
+                }
+                SetEn(AddState, btnAddUser);
+                if (AddState)
+                {
+                    btnAddUser.Text = I18N.String("add");
+                    Database.AddUser(CurrentUser);
+                    RefreshUser();
                 }
                 else
                 {
-                    addstate = !addstate;
-                    btnAddUser.Text = "Done";
-                    SetVis(true);
-                    SetEn(false);
-                    btnAddUser.Enabled = true;
                     LoadUser();
                 }
+                AddState = !AddState;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
+                Util.DBError(ex);
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnEditUser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnEditUser_Click(object sender, EventArgs e)
         {
             try
             {
-                User u = lu.Find(i => i.ID == uid);
-                if (editstate)
+                PopulateUser();
+                if (!ValidateUser())
                 {
-                    editstate = !editstate;
-                    btnEditUser.Text = "Edit";
-                    SetVis(false);
-                    SetEn(true);
-                    Database.UpdateUser(new User(u.ID, Convert.ToInt32(tbID.Text), tbName.Text, tbSurname.Text, dtpDate.Value, Convert.ToSingle(tbNeck.Text), Convert.ToSingle(tbChest.Text), Convert.ToSingle(tbWaist.Text), Convert.ToSingle(tbHips.Text), Convert.ToSingle(tbBicepsL.Text), Convert.ToSingle(tbBicepsR.Text), Convert.ToSingle(tbTighL.Text), Convert.ToSingle(tbTighR.Text), Convert.ToSingle(tbCalvL.Text), Convert.ToSingle(tbCalvR.Text), Convert.ToSingle(tbFat.Text), Convert.ToSingle(tbHeight.Text), Convert.ToSingle(tbWeight.Text), tbTel.Text, tbEmail.Text, u.SubscriptionDate,u.SubscriptionLength, tbNotes.Text, cbActive.Checked));
-                    lu = Database.GetUsers();
-                    Fill(lu);
-                    LoadUser();
-                    putNotif();
+                    Util.ShowError("field-required");
+                    return;
                 }
-                else
+                SetEn(EditState, btnEditUser);
+                if (EditState)
                 {
-                    editstate = !editstate;
-                    btnEditUser.Text = "Done";
-                    SetVis(true);
-                    SetEn(false);
-                    btnEditUser.Enabled = true;
+                    btnEditUser.Text = I18N.String("edit");
+                    Database.UpdateUser(CurrentUser);
+                    RefreshUser();
                 }
+                EditState = !EditState;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
+                Util.DBError(ex);
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnRemoveUser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnRemoveUser_Click(object sender, EventArgs e)
         {
-
-            User u = lu.Find(i => i.ID == uid);
-            if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + u.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            Console.WriteLine(CurrentUser.ID);
+            if (Util.Question("user-delete-confirm", CurrentUser.GetFullName()))
             {
-                Database.DeepRemoveUser(u);
-                lu = Database.GetUsers();
-                Fill(lu);
-                LoadUser();
-                putNotif();
+                Database.DeepRemoveUser(CurrentUser);
+                RefreshUser();
             }
 
         }
 
-        private void Setfilter()
-        {
-            Filter.Columns.Add("user_id", "ID");
-            Filter.Columns.Add("name", "Name");
-            Filter.Columns.Add("surname", "Surname");
-            Filter.Columns.Add("email", "E-mail");
-        }
-
+        /// <summary>
+        /// Handles the SortCompare event of the Users control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewSortCompareEventArgs"/> instance containing the event data.</param>
         private void Users_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
         {
             if (e.Column.Index == 0)
             {
                 e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
-                e.Handled = true;//pass by the default sorting
+                e.Handled = true; // pass by the default sorting
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnFilter control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnFilter_Click(object sender, EventArgs e)
         {
             try
             {
                 bool and = false;
-                String Q = "SELECT * FROM `users` WHERE ";
+                string Q = "SELECT * FROM `users` WHERE ";
                 foreach (DataGridViewRow item in Filter.Rows)
                 {
                     if (item.Index != Filter.RowCount - 1)
                     {
-                        if (item.Index != 0) { Q += " OR "; }
+                        if (item.Index != 0)
+                        {
+                            Q += " OR ";
+                        }
                         Q += "(";
                         and = false;
                         foreach (DataGridViewCell cell in item.Cells)
                         {
                             if (!string.IsNullOrWhiteSpace((string)cell.Value))
                             {
-                                if (cell.ColumnIndex == 0)
+                                if (!and)
                                 {
-                                    if (!and) { and = true; }
-                                    else { Q += " AND "; }
-                                    Q += "`";
-                                    Q += Filter.Columns[cell.ColumnIndex].Name;
-                                    Q += "` ='";
-                                    Q += (string)cell.Value;
-                                    Q += "'";
+                                    and = true;
                                 }
                                 else
                                 {
-                                    if (!and) { and = true; }
-                                    else { Q += " AND "; }
-                                    Q += "`";
-                                    Q += Filter.Columns[cell.ColumnIndex].Name;
-                                    Q += "` LIKE '";
-                                    Q += (string)cell.Value;
-                                    Q += "'";
+                                    Q += " AND ";
                                 }
+                                string op = cell.ColumnIndex == 0 ? "=" : "LIKE";
+                                Q += $"`{Filter.Columns[cell.ColumnIndex].Name}` {op} '{(string)cell.Value}'";
                             }
 
                         }
                         Q += ")";
                     }
-
                 }
-                lu = Database.GetUsers(Q);
-                Fill(lu);
-                LoadUser();
-                putNotif();
+                RefreshUser(Q);
             }
             catch (Exception)
             {
@@ -439,13 +586,35 @@ namespace Teretan
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnClearFilter control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnClearFilter_Click(object sender, EventArgs e)
         {
             Filter.Rows.Clear();
-            lu = Database.GetUsers();
-            Fill(lu);
-            LoadUser();
-            putNotif();
+            RefreshUser();
+        }
+
+        /// <summary>
+        /// Handles the ValueChanged event of the dtpDate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+            tbAge.Text = (DateTime.Now.Year - ((DateTimePicker)sender).Value.Year).ToString();
+        }
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the cbActive control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void cbActive_CheckedChanged(object sender, EventArgs e)
+        {
+            btnExtend.Enabled = ((CheckBox)sender).Checked;
         }
     }
 }

@@ -1,2 +1,0 @@
-`id`,`user_id`,`name`,`surname`,`birthdate`,`circumference_neck`,`circumference_chest`,`circumference_waist`,`circumference_hips`,`circumference_biceps_left`,`circumference_biceps_right`,`circumference_thigh_left`,`circumference_thigh_right`,`circumference_calv_left`,`circumference_calv_right`,`body_fat`,`height`,`weight`,`tel`,`email`,`subscription_date`,`subscription_length`,`active`,`notes`
-yyyy'-'MM'-'dd' 'HH':'mm':'ss

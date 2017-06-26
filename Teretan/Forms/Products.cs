@@ -12,6 +12,7 @@ namespace Teretan
         {
             products = Database.GetProducts();
             InitializeComponent();
+            I18N.TranslateControls(this);
             Reload(true);
         }
 
@@ -46,14 +47,19 @@ namespace Teretan
             Reload();
         }
 
-        private void EditProduct(object sender, EventArgs e)
+        private bool Selected()
         {
-            // TODO: I18N
             if(grid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Util.ShowError("select-product");
+                return false;
             }
-            else
+            return true;
+        }
+
+        private void EditProduct(object sender, EventArgs e)
+        {
+            if(Selected())
             {
                 new EditProduct(new Product(grid.SelectedRows[0])).ShowDialog();
                 Reload();
@@ -62,21 +68,16 @@ namespace Teretan
 
         private void DeleteProduct(object sender, EventArgs e)
         {
-            // TODO: I18N
-            if (grid.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
+            if (Selected())
             {
                 Product sel = new Product(grid.SelectedRows[0]);
                 if (Database.CheckProduct(sel))
                 {
-                    MessageBox.Show("Neki korisnici su kupili ovaj proizvod i nije ga moguce obrisati");
+                    Util.ShowError("bought-error");
                 }
                 else
                 {
-                    if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + sel.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (Util.Question("product-delete-confirm", sel.Name))
                     {
                         Database.RemoveProduct(sel);
                     }

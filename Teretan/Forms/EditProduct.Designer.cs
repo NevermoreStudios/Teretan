@@ -28,44 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
+            this.editButton = new System.Windows.Forms.Button();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.descBox = new System.Windows.Forms.TextBox();
-            this.editButton = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name:";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(3, 13);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(81, 13);
+            label1.TabIndex = 0;
+            label1.Tag = "i18n-text";
+            label1.Text = "form-label-name";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Description:";
-            // 
-            // nameBox
-            // 
-            this.nameBox.Location = new System.Drawing.Point(81, 13);
-            this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(362, 20);
-            this.nameBox.TabIndex = 2;
-            // 
-            // descBox
-            // 
-            this.descBox.Location = new System.Drawing.Point(81, 43);
-            this.descBox.Name = "descBox";
-            this.descBox.Size = new System.Drawing.Size(362, 20);
-            this.descBox.TabIndex = 3;
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(3, 46);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(78, 13);
+            label2.TabIndex = 1;
+            label2.Tag = "i18n-text";
+            label2.Text = "form-label-desc";
             // 
             // editButton
             // 
@@ -73,9 +63,24 @@
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(96, 23);
             this.editButton.TabIndex = 4;
-            this.editButton.Text = "Edit";
+            this.editButton.Tag = "i18n-text";
+            this.editButton.Text = "add";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.Edit);
+            // 
+            // nameBox
+            // 
+            this.nameBox.Location = new System.Drawing.Point(90, 13);
+            this.nameBox.Name = "nameBox";
+            this.nameBox.Size = new System.Drawing.Size(353, 20);
+            this.nameBox.TabIndex = 2;
+            // 
+            // descBox
+            // 
+            this.descBox.Location = new System.Drawing.Point(90, 43);
+            this.descBox.Name = "descBox";
+            this.descBox.Size = new System.Drawing.Size(353, 20);
+            this.descBox.TabIndex = 3;
             // 
             // EditProduct
             // 
@@ -85,21 +90,18 @@
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.descBox);
             this.Controls.Add(this.nameBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(label2);
+            this.Controls.Add(label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EditProduct";
-            this.Text = "EditProduct";
-            this.Load += new System.EventHandler(this.EditProduct_Load);
+            this.Tag = "i18n-text";
+            this.Text = "form-add-product";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.TextBox descBox;
         private System.Windows.Forms.Button editButton;

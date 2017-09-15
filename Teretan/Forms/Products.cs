@@ -12,7 +12,6 @@ namespace Teretan
         {
             products = Database.GetProducts();
             InitializeComponent();
-            I18N.TranslateControls(this);
             Reload(true);
         }
 
@@ -47,19 +46,14 @@ namespace Teretan
             Reload();
         }
 
-        private bool Selected()
-        {
-            if(grid.SelectedRows.Count == 0)
-            {
-                Util.ShowError("select-product");
-                return false;
-            }
-            return true;
-        }
-
         private void EditProduct(object sender, EventArgs e)
         {
-            if(Selected())
+            // TODO: I18N
+            if(grid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
             {
                 new EditProduct(new Product(grid.SelectedRows[0])).ShowDialog();
                 Reload();
@@ -68,16 +62,21 @@ namespace Teretan
 
         private void DeleteProduct(object sender, EventArgs e)
         {
-            if (Selected())
+            // TODO: I18N
+            if (grid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
             {
                 Product sel = new Product(grid.SelectedRows[0]);
                 if (Database.CheckProduct(sel))
                 {
-                    Util.ShowError("bought-error");
+                    MessageBox.Show("Neki korisnici su kupili ovaj proizvod i nije ga moguce obrisati");
                 }
                 else
                 {
-                    if (Util.Question("product-delete-confirm", sel.Name))
+                    if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + sel.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         Database.RemoveProduct(sel);
                     }

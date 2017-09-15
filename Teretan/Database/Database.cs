@@ -18,20 +18,18 @@ namespace Teretan
 
         const string QUERY_SELECT_ORDER_USER = "SELECT * FROM `orders` WHERE `user`='{0}'";
         const string QUERY_SELECT_ORDER_PRODUCT = "SELECT * FROM `orders` WHERE `product`='{0}'";
-        const string QUERY_SELECT_USER_ID = "SELECT * FROM `users` WHERE `id`='{0}' LIMIT 1";
-        const string QUERY_SELECT_PRODUCT_ID = "SELECT * from `products` WHERE `id`='{0}' LIMIT 1";
 
         /**
          * Insert queries
          */
-       const string QUERY_INSERT_USER = @"INSERT INTO `users` (`user_id`,`name`,`surname`,`birthdate`,`circumference_neck`,`circumference_chest`,`circumference_waist`,`circumference_hips`,`circumference_biceps_left`,`circumference_biceps_right`,`circumference_thigh_left`,`circumference_thigh_right`,`circumference_calv_left`,`circumference_calv_right`,`body_fat`,`height`,`weight`,`tel`,`email`,`subscription_expiry`,`active`,`notes`)
-           VALUES('{0}', '{1}','{2}', '{3:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{4}', '{5}', '{6}', '{7}', '{8}','{9}', '{10}', '{11}', '{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19:yyyy'-'MM'-'dd' 'HH':'mm':'ss}','{20}','{21}')";
-       const string QUERY_INSERT_PRODUCT = "INSERT INTO `products` (`name`, `description`) VALUES('{0}', '{1}')";
-       const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}')";
+        const string QUERY_INSERT_USER = @"INSERT INTO `users` (`user_id`,`name`,`surname`,`birthdate`,`circumference_neck`,`circumference_chest`,`circumference_waist`,`circumference_hips`,`circumference_biceps_left`,`circumference_biceps_right`,`circumference_thigh_left`,`circumference_thigh_right`,`circumference_calv_left`,`circumference_calv_right`,`body_fat`,`height`,`weight`,`tel`,`email`,`subscription_date`,`subscription_length`,`active`,`notes`)
+            VALUES('{0}', '{1}','{2}', '{3:yyyy'-'MM'-'dd' 'HH':'mm':'ss}', '{4}', '{5}', '{6}', '{7}', '{8}','{9}', '{10}', '{11}', '{12}','{13}','{14}','{15}','{16}','{17}','{18}','{19:yyyy'-'MM'-'dd' 'HH':'mm':'ss}','{20}','{21}','{22}')";
+        const string QUERY_INSERT_PRODUCT = "INSERT INTO `products` (`name`, `description`) VALUES('{0}', '{1}')";
+        const string QUERY_INSERT_ORDER = "INSERT INTO `orders` (`user`, `product`, `date`) VALUES('{0}', '{1}','{2:yyyy'-'MM'-'dd' 'HH':'mm':'ss}')";
 
-       /**
-        * Delete queries
-        */
+        /**
+         * Delete queries
+         */
         const string QUERY_DELETE_USER = "DELETE FROM `users` WHERE `id`='{0}'";
         const string QUERY_DELETE_PRODUCT = "DELETE FROM `products` WHERE `id`='{0}'";
         const string QUERY_DELETE_ORDER = "DELETE FROM `orders` WHERE `id`='{0}'";
@@ -39,7 +37,7 @@ namespace Teretan
         /**
          * Update queries
          */
-        const string QUERY_UPDATE_USER = "UPDATE `users` SET `user_id`='{0}',`name`='{1}',`surname`='{2}',`birthdate`='{3:yyyy'-'MM'-'dd' 'HH':'mm':'ss}',`circumference_neck`='{4}',`circumference_chest`='{5}',`circumference_waist`='{6}',`circumference_hips`='{7}',`circumference_biceps_left`='{8}',`circumference_biceps_right`='{9}',`circumference_thigh_left`='{10}',`circumference_thigh_right`='{11}',`circumference_calv_left`='{12}',`circumference_calv_right`='{13}',`body_fat`='{14}',`height`='{15}',`weight`='{16}',`tel`='{17}',`email`='{18}',`subscription_expiry`='{19:yyyy'-'MM'-'dd' 'HH':'mm':'ss}',`active`='{20}',`notes`='{21}' WHERE `id`='{22}'";
+        const string QUERY_UPDATE_USER = "UPDATE `users` SET `user_id`='{0}',`name`='{1}',`surname`='{2}',`birthdate`='{3:yyyy'-'MM'-'dd' 'HH':'mm':'ss}',`circumference_neck`='{4}',`circumference_chest`='{5}',`circumference_waist`='{6}',`circumference_hips`='{7}',`circumference_biceps_left`='{8}',`circumference_biceps_right`='{9}',`circumference_thigh_left`='{10}',`circumference_thigh_right`='{11}',`circumference_calv_left`='{12}',`circumference_calv_right`='{13}',`body_fat`='{14}',`height`='{15}',`weight`='{16}',`tel`='{17}',`email`='{18}',`subscription_date`='{19:yyyy'-'MM'-'dd' 'HH':'mm':'ss}',`subscription_length`='{20}',`active`='{21}',`notes`='{22}' WHERE `id`='{23}'";
         const string QUERY_UPDATE_PRODUCT = "UPDATE `products` SET `name`='{0}', `description`='{1}' WHERE `id`='{2}'";
         const string QUERY_UPDATE_PREFERENCE = "UPDATE `preferences` SET `key`='{0}', `value`='{1}' WHERE `key`='{0}'";
 
@@ -66,9 +64,10 @@ namespace Teretan
             `body_fat`	                    REAL,
             `height`	                    REAL,
             `weight`	                    REAL,
-            `tel`	                        TEXT,
+            `tel`	                    TEXT,
 	        `email`	                        TEXT,
-	        `subscription_expiry`	        TEXT,
+	        `subscription_date`	            TEXT,
+	        `subscription_length`	        INTEGER,
             `active`                        INTEGER,
 	        `notes`	                        TEXT
         );
@@ -120,18 +119,34 @@ namespace Teretan
         private static SQLiteCommand Query(string query, params object[] args)
         {
             string q = string.Format(query, args);
-            // Console.WriteLine(q);
+            Console.WriteLine(q);
             return new SQLiteCommand(q, DBConnection);
         }
 
         private static void ExecuteNoQuery(string query, params object[] args)
         {
-            Query(query, args).ExecuteNonQuery();
+            try
+            {
+                Query(query, args).ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Generic database no query eror");
+            }
+
         }
 
         private static SQLiteDataReader ExecuteRead(string query, params object[] args)
         {
-            return Query(query, args).ExecuteReader();
+            try
+            {
+                return Query(query, args).ExecuteReader();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Generic database read eror");
+            }
+            return null;
         }
 
         public static int Count(SQLiteDataReader Read)
@@ -156,37 +171,33 @@ namespace Teretan
             while (reader.Read())
             {
                 ret.Add(new User(
-                    reader.GetInt32(0),     // ID
-                    reader.GetInt32(1),     // UID
-                    reader.GetString(2),    // Name
-                    reader.GetString(3),    // Surname
-                    reader.GetDateTime(4),  // BirthDate
-                    reader.GetDouble(5),    // CircumferenceNeck
-                    reader.GetDouble(6),    // CircumferenceChest
-                    reader.GetDouble(7),    // CircumferenceWaist
-                    reader.GetDouble(8),    // CircumferenceHips
-                    reader.GetDouble(9),    // CircumferenceBicepsLeft
-                    reader.GetDouble(10),   // CircumferenceBicepsRight
-                    reader.GetDouble(11),   // CircumferenceThighLeft
-                    reader.GetDouble(12),   // CircumferenceThighRight
-                    reader.GetDouble(13),   // CircumferenceCalvLeft
-                    reader.GetDouble(14),   // CircumferenceCalvRight
-                    reader.GetDouble(15),   // BodyFat
-                    reader.GetDouble(16),   // Height
-                    reader.GetDouble(17),   // Weight
-                    reader.GetString(18),   // Telephone
-                    reader.GetString(19),   // Email
-                    reader.GetDateTime(20), // SubscriptionExpiry
-                    reader.GetString(22),   // Notes
-                    reader.GetBoolean(21)   // Active
-                ));
+                    reader.GetInt32(0),
+                    reader.GetInt32(1),
+                    reader.GetString(2),
+                    reader.GetString(3),
+                    reader.GetDateTime(4),
+                    reader.GetDouble(5),
+                    reader.GetDouble(6),
+                    reader.GetDouble(7),
+                    reader.GetDouble(8),
+                    reader.GetDouble(9),
+                    reader.GetDouble(10),
+                    reader.GetDouble(11),
+                    reader.GetDouble(12),
+                    reader.GetDouble(13),
+                    reader.GetDouble(14),
+                    reader.GetDouble(15),
+                    reader.GetDouble(16),
+                    reader.GetDouble(17),
+                    reader.GetString(18),
+                    reader.GetString(19),
+                    reader.GetDateTime(20),
+                    new TimeSpan(reader.GetInt32(21), 0, 0, 0),
+                    reader.GetString(23),
+                    reader.GetBoolean(22)
+                    ));
             }
             return ret;
-        }
-
-        public static User GetUserById(int id)
-        {
-            return GetUsers(QUERY_SELECT_USER_ID, id)[0];
         }
 
         public static List<Product> GetProducts()
@@ -194,7 +205,7 @@ namespace Teretan
             return GetProducts(QUERY_SELECT_PRODUCTS);
         }
 
-        private static List<Product> GetProducts(string query, params object[] args)
+        public static List<Product> GetProducts(string query, params object[] args)
         {
             List<Product> ret = new List<Product>();
             SQLiteDataReader reader = ExecuteRead(query, args);
@@ -209,17 +220,12 @@ namespace Teretan
             return ret;
         }
 
-        public static Product GetProductById(int id)
-        {
-            return GetProducts(QUERY_SELECT_PRODUCT_ID, id)[0];
-        }
-
         public static List<Order> GetOrders()
         {
             return GetOrders(QUERY_SELECT_ORDERS);
         }
 
-        private static List<Order> GetOrders(string query, params object[] args)
+        public static List<Order> GetOrders(string query, params object[] args)
         {
             List<Order> ret = new List<Order>();
             SQLiteDataReader reader = ExecuteRead(query, args);
@@ -233,11 +239,6 @@ namespace Teretan
                 ));
             }
             return ret;
-        }
-
-        public static List<Order> GetOrdersByUser(User user)
-        {
-            return GetOrders(QUERY_SELECT_ORDER_USER, user.ID);
         }
 
         public static Dictionary<string, string> GetPreferences()
@@ -258,12 +259,7 @@ namespace Teretan
 
         public static void AddUser(User User)
         {
-            ExecuteNoQuery(QUERY_INSERT_USER, User.UID, User.Name, User.Surname, User.BirthDate,
-                User.CircumferenceNeck, User.CircumferenceChest, User.CircumferenceWaist,
-                User.CircumferenceHips, User.CircumferenceBicepsLeft, User.CircumferenceBicepsRight,
-                User.CircumferenceThighLeft, User.CircumferenceThighRight, User.CircumferenceCalvLeft,
-                User.CircumferenceCalvRight, User.BodyFat, User.Height, User.Weight, User.Telephone,
-                User.Email, User.SubscriptionExpiry, User.Active ? 1 : 0, User.Notes);
+            ExecuteNoQuery(QUERY_INSERT_USER, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Active?1:0, User.Notes);
         }
 
         public static void AddProduct(Product Product)
@@ -278,7 +274,6 @@ namespace Teretan
 
         public static void RemoveUser(User User)
         {
-            Console.WriteLine(User.ID);
             ExecuteNoQuery(QUERY_DELETE_USER, User.ID);
         }
 
@@ -300,7 +295,7 @@ namespace Teretan
         public static void DeepRemoveUser(User user)
         {
             RemoveUser(user);
-            List<Order> dep = GetOrdersByUser(user);
+            List<Order> dep = GetOrders(QUERY_SELECT_ORDER_USER, user.ID);
             foreach (Order item in dep)
             {
                 RemoveOrder(item);
@@ -309,13 +304,7 @@ namespace Teretan
 
         public static void UpdateUser(User User)
         {
-            ExecuteNoQuery(QUERY_UPDATE_USER, User.UID, User.Name, User.Surname, User.BirthDate,
-                User.CircumferenceNeck, User.CircumferenceChest, User.CircumferenceWaist,
-                User.CircumferenceHips, User.CircumferenceBicepsLeft, User.CircumferenceBicepsRight,
-                User.CircumferenceThighLeft, User.CircumferenceThighRight, User.CircumferenceCalvLeft,
-                User.CircumferenceCalvRight, User.BodyFat, User.Height, User.Weight, User.Telephone,
-                User.Email, User.SubscriptionExpiry, User.Active ? 1 : 0,
-                User.Notes, User.ID);
+            ExecuteNoQuery(QUERY_UPDATE_USER, User.UID, User.Name, User.Surname, User.BirthDate, User.circumference_neck, User.circumference_chest, User.circumference_waist, User.circumference_hips, User.circumference_biceps_left, User.circumference_biceps_right, User.circumference_thigh_left, User.circumference_thigh_right, User.circumference_calv_left, User.circumference_calv_right, User.body_fat, User.Height, User.Weight, User.Tel, User.Email, User.SubscriptionDate, User.SubscriptionLength.Days, User.Active ? 1 : 0, User.Notes, User.ID);
         }
 
         public static void UpdateProduct(Product Product)

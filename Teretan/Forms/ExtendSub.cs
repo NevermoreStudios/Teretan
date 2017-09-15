@@ -1,55 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Teretan
 {
-    /// <summary>
-    /// Dialog for extending a user's subscription.
-    /// </summary>
-    /// <seealso cref="Form" />
     public partial class ExtendSub : Form
     {
-        User CurrentUser;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ExtendSub"/> class.
-        /// </summary>
-        /// <param name="UID">User ID of the user whose subscription should be extended</param>
-        public ExtendSub(int UID)
+        public ExtendSub(int uid)
         {
             InitializeComponent();
-            I18N.TranslateControls(this);
-            try
-            {
-                CurrentUser = Database.GetUserById(UID);
-            }
-            catch(Exception ex)
-            {
-                Util.DBError(ex);
-            }
+            this.uid = uid;
         }
-
-        /// <summary>
-        /// Handles the Click event of the button1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        int uid;
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                if(CurrentUser.SubscriptionExpiry < DateTime.Now)
-                {
-                    CurrentUser.SubscriptionExpiry = DateTime.Now;
-                }
-                CurrentUser.SubscriptionExpiry = CurrentUser.SubscriptionExpiry.Add(new TimeSpan((int)extend.Value, 0, 0, 0));
-                Database.UpdateUser(CurrentUser);
+                User u = Database.GetUsers("SELECT * FROM `users` WHERE ID='{0}'", uid.ToString())[0];
+                u.SubscriptionLength = new TimeSpan(Math.Max(u.GetSubLeft(), 0) + (int)numericUpDown1.Value, 0, 0, 0);
+                u.SubscriptionDate = DateTime.Now;
+                Database.UpdateUser(u);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Util.DBError(ex);
+                MessageBox.Show("Greska: Ili korisnik ne postoji ili postoji greska sa pretplatom");
             }
-            Close();
+            this.Close();
         }
     }
 }

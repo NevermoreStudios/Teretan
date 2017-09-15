@@ -62,8 +62,7 @@
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 1;
-            this.addButton.Tag = "i18n-text";
-            this.addButton.Text = "add";
+            this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.AddProduct);
             // 
@@ -74,8 +73,7 @@
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(75, 23);
             this.editButton.TabIndex = 2;
-            this.editButton.Tag = "i18n-text";
-            this.editButton.Text = "edit";
+            this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.EditProduct);
             // 
@@ -86,8 +84,7 @@
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
             this.deleteButton.TabIndex = 3;
-            this.deleteButton.Tag = "i18n-text";
-            this.deleteButton.Text = "delete";
+            this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.DeleteProduct);
             // 
@@ -101,7 +98,7 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.grid);
             this.Name = "Products";
-            this.Text = "form-products";
+            this.Text = "Products";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 

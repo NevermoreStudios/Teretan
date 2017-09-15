@@ -9,7 +9,6 @@ namespace Teretan
         public Notifications()
         {
             InitializeComponent();
-            I18N.TranslateControls(this);
         }
 
         private void Notifications_Load(object sender, EventArgs e)
@@ -19,20 +18,23 @@ namespace Teretan
                 List<User> usr = Util.GetNotif();
                 foreach (User item in usr)
                 {
-                    if (item.Expired())
+                    int g = item.GetSubLeft();
+                    if (g > 0)
                     {
-                        notificationList.Items.Add(I18N.String("notif-left", item.Name, item.Surname, item.GetSubLeft()));
+                        notificationList.Items.Add(string.Format("User {0} {1} has only {2} days left", item.Name, item.Surname, g));
                     }
                     else
                     {
-                        notificationList.Items.Add(I18N.String("notif-inactive", item.Name, item.Surname));
+                        notificationList.Items.Add(string.Format("User {0} {1} does not have a active subscription", item.Name, item.Surname));
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Util.DBError(ex);
+                MessageBox.Show("Greska pri ucitavanju korisnika");
             }
+            
+            
         }
     }
 }

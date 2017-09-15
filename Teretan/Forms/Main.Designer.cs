@@ -28,823 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label label5;
-            System.Windows.Forms.DateTimePicker dtpDate;
-            System.Windows.Forms.Label label4;
-            System.Windows.Forms.Label label3;
-            System.Windows.Forms.TextBox tbName;
-            System.Windows.Forms.Label label2;
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label28;
-            System.Windows.Forms.Label label27;
-            System.Windows.Forms.Label label26;
-            System.Windows.Forms.Label label6;
-            System.Windows.Forms.Label label25;
-            System.Windows.Forms.Label label23;
-            System.Windows.Forms.Label label18;
-            System.Windows.Forms.Label label19;
-            System.Windows.Forms.Label label20;
-            System.Windows.Forms.Label label22;
-            System.Windows.Forms.Label label12;
-            System.Windows.Forms.Label label24;
-            System.Windows.Forms.Label label16;
-            System.Windows.Forms.Label label21;
-            System.Windows.Forms.Label label17;
-            System.Windows.Forms.Label label9;
-            System.Windows.Forms.Label label8;
-            System.Windows.Forms.Label label7;
-            System.Windows.Forms.NumericUpDown numericUpDown15;
-            System.Windows.Forms.NumericUpDown numericUpDown14;
-            System.Windows.Forms.NumericUpDown numericUpDown13;
-            System.Windows.Forms.NumericUpDown numericUpDown12;
-            System.Windows.Forms.NumericUpDown numericUpDown11;
-            System.Windows.Forms.NumericUpDown numericUpDown10;
-            System.Windows.Forms.NumericUpDown numericUpDown9;
-            System.Windows.Forms.NumericUpDown numericUpDown8;
-            System.Windows.Forms.NumericUpDown numericUpDown6;
-            System.Windows.Forms.NumericUpDown numericUpDown5;
-            System.Windows.Forms.NumericUpDown numericUpDown4;
-            System.Windows.Forms.NumericUpDown numericUpDown3;
-            System.Windows.Forms.CheckBox cbActive;
-            System.Windows.Forms.TextBox tbEmail;
-            System.Windows.Forms.TextBox tbTel;
-            System.Windows.Forms.Label label15;
-            System.Windows.Forms.NumericUpDown numericUpDown1;
-            System.Windows.Forms.TextBox tbSurname;
-            System.Windows.Forms.Label label13;
-            System.Windows.Forms.TextBox tbNotes;
-            System.Windows.Forms.Label label14;
-            System.Windows.Forms.Label label10;
-            System.Windows.Forms.Button btnProducts;
-            System.Windows.Forms.Button btnPreferences;
-            System.Windows.Forms.NumericUpDown numericUpDown7;
-            this.btnExtend = new System.Windows.Forms.Button();
-            this.btnRemoveOrder = new System.Windows.Forms.Button();
-            this.btnAddOrder = new System.Windows.Forms.Button();
-            this.btnRemoveUser = new System.Windows.Forms.Button();
-            this.properties = new System.Windows.Forms.GroupBox();
-            this.tbAge = new System.Windows.Forms.TextBox();
-            this.labelSubscriptionExpiry = new System.Windows.Forms.Label();
-            this.labelSubscriptionStatus = new System.Windows.Forms.Label();
-            this.lbOrders = new System.Windows.Forms.ListBox();
-            this.UserList = new System.Windows.Forms.DataGridView();
+            this.Users = new System.Windows.Forms.DataGridView();
             this.Filter = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnClearFilter = new System.Windows.Forms.Button();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cbActive = new System.Windows.Forms.CheckBox();
+            this.tbNeck = new System.Windows.Forms.TextBox();
+            this.tbWeight = new System.Windows.Forms.TextBox();
+            this.tbCalvR = new System.Windows.Forms.TextBox();
+            this.tbTighR = new System.Windows.Forms.TextBox();
+            this.tbBicepsR = new System.Windows.Forms.TextBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbHeight = new System.Windows.Forms.TextBox();
+            this.tbHips = new System.Windows.Forms.TextBox();
+            this.tbWaist = new System.Windows.Forms.TextBox();
+            this.tbTel = new System.Windows.Forms.TextBox();
+            this.tbChest = new System.Windows.Forms.TextBox();
+            this.tbFat = new System.Windows.Forms.TextBox();
+            this.tbCalvL = new System.Windows.Forms.TextBox();
+            this.tbTighL = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.tbBicepsL = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbAge = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbSurname = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbID = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.labelSubscriptionLenght = new System.Windows.Forms.Label();
+            this.btnExtend = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.labelSubscriptionDate = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbNotes = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.labelSubscriptionLeft = new System.Windows.Forms.Label();
+            this.btnRemoveOrder = new System.Windows.Forms.Button();
+            this.btnAddOrder = new System.Windows.Forms.Button();
+            this.lbOrders = new System.Windows.Forms.ListBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.btnEditUser = new System.Windows.Forms.Button();
+            this.btnRemoveUser = new System.Windows.Forms.Button();
+            this.btnProducts = new System.Windows.Forms.Button();
+            this.btnPreferences = new System.Windows.Forms.Button();
             this.btnNotif = new System.Windows.Forms.Button();
-            label5 = new System.Windows.Forms.Label();
-            dtpDate = new System.Windows.Forms.DateTimePicker();
-            label4 = new System.Windows.Forms.Label();
-            label3 = new System.Windows.Forms.Label();
-            tbName = new System.Windows.Forms.TextBox();
-            label2 = new System.Windows.Forms.Label();
-            label1 = new System.Windows.Forms.Label();
-            label28 = new System.Windows.Forms.Label();
-            label27 = new System.Windows.Forms.Label();
-            label26 = new System.Windows.Forms.Label();
-            label6 = new System.Windows.Forms.Label();
-            label25 = new System.Windows.Forms.Label();
-            label23 = new System.Windows.Forms.Label();
-            label18 = new System.Windows.Forms.Label();
-            label19 = new System.Windows.Forms.Label();
-            label20 = new System.Windows.Forms.Label();
-            label22 = new System.Windows.Forms.Label();
-            label12 = new System.Windows.Forms.Label();
-            label24 = new System.Windows.Forms.Label();
-            label16 = new System.Windows.Forms.Label();
-            label21 = new System.Windows.Forms.Label();
-            label17 = new System.Windows.Forms.Label();
-            label9 = new System.Windows.Forms.Label();
-            label8 = new System.Windows.Forms.Label();
-            label7 = new System.Windows.Forms.Label();
-            numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            cbActive = new System.Windows.Forms.CheckBox();
-            tbEmail = new System.Windows.Forms.TextBox();
-            tbTel = new System.Windows.Forms.TextBox();
-            label15 = new System.Windows.Forms.Label();
-            numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            tbSurname = new System.Windows.Forms.TextBox();
-            label13 = new System.Windows.Forms.Label();
-            tbNotes = new System.Windows.Forms.TextBox();
-            label14 = new System.Windows.Forms.Label();
-            label10 = new System.Windows.Forms.Label();
-            btnProducts = new System.Windows.Forms.Button();
-            btnPreferences = new System.Windows.Forms.Button();
-            numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown1)).BeginInit();
-            this.properties.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UserList)).BeginInit();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Users)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Filter)).BeginInit();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label5
-            // 
-            label5.Location = new System.Drawing.Point(260, 46);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(26, 13);
-            label5.TabIndex = 35;
-            label5.Tag = "i18n-text";
-            label5.Text = "age";
-            label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // dtpDate
-            // 
-            dtpDate.Enabled = false;
-            dtpDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            dtpDate.Location = new System.Drawing.Point(72, 42);
-            dtpDate.MaxDate = new System.DateTime(2017, 6, 19, 0, 59, 30, 0);
-            dtpDate.Name = "dtpDate";
-            dtpDate.Size = new System.Drawing.Size(182, 20);
-            dtpDate.TabIndex = 3;
-            dtpDate.Tag = "input-3-BirthDate";
-            dtpDate.Value = new System.DateTime(2017, 6, 19, 0, 59, 30, 0);
-            dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
-            // 
-            // label4
-            // 
-            label4.Location = new System.Drawing.Point(12, 46);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(54, 13);
-            label4.TabIndex = 33;
-            label4.Tag = "i18n-text";
-            label4.Text = "birthdate";
-            label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label3
-            // 
-            label3.Location = new System.Drawing.Point(252, 19);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(49, 13);
-            label3.TabIndex = 31;
-            label3.Tag = "i18n-text";
-            label3.Text = "surname";
-            label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // tbName
-            // 
-            tbName.Enabled = false;
-            tbName.Location = new System.Drawing.Point(131, 16);
-            tbName.Name = "tbName";
-            tbName.Size = new System.Drawing.Size(100, 20);
-            tbName.TabIndex = 1;
-            tbName.Tag = "input-0-Name";
-            // 
-            // label2
-            // 
-            label2.Location = new System.Drawing.Point(90, 19);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(35, 13);
-            label2.TabIndex = 29;
-            label2.Tag = "i18n-text";
-            label2.Text = "name";
-            label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label1
-            // 
-            label1.Location = new System.Drawing.Point(12, 19);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(18, 13);
-            label1.TabIndex = 27;
-            label1.Tag = "i18n-text";
-            label1.Text = "id";
-            label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Location = new System.Drawing.Point(175, 84);
-            label28.Name = "label28";
-            label28.Size = new System.Drawing.Size(79, 13);
-            label28.TabIndex = 60;
-            label28.Tag = "i18n-text";
-            label28.Text = "circumferences";
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Location = new System.Drawing.Point(384, 109);
-            label27.Name = "label27";
-            label27.Size = new System.Drawing.Size(27, 13);
-            label27.TabIndex = 59;
-            label27.Tag = "i18n-text";
-            label27.Text = "right";
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Location = new System.Drawing.Point(96, 109);
-            label26.Name = "label26";
-            label26.Size = new System.Drawing.Size(21, 13);
-            label26.TabIndex = 58;
-            label26.Tag = "i18n-text";
-            label26.Text = "left";
-            // 
-            // label6
-            // 
-            label6.Location = new System.Drawing.Point(162, 112);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(104, 13);
-            label6.TabIndex = 37;
-            label6.Tag = "i18n-text";
-            label6.Text = "neck";
-            label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label25
-            // 
-            label25.Location = new System.Drawing.Point(5, 261);
-            label25.Name = "label25";
-            label25.Size = new System.Drawing.Size(38, 14);
-            label25.TabIndex = 46;
-            label25.Tag = "i18n-text";
-            label25.Text = "phone";
-            label25.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label23
-            // 
-            label23.Location = new System.Drawing.Point(46, 232);
-            label23.Name = "label23";
-            label23.Size = new System.Drawing.Size(60, 13);
-            label23.TabIndex = 46;
-            label23.Tag = "i18n-text";
-            label23.Text = "body-fat";
-            label23.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label18
-            // 
-            label18.Location = new System.Drawing.Point(2, 202);
-            label18.Name = "label18";
-            label18.Size = new System.Drawing.Size(104, 13);
-            label18.TabIndex = 46;
-            label18.Tag = "i18n-text";
-            label18.Text = "calv";
-            label18.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label19
-            // 
-            label19.Location = new System.Drawing.Point(2, 172);
-            label19.Name = "label19";
-            label19.Size = new System.Drawing.Size(104, 13);
-            label19.TabIndex = 45;
-            label19.Tag = "i18n-text";
-            label19.Text = "thigh";
-            label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label20
-            // 
-            label20.Location = new System.Drawing.Point(2, 140);
-            label20.Name = "label20";
-            label20.Size = new System.Drawing.Size(104, 13);
-            label20.TabIndex = 44;
-            label20.Tag = "i18n-text";
-            label20.Text = "biceps";
-            label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label22
-            // 
-            label22.Location = new System.Drawing.Point(380, 232);
-            label22.Name = "label22";
-            label22.Size = new System.Drawing.Size(41, 13);
-            label22.TabIndex = 43;
-            label22.Tag = "i18n-text";
-            label22.Text = "weight";
-            label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label12
-            // 
-            label12.Location = new System.Drawing.Point(317, 202);
-            label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(104, 13);
-            label12.TabIndex = 43;
-            label12.Tag = "i18n-text";
-            label12.Text = "calv";
-            label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label24
-            // 
-            label24.Location = new System.Drawing.Point(196, 262);
-            label24.Name = "label24";
-            label24.Size = new System.Drawing.Size(35, 13);
-            label24.TabIndex = 40;
-            label24.Tag = "i18n-text";
-            label24.Text = "email";
-            label24.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label16
-            // 
-            label16.Location = new System.Drawing.Point(317, 172);
-            label16.Name = "label16";
-            label16.Size = new System.Drawing.Size(104, 13);
-            label16.TabIndex = 42;
-            label16.Tag = "i18n-text";
-            label16.Text = "thigh";
-            label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label21
-            // 
-            label21.Location = new System.Drawing.Point(228, 232);
-            label21.Name = "label21";
-            label21.Size = new System.Drawing.Size(38, 13);
-            label21.TabIndex = 40;
-            label21.Tag = "i18n-text";
-            label21.Text = "height";
-            label21.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label17
-            // 
-            label17.Location = new System.Drawing.Point(317, 140);
-            label17.Name = "label17";
-            label17.Size = new System.Drawing.Size(104, 13);
-            label17.TabIndex = 41;
-            label17.Tag = "i18n-text";
-            label17.Text = "biceps";
-            label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label9
-            // 
-            label9.Location = new System.Drawing.Point(162, 202);
-            label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(104, 13);
-            label9.TabIndex = 40;
-            label9.Tag = "i18n-text";
-            label9.Text = "hips";
-            label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label8
-            // 
-            label8.Location = new System.Drawing.Point(162, 172);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(104, 13);
-            label8.TabIndex = 39;
-            label8.Tag = "i18n-text";
-            label8.Text = "waist";
-            label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label7
-            // 
-            label7.Location = new System.Drawing.Point(162, 140);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(104, 13);
-            label7.TabIndex = 38;
-            label7.Tag = "i18n-text";
-            label7.Text = "chest";
-            label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // numericUpDown15
-            // 
-            numericUpDown15.DecimalPlaces = 2;
-            numericUpDown15.Enabled = false;
-            numericUpDown15.Location = new System.Drawing.Point(427, 230);
-            numericUpDown15.Name = "numericUpDown15";
-            numericUpDown15.Size = new System.Drawing.Size(45, 20);
-            numericUpDown15.TabIndex = 76;
-            numericUpDown15.Tag = "input-4-Weight";
-            // 
-            // numericUpDown14
-            // 
-            numericUpDown14.DecimalPlaces = 2;
-            numericUpDown14.Enabled = false;
-            numericUpDown14.Location = new System.Drawing.Point(427, 200);
-            numericUpDown14.Name = "numericUpDown14";
-            numericUpDown14.Size = new System.Drawing.Size(45, 20);
-            numericUpDown14.TabIndex = 75;
-            numericUpDown14.Tag = "input-4-CircumferenceCalvRight";
-            // 
-            // numericUpDown13
-            // 
-            numericUpDown13.DecimalPlaces = 2;
-            numericUpDown13.Enabled = false;
-            numericUpDown13.Location = new System.Drawing.Point(427, 170);
-            numericUpDown13.Name = "numericUpDown13";
-            numericUpDown13.Size = new System.Drawing.Size(45, 20);
-            numericUpDown13.TabIndex = 74;
-            numericUpDown13.Tag = "input-4-CircumferenceThighRight";
-            // 
-            // numericUpDown12
-            // 
-            numericUpDown12.DecimalPlaces = 2;
-            numericUpDown12.Enabled = false;
-            numericUpDown12.Location = new System.Drawing.Point(427, 138);
-            numericUpDown12.Name = "numericUpDown12";
-            numericUpDown12.Size = new System.Drawing.Size(45, 20);
-            numericUpDown12.TabIndex = 73;
-            numericUpDown12.Tag = "input-4-CircumferenceBicepsRight";
-            // 
-            // numericUpDown11
-            // 
-            numericUpDown11.DecimalPlaces = 2;
-            numericUpDown11.Enabled = false;
-            numericUpDown11.Location = new System.Drawing.Point(272, 230);
-            numericUpDown11.Name = "numericUpDown11";
-            numericUpDown11.Size = new System.Drawing.Size(45, 20);
-            numericUpDown11.TabIndex = 72;
-            numericUpDown11.Tag = "input-4-Height";
-            // 
-            // numericUpDown10
-            // 
-            numericUpDown10.DecimalPlaces = 2;
-            numericUpDown10.Enabled = false;
-            numericUpDown10.Location = new System.Drawing.Point(272, 200);
-            numericUpDown10.Name = "numericUpDown10";
-            numericUpDown10.Size = new System.Drawing.Size(45, 20);
-            numericUpDown10.TabIndex = 71;
-            numericUpDown10.Tag = "input-4-CircumferenceHips";
-            // 
-            // numericUpDown9
-            // 
-            numericUpDown9.DecimalPlaces = 2;
-            numericUpDown9.Enabled = false;
-            numericUpDown9.Location = new System.Drawing.Point(272, 170);
-            numericUpDown9.Name = "numericUpDown9";
-            numericUpDown9.Size = new System.Drawing.Size(45, 20);
-            numericUpDown9.TabIndex = 70;
-            numericUpDown9.Tag = "input-4-CircumferenceWaist";
-            // 
-            // numericUpDown8
-            // 
-            numericUpDown8.DecimalPlaces = 2;
-            numericUpDown8.Enabled = false;
-            numericUpDown8.Location = new System.Drawing.Point(272, 138);
-            numericUpDown8.Name = "numericUpDown8";
-            numericUpDown8.Size = new System.Drawing.Size(45, 20);
-            numericUpDown8.TabIndex = 69;
-            numericUpDown8.Tag = "input-4-CircumferenceChest";
-            // 
-            // numericUpDown6
-            // 
-            numericUpDown6.DecimalPlaces = 2;
-            numericUpDown6.Enabled = false;
-            numericUpDown6.Location = new System.Drawing.Point(112, 230);
-            numericUpDown6.Name = "numericUpDown6";
-            numericUpDown6.Size = new System.Drawing.Size(45, 20);
-            numericUpDown6.TabIndex = 67;
-            numericUpDown6.Tag = "input-4-BodyFat";
-            // 
-            // numericUpDown5
-            // 
-            numericUpDown5.DecimalPlaces = 2;
-            numericUpDown5.Enabled = false;
-            numericUpDown5.Location = new System.Drawing.Point(112, 200);
-            numericUpDown5.Name = "numericUpDown5";
-            numericUpDown5.Size = new System.Drawing.Size(45, 20);
-            numericUpDown5.TabIndex = 66;
-            numericUpDown5.Tag = "input-4-CircumferenceCalvLeft";
-            // 
-            // numericUpDown4
-            // 
-            numericUpDown4.DecimalPlaces = 2;
-            numericUpDown4.Enabled = false;
-            numericUpDown4.Location = new System.Drawing.Point(112, 170);
-            numericUpDown4.Name = "numericUpDown4";
-            numericUpDown4.Size = new System.Drawing.Size(45, 20);
-            numericUpDown4.TabIndex = 65;
-            numericUpDown4.Tag = "input-4-CircumferenceThighLeft";
-            // 
-            // numericUpDown3
-            // 
-            numericUpDown3.DecimalPlaces = 2;
-            numericUpDown3.Enabled = false;
-            numericUpDown3.Location = new System.Drawing.Point(112, 138);
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new System.Drawing.Size(45, 20);
-            numericUpDown3.TabIndex = 64;
-            numericUpDown3.Tag = "input-4-CircumferenceBicepsLeft";
-            // 
-            // cbActive
-            // 
-            cbActive.AutoSize = true;
-            cbActive.Enabled = false;
-            cbActive.Location = new System.Drawing.Point(401, 261);
-            cbActive.Name = "cbActive";
-            cbActive.Size = new System.Drawing.Size(55, 17);
-            cbActive.TabIndex = 20;
-            cbActive.Tag = "i18n-text,input-2-Active";
-            cbActive.Text = "active";
-            cbActive.UseVisualStyleBackColor = true;
-            cbActive.CheckedChanged += new System.EventHandler(this.cbActive_CheckedChanged);
-            // 
-            // tbEmail
-            // 
-            tbEmail.Enabled = false;
-            tbEmail.Location = new System.Drawing.Point(240, 259);
-            tbEmail.Name = "tbEmail";
-            tbEmail.Size = new System.Drawing.Size(150, 20);
-            tbEmail.TabIndex = 19;
-            tbEmail.Tag = "input-0-Email";
-            // 
-            // tbTel
-            // 
-            tbTel.Enabled = false;
-            tbTel.Location = new System.Drawing.Point(49, 259);
-            tbTel.Name = "tbTel";
-            tbTel.Size = new System.Drawing.Size(134, 20);
-            tbTel.TabIndex = 18;
-            tbTel.Tag = "input-0-Telephone";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new System.Drawing.Point(232, 307);
-            label15.Name = "label15";
-            label15.Size = new System.Drawing.Size(99, 13);
-            label15.TabIndex = 9;
-            label15.Tag = "i18n-text";
-            label15.Text = "subscription-expires";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Enabled = false;
-            numericUpDown1.Location = new System.Drawing.Point(33, 16);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new System.Drawing.Size(38, 20);
-            numericUpDown1.TabIndex = 61;
-            numericUpDown1.Tag = "input-1-UID";
-            // 
-            // tbSurname
-            // 
-            tbSurname.Enabled = false;
-            tbSurname.Location = new System.Drawing.Point(307, 16);
-            tbSurname.Name = "tbSurname";
-            tbSurname.Size = new System.Drawing.Size(100, 20);
-            tbSurname.TabIndex = 2;
-            tbSurname.Tag = "input-0-Surname";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new System.Drawing.Point(6, 437);
-            label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(33, 13);
-            label13.TabIndex = 25;
-            label13.Tag = "i18n-text";
-            label13.Text = "notes";
-            // 
-            // tbNotes
-            // 
-            tbNotes.AcceptsReturn = true;
-            tbNotes.AcceptsTab = true;
-            tbNotes.BackColor = System.Drawing.SystemColors.Window;
-            tbNotes.Location = new System.Drawing.Point(6, 462);
-            tbNotes.Multiline = true;
-            tbNotes.Name = "tbNotes";
-            tbNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            tbNotes.Size = new System.Drawing.Size(459, 96);
-            tbNotes.TabIndex = 25;
-            tbNotes.Tag = "input-0-Notes";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new System.Drawing.Point(232, 333);
-            label14.Name = "label14";
-            label14.Size = new System.Drawing.Size(94, 13);
-            label14.TabIndex = 8;
-            label14.Text = "subscription-status";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(9, 291);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(36, 13);
-            label10.TabIndex = 18;
-            label10.Tag = "i18n-text";
-            label10.Text = "orders";
-            // 
-            // btnProducts
-            // 
-            btnProducts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            btnProducts.Location = new System.Drawing.Point(941, 621);
-            btnProducts.Name = "btnProducts";
-            btnProducts.Size = new System.Drawing.Size(75, 23);
-            btnProducts.TabIndex = 10;
-            btnProducts.Tag = "i18n-text";
-            btnProducts.Text = "products";
-            btnProducts.UseVisualStyleBackColor = true;
-            btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
-            // 
-            // btnPreferences
-            // 
-            btnPreferences.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            btnPreferences.Location = new System.Drawing.Point(1022, 621);
-            btnPreferences.Name = "btnPreferences";
-            btnPreferences.Size = new System.Drawing.Size(75, 23);
-            btnPreferences.TabIndex = 11;
-            btnPreferences.Tag = "i18n-text";
-            btnPreferences.Text = "preferences";
-            btnPreferences.UseVisualStyleBackColor = true;
-            btnPreferences.Click += new System.EventHandler(this.btnPreferences_Click);
-            // 
-            // btnExtend
-            // 
-            this.btnExtend.Enabled = false;
-            this.btnExtend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExtend.Location = new System.Drawing.Point(235, 354);
-            this.btnExtend.Name = "btnExtend";
-            this.btnExtend.Size = new System.Drawing.Size(237, 48);
-            this.btnExtend.TabIndex = 24;
-            this.btnExtend.Tag = "i18n-text,enable,newuser,what";
-            this.btnExtend.Text = "form-extend-sub";
-            this.btnExtend.UseVisualStyleBackColor = true;
-            this.btnExtend.Click += new System.EventHandler(this.btnExtend_Click);
-            // 
-            // btnRemoveOrder
-            // 
-            this.btnRemoveOrder.Location = new System.Drawing.Point(99, 408);
-            this.btnRemoveOrder.Name = "btnRemoveOrder";
-            this.btnRemoveOrder.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveOrder.TabIndex = 23;
-            this.btnRemoveOrder.Tag = "i18n-text";
-            this.btnRemoveOrder.Text = "remove";
-            this.btnRemoveOrder.UseVisualStyleBackColor = true;
-            this.btnRemoveOrder.Click += new System.EventHandler(this.btnRemoveOrder_Click);
-            // 
-            // btnAddOrder
-            // 
-            this.btnAddOrder.Location = new System.Drawing.Point(9, 408);
-            this.btnAddOrder.Name = "btnAddOrder";
-            this.btnAddOrder.Size = new System.Drawing.Size(75, 23);
-            this.btnAddOrder.TabIndex = 22;
-            this.btnAddOrder.Tag = "i18n-text";
-            this.btnAddOrder.Text = "add";
-            this.btnAddOrder.UseVisualStyleBackColor = true;
-            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
-            // 
-            // btnRemoveUser
-            // 
-            this.btnRemoveUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveUser.Location = new System.Drawing.Point(782, 592);
-            this.btnRemoveUser.Name = "btnRemoveUser";
-            this.btnRemoveUser.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveUser.TabIndex = 7;
-            this.btnRemoveUser.Tag = "i18n-text,newuser";
-            this.btnRemoveUser.Text = "remove";
-            this.btnRemoveUser.UseVisualStyleBackColor = true;
-            this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
-            // 
-            // properties
-            // 
-            this.properties.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.properties.Controls.Add(this.tbAge);
-            this.properties.Controls.Add(numericUpDown15);
-            this.properties.Controls.Add(numericUpDown14);
-            this.properties.Controls.Add(numericUpDown13);
-            this.properties.Controls.Add(numericUpDown12);
-            this.properties.Controls.Add(numericUpDown11);
-            this.properties.Controls.Add(numericUpDown10);
-            this.properties.Controls.Add(numericUpDown9);
-            this.properties.Controls.Add(numericUpDown8);
-            this.properties.Controls.Add(numericUpDown7);
-            this.properties.Controls.Add(numericUpDown6);
-            this.properties.Controls.Add(numericUpDown5);
-            this.properties.Controls.Add(numericUpDown4);
-            this.properties.Controls.Add(numericUpDown3);
-            this.properties.Controls.Add(numericUpDown1);
-            this.properties.Controls.Add(label28);
-            this.properties.Controls.Add(label27);
-            this.properties.Controls.Add(label26);
-            this.properties.Controls.Add(cbActive);
-            this.properties.Controls.Add(tbEmail);
-            this.properties.Controls.Add(tbTel);
-            this.properties.Controls.Add(label25);
-            this.properties.Controls.Add(label23);
-            this.properties.Controls.Add(label18);
-            this.properties.Controls.Add(label19);
-            this.properties.Controls.Add(label20);
-            this.properties.Controls.Add(label22);
-            this.properties.Controls.Add(label12);
-            this.properties.Controls.Add(label24);
-            this.properties.Controls.Add(label16);
-            this.properties.Controls.Add(label21);
-            this.properties.Controls.Add(label17);
-            this.properties.Controls.Add(label9);
-            this.properties.Controls.Add(label8);
-            this.properties.Controls.Add(label7);
-            this.properties.Controls.Add(label6);
-            this.properties.Controls.Add(label5);
-            this.properties.Controls.Add(dtpDate);
-            this.properties.Controls.Add(label4);
-            this.properties.Controls.Add(tbSurname);
-            this.properties.Controls.Add(label3);
-            this.properties.Controls.Add(tbName);
-            this.properties.Controls.Add(label2);
-            this.properties.Controls.Add(label1);
-            this.properties.Controls.Add(label15);
-            this.properties.Controls.Add(this.labelSubscriptionExpiry);
-            this.properties.Controls.Add(this.btnExtend);
-            this.properties.Controls.Add(label13);
-            this.properties.Controls.Add(tbNotes);
-            this.properties.Controls.Add(label14);
-            this.properties.Controls.Add(this.labelSubscriptionStatus);
-            this.properties.Controls.Add(this.btnRemoveOrder);
-            this.properties.Controls.Add(this.btnAddOrder);
-            this.properties.Controls.Add(this.lbOrders);
-            this.properties.Controls.Add(label10);
-            this.properties.Location = new System.Drawing.Point(619, 13);
-            this.properties.Name = "properties";
-            this.properties.Size = new System.Drawing.Size(478, 573);
-            this.properties.TabIndex = 4;
-            this.properties.TabStop = false;
-            this.properties.Tag = "i18n-text";
-            this.properties.Text = "form-main";
-            // 
-            // tbAge
-            // 
-            this.tbAge.Enabled = false;
-            this.tbAge.Location = new System.Drawing.Point(292, 43);
-            this.tbAge.Name = "tbAge";
-            this.tbAge.ReadOnly = true;
-            this.tbAge.Size = new System.Drawing.Size(25, 20);
-            this.tbAge.TabIndex = 77;
-            // 
-            // numericUpDown7
-            // 
-            numericUpDown7.DecimalPlaces = 2;
-            numericUpDown7.Enabled = false;
-            numericUpDown7.Location = new System.Drawing.Point(272, 110);
-            numericUpDown7.Name = "numericUpDown7";
-            numericUpDown7.Size = new System.Drawing.Size(45, 20);
-            numericUpDown7.TabIndex = 68;
-            numericUpDown7.Tag = "input-4-CircumferenceNeck";
-            // 
-            // labelSubscriptionExpiry
-            // 
-            this.labelSubscriptionExpiry.AutoSize = true;
-            this.labelSubscriptionExpiry.Location = new System.Drawing.Point(363, 307);
-            this.labelSubscriptionExpiry.Name = "labelSubscriptionExpiry";
-            this.labelSubscriptionExpiry.Size = new System.Drawing.Size(48, 13);
-            this.labelSubscriptionExpiry.TabIndex = 6;
-            this.labelSubscriptionExpiry.Text = "OBJECT";
-            // 
-            // labelSubscriptionStatus
-            // 
-            this.labelSubscriptionStatus.AutoSize = true;
-            this.labelSubscriptionStatus.Location = new System.Drawing.Point(363, 333);
-            this.labelSubscriptionStatus.Name = "labelSubscriptionStatus";
-            this.labelSubscriptionStatus.Size = new System.Drawing.Size(48, 13);
-            this.labelSubscriptionStatus.TabIndex = 7;
-            this.labelSubscriptionStatus.Text = "OBJECT";
-            // 
-            // lbOrders
-            // 
-            this.lbOrders.FormattingEnabled = true;
-            this.lbOrders.Location = new System.Drawing.Point(9, 307);
-            this.lbOrders.Name = "lbOrders";
-            this.lbOrders.Size = new System.Drawing.Size(220, 95);
-            this.lbOrders.TabIndex = 21;
-            this.lbOrders.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbOrders_MouseDoubleClick);
-            // 
-            // UserList
-            // 
-            this.UserList.AllowUserToAddRows = false;
-            this.UserList.AllowUserToDeleteRows = false;
-            this.UserList.AllowUserToResizeColumns = false;
-            this.UserList.AllowUserToResizeRows = false;
-            this.UserList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            // Users
+            // 
+            this.Users.AllowUserToAddRows = false;
+            this.Users.AllowUserToDeleteRows = false;
+            this.Users.AllowUserToResizeColumns = false;
+            this.Users.AllowUserToResizeRows = false;
+            this.Users.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UserList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.UserList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.UserList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.UserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.UserList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.UserList.Location = new System.Drawing.Point(12, 12);
-            this.UserList.MultiSelect = false;
-            this.UserList.Name = "UserList";
-            this.UserList.ReadOnly = true;
-            this.UserList.RowHeadersVisible = false;
-            this.UserList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.UserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UserList.Size = new System.Drawing.Size(600, 522);
-            this.UserList.TabIndex = 0;
-            this.UserList.Tag = "bt";
-            this.UserList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Users_CellClick);
-            this.UserList.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.Users_SortCompare);
+            this.Users.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.Users.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Users.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.Users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Users.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.Users.Location = new System.Drawing.Point(12, 12);
+            this.Users.MultiSelect = false;
+            this.Users.Name = "Users";
+            this.Users.ReadOnly = true;
+            this.Users.RowHeadersVisible = false;
+            this.Users.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Users.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Users.Size = new System.Drawing.Size(600, 522);
+            this.Users.TabIndex = 0;
+            this.Users.Tag = "bt";
+            this.Users.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Users_CellClick);
+            this.Users.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.Users_SortCompare);
             // 
             // Filter
             // 
@@ -887,6 +170,579 @@
             this.btnClearFilter.UseVisualStyleBackColor = true;
             this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
+            // groupBox
+            // 
+            this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox.Controls.Add(this.label28);
+            this.groupBox.Controls.Add(this.label27);
+            this.groupBox.Controls.Add(this.label26);
+            this.groupBox.Controls.Add(this.cbActive);
+            this.groupBox.Controls.Add(this.tbNeck);
+            this.groupBox.Controls.Add(this.tbWeight);
+            this.groupBox.Controls.Add(this.tbCalvR);
+            this.groupBox.Controls.Add(this.tbTighR);
+            this.groupBox.Controls.Add(this.tbBicepsR);
+            this.groupBox.Controls.Add(this.tbEmail);
+            this.groupBox.Controls.Add(this.tbHeight);
+            this.groupBox.Controls.Add(this.tbHips);
+            this.groupBox.Controls.Add(this.tbWaist);
+            this.groupBox.Controls.Add(this.tbTel);
+            this.groupBox.Controls.Add(this.tbChest);
+            this.groupBox.Controls.Add(this.tbFat);
+            this.groupBox.Controls.Add(this.tbCalvL);
+            this.groupBox.Controls.Add(this.tbTighL);
+            this.groupBox.Controls.Add(this.label25);
+            this.groupBox.Controls.Add(this.tbBicepsL);
+            this.groupBox.Controls.Add(this.label23);
+            this.groupBox.Controls.Add(this.label18);
+            this.groupBox.Controls.Add(this.label19);
+            this.groupBox.Controls.Add(this.label20);
+            this.groupBox.Controls.Add(this.label22);
+            this.groupBox.Controls.Add(this.label12);
+            this.groupBox.Controls.Add(this.label24);
+            this.groupBox.Controls.Add(this.label16);
+            this.groupBox.Controls.Add(this.label21);
+            this.groupBox.Controls.Add(this.label17);
+            this.groupBox.Controls.Add(this.label9);
+            this.groupBox.Controls.Add(this.label8);
+            this.groupBox.Controls.Add(this.label7);
+            this.groupBox.Controls.Add(this.label6);
+            this.groupBox.Controls.Add(this.tbAge);
+            this.groupBox.Controls.Add(this.label5);
+            this.groupBox.Controls.Add(this.dtpDate);
+            this.groupBox.Controls.Add(this.label4);
+            this.groupBox.Controls.Add(this.tbSurname);
+            this.groupBox.Controls.Add(this.label3);
+            this.groupBox.Controls.Add(this.tbName);
+            this.groupBox.Controls.Add(this.label2);
+            this.groupBox.Controls.Add(this.tbID);
+            this.groupBox.Controls.Add(this.label1);
+            this.groupBox.Controls.Add(this.label15);
+            this.groupBox.Controls.Add(this.labelSubscriptionLenght);
+            this.groupBox.Controls.Add(this.btnExtend);
+            this.groupBox.Controls.Add(this.label11);
+            this.groupBox.Controls.Add(this.labelSubscriptionDate);
+            this.groupBox.Controls.Add(this.label13);
+            this.groupBox.Controls.Add(this.tbNotes);
+            this.groupBox.Controls.Add(this.label14);
+            this.groupBox.Controls.Add(this.labelSubscriptionLeft);
+            this.groupBox.Controls.Add(this.btnRemoveOrder);
+            this.groupBox.Controls.Add(this.btnAddOrder);
+            this.groupBox.Controls.Add(this.lbOrders);
+            this.groupBox.Controls.Add(this.label10);
+            this.groupBox.Location = new System.Drawing.Point(619, 13);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(478, 573);
+            this.groupBox.TabIndex = 4;
+            this.groupBox.TabStop = false;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(175, 84);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(80, 13);
+            this.label28.TabIndex = 60;
+            this.label28.Text = "Circumferences";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(370, 112);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(32, 13);
+            this.label27.TabIndex = 59;
+            this.label27.Text = "Right";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(46, 112);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(25, 13);
+            this.label26.TabIndex = 58;
+            this.label26.Text = "Left";
+            // 
+            // cbActive
+            // 
+            this.cbActive.AutoSize = true;
+            this.cbActive.Location = new System.Drawing.Point(401, 261);
+            this.cbActive.Name = "cbActive";
+            this.cbActive.Size = new System.Drawing.Size(56, 17);
+            this.cbActive.TabIndex = 20;
+            this.cbActive.Tag = "Tog";
+            this.cbActive.Text = "Active";
+            this.cbActive.UseVisualStyleBackColor = true;
+            // 
+            // tbNeck
+            // 
+            this.tbNeck.Location = new System.Drawing.Point(272, 109);
+            this.tbNeck.Name = "tbNeck";
+            this.tbNeck.Size = new System.Drawing.Size(43, 20);
+            this.tbNeck.TabIndex = 5;
+            this.tbNeck.Tag = "Tog";
+            // 
+            // tbWeight
+            // 
+            this.tbWeight.Location = new System.Drawing.Point(431, 229);
+            this.tbWeight.Name = "tbWeight";
+            this.tbWeight.Size = new System.Drawing.Size(43, 20);
+            this.tbWeight.TabIndex = 17;
+            this.tbWeight.Tag = "Tog";
+            // 
+            // tbCalvR
+            // 
+            this.tbCalvR.Location = new System.Drawing.Point(431, 199);
+            this.tbCalvR.Name = "tbCalvR";
+            this.tbCalvR.Size = new System.Drawing.Size(43, 20);
+            this.tbCalvR.TabIndex = 14;
+            this.tbCalvR.Tag = "Tog";
+            // 
+            // tbTighR
+            // 
+            this.tbTighR.Location = new System.Drawing.Point(431, 169);
+            this.tbTighR.Name = "tbTighR";
+            this.tbTighR.Size = new System.Drawing.Size(43, 20);
+            this.tbTighR.TabIndex = 11;
+            this.tbTighR.Tag = "Tog";
+            // 
+            // tbBicepsR
+            // 
+            this.tbBicepsR.Location = new System.Drawing.Point(431, 137);
+            this.tbBicepsR.Name = "tbBicepsR";
+            this.tbBicepsR.Size = new System.Drawing.Size(43, 20);
+            this.tbBicepsR.TabIndex = 8;
+            this.tbBicepsR.Tag = "Tog";
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.Location = new System.Drawing.Point(240, 259);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(150, 20);
+            this.tbEmail.TabIndex = 19;
+            this.tbEmail.Tag = "Tog";
+            // 
+            // tbHeight
+            // 
+            this.tbHeight.Location = new System.Drawing.Point(272, 229);
+            this.tbHeight.Name = "tbHeight";
+            this.tbHeight.Size = new System.Drawing.Size(43, 20);
+            this.tbHeight.TabIndex = 16;
+            this.tbHeight.Tag = "Tog";
+            // 
+            // tbHips
+            // 
+            this.tbHips.Location = new System.Drawing.Point(272, 199);
+            this.tbHips.Name = "tbHips";
+            this.tbHips.Size = new System.Drawing.Size(43, 20);
+            this.tbHips.TabIndex = 13;
+            this.tbHips.Tag = "Tog";
+            // 
+            // tbWaist
+            // 
+            this.tbWaist.Location = new System.Drawing.Point(272, 169);
+            this.tbWaist.Name = "tbWaist";
+            this.tbWaist.Size = new System.Drawing.Size(43, 20);
+            this.tbWaist.TabIndex = 10;
+            this.tbWaist.Tag = "Tog";
+            // 
+            // tbTel
+            // 
+            this.tbTel.Location = new System.Drawing.Point(33, 259);
+            this.tbTel.Name = "tbTel";
+            this.tbTel.Size = new System.Drawing.Size(150, 20);
+            this.tbTel.TabIndex = 18;
+            this.tbTel.Tag = "Tog";
+            // 
+            // tbChest
+            // 
+            this.tbChest.Location = new System.Drawing.Point(272, 139);
+            this.tbChest.Name = "tbChest";
+            this.tbChest.Size = new System.Drawing.Size(43, 20);
+            this.tbChest.TabIndex = 7;
+            this.tbChest.Tag = "Tog";
+            // 
+            // tbFat
+            // 
+            this.tbFat.Location = new System.Drawing.Point(112, 229);
+            this.tbFat.Name = "tbFat";
+            this.tbFat.Size = new System.Drawing.Size(43, 20);
+            this.tbFat.TabIndex = 15;
+            this.tbFat.Tag = "Tog";
+            // 
+            // tbCalvL
+            // 
+            this.tbCalvL.Location = new System.Drawing.Point(112, 199);
+            this.tbCalvL.Name = "tbCalvL";
+            this.tbCalvL.Size = new System.Drawing.Size(43, 20);
+            this.tbCalvL.TabIndex = 12;
+            this.tbCalvL.Tag = "Tog";
+            // 
+            // tbTighL
+            // 
+            this.tbTighL.Location = new System.Drawing.Point(112, 169);
+            this.tbTighL.Name = "tbTighL";
+            this.tbTighL.Size = new System.Drawing.Size(43, 20);
+            this.tbTighL.TabIndex = 9;
+            this.tbTighL.Tag = "Tog";
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(5, 262);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(22, 13);
+            this.label25.TabIndex = 46;
+            this.label25.Text = "Tel";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tbBicepsL
+            // 
+            this.tbBicepsL.Location = new System.Drawing.Point(112, 137);
+            this.tbBicepsL.Name = "tbBicepsL";
+            this.tbBicepsL.Size = new System.Drawing.Size(43, 20);
+            this.tbBicepsL.TabIndex = 6;
+            this.tbBicepsL.Tag = "Tog";
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(46, 232);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(60, 13);
+            this.label23.TabIndex = 46;
+            this.label23.Text = "Body Fat %";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(2, 202);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(104, 13);
+            this.label18.TabIndex = 46;
+            this.label18.Text = "Calv";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label19
+            // 
+            this.label19.Location = new System.Drawing.Point(2, 172);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(104, 13);
+            this.label19.TabIndex = 45;
+            this.label19.Text = "Tigh";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label20
+            // 
+            this.label20.Location = new System.Drawing.Point(2, 140);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(104, 13);
+            this.label20.TabIndex = 44;
+            this.label20.Text = "Biceps";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label22
+            // 
+            this.label22.Location = new System.Drawing.Point(384, 232);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(41, 13);
+            this.label22.TabIndex = 43;
+            this.label22.Text = "Weight";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(321, 202);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(104, 13);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "Calv";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(196, 262);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(35, 13);
+            this.label24.TabIndex = 40;
+            this.label24.Text = "E-mail";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(321, 172);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(104, 13);
+            this.label16.TabIndex = 42;
+            this.label16.Text = "Tigh";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(228, 232);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(38, 13);
+            this.label21.TabIndex = 40;
+            this.label21.Text = "Height";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label17
+            // 
+            this.label17.Location = new System.Drawing.Point(321, 140);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(104, 13);
+            this.label17.TabIndex = 41;
+            this.label17.Text = "Biceps";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(162, 202);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(104, 13);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "Hip";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(162, 172);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(104, 13);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "Waist";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(162, 140);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "Chest";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(162, 112);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(104, 13);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Neck";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tbAge
+            // 
+            this.tbAge.Enabled = false;
+            this.tbAge.Location = new System.Drawing.Point(319, 47);
+            this.tbAge.Name = "tbAge";
+            this.tbAge.Size = new System.Drawing.Size(50, 20);
+            this.tbAge.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(287, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Age";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.Location = new System.Drawing.Point(72, 44);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpDate.TabIndex = 3;
+            this.dtpDate.Tag = "Tog";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(12, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Birth Date";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tbSurname
+            // 
+            this.tbSurname.Location = new System.Drawing.Point(307, 16);
+            this.tbSurname.Name = "tbSurname";
+            this.tbSurname.Size = new System.Drawing.Size(100, 20);
+            this.tbSurname.TabIndex = 2;
+            this.tbSurname.Tag = "Tog";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(252, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Surname";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(131, 16);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(100, 20);
+            this.tbName.TabIndex = 1;
+            this.tbName.Tag = "Tog";
+            this.tbName.Text = "asdf";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(90, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Name";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tbID
+            // 
+            this.tbID.Location = new System.Drawing.Point(36, 16);
+            this.tbID.Name = "tbID";
+            this.tbID.Size = new System.Drawing.Size(39, 20);
+            this.tbID.TabIndex = 0;
+            this.tbID.Tag = "Tog";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "ID";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(232, 307);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(101, 13);
+            this.label15.TabIndex = 9;
+            this.label15.Text = "SubscriptionLenght ";
+            // 
+            // labelSubscriptionLenght
+            // 
+            this.labelSubscriptionLenght.AutoSize = true;
+            this.labelSubscriptionLenght.Location = new System.Drawing.Point(337, 307);
+            this.labelSubscriptionLenght.Name = "labelSubscriptionLenght";
+            this.labelSubscriptionLenght.Size = new System.Drawing.Size(48, 13);
+            this.labelSubscriptionLenght.TabIndex = 6;
+            this.labelSubscriptionLenght.Text = "OBJECT";
+            // 
+            // btnExtend
+            // 
+            this.btnExtend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExtend.Location = new System.Drawing.Point(235, 383);
+            this.btnExtend.Name = "btnExtend";
+            this.btnExtend.Size = new System.Drawing.Size(237, 48);
+            this.btnExtend.TabIndex = 24;
+            this.btnExtend.Tag = "bt";
+            this.btnExtend.Text = "Extend Subscription";
+            this.btnExtend.UseVisualStyleBackColor = true;
+            this.btnExtend.Click += new System.EventHandler(this.btnExtend_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(235, 333);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(85, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Subscipion Date";
+            // 
+            // labelSubscriptionDate
+            // 
+            this.labelSubscriptionDate.AutoSize = true;
+            this.labelSubscriptionDate.Location = new System.Drawing.Point(326, 333);
+            this.labelSubscriptionDate.Name = "labelSubscriptionDate";
+            this.labelSubscriptionDate.Size = new System.Drawing.Size(48, 13);
+            this.labelSubscriptionDate.TabIndex = 10;
+            this.labelSubscriptionDate.Text = "OBJECT";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 437);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Notes";
+            // 
+            // tbNotes
+            // 
+            this.tbNotes.AcceptsReturn = true;
+            this.tbNotes.AcceptsTab = true;
+            this.tbNotes.BackColor = System.Drawing.SystemColors.Window;
+            this.tbNotes.Location = new System.Drawing.Point(6, 462);
+            this.tbNotes.Multiline = true;
+            this.tbNotes.Name = "tbNotes";
+            this.tbNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbNotes.Size = new System.Drawing.Size(459, 96);
+            this.tbNotes.TabIndex = 25;
+            this.tbNotes.Tag = "Tog";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(235, 358);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Subsription Left";
+            // 
+            // labelSubscriptionLeft
+            // 
+            this.labelSubscriptionLeft.AutoSize = true;
+            this.labelSubscriptionLeft.Location = new System.Drawing.Point(321, 358);
+            this.labelSubscriptionLeft.Name = "labelSubscriptionLeft";
+            this.labelSubscriptionLeft.Size = new System.Drawing.Size(48, 13);
+            this.labelSubscriptionLeft.TabIndex = 7;
+            this.labelSubscriptionLeft.Text = "OBJECT";
+            // 
+            // btnRemoveOrder
+            // 
+            this.btnRemoveOrder.Location = new System.Drawing.Point(99, 408);
+            this.btnRemoveOrder.Name = "btnRemoveOrder";
+            this.btnRemoveOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveOrder.TabIndex = 23;
+            this.btnRemoveOrder.Tag = "bt";
+            this.btnRemoveOrder.Text = "Remove";
+            this.btnRemoveOrder.UseVisualStyleBackColor = true;
+            this.btnRemoveOrder.Click += new System.EventHandler(this.btnRemoveOrder_Click);
+            // 
+            // btnAddOrder
+            // 
+            this.btnAddOrder.Location = new System.Drawing.Point(9, 408);
+            this.btnAddOrder.Name = "btnAddOrder";
+            this.btnAddOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnAddOrder.TabIndex = 22;
+            this.btnAddOrder.Tag = "bt";
+            this.btnAddOrder.Text = "Add";
+            this.btnAddOrder.UseVisualStyleBackColor = true;
+            this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
+            // 
+            // lbOrders
+            // 
+            this.lbOrders.FormattingEnabled = true;
+            this.lbOrders.Location = new System.Drawing.Point(9, 307);
+            this.lbOrders.Name = "lbOrders";
+            this.lbOrders.Size = new System.Drawing.Size(220, 95);
+            this.lbOrders.TabIndex = 21;
+            this.lbOrders.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbOrders_MouseDoubleClick);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(9, 291);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Orders";
+            // 
             // btnAddUser
             // 
             this.btnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -894,8 +750,8 @@
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(75, 23);
             this.btnAddUser.TabIndex = 5;
-            this.btnAddUser.Tag = "i18n-text,newuser";
-            this.btnAddUser.Text = "add";
+            this.btnAddUser.Tag = "bt";
+            this.btnAddUser.Text = "Add";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.bntAddUser_Click);
             // 
@@ -906,84 +762,172 @@
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(75, 23);
             this.btnEditUser.TabIndex = 6;
-            this.btnEditUser.Tag = "i18n-text,newuser";
-            this.btnEditUser.Text = "edit";
+            this.btnEditUser.Tag = "bt";
+            this.btnEditUser.Text = "Edit";
             this.btnEditUser.UseVisualStyleBackColor = true;
             this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            // 
+            // btnRemoveUser
+            // 
+            this.btnRemoveUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveUser.Location = new System.Drawing.Point(782, 592);
+            this.btnRemoveUser.Name = "btnRemoveUser";
+            this.btnRemoveUser.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveUser.TabIndex = 7;
+            this.btnRemoveUser.Tag = "bt";
+            this.btnRemoveUser.Text = "Remove";
+            this.btnRemoveUser.UseVisualStyleBackColor = true;
+            this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProducts.Location = new System.Drawing.Point(939, 647);
+            this.btnProducts.Name = "btnProducts";
+            this.btnProducts.Size = new System.Drawing.Size(75, 23);
+            this.btnProducts.TabIndex = 10;
+            this.btnProducts.Tag = "bt";
+            this.btnProducts.Text = "Products";
+            this.btnProducts.UseVisualStyleBackColor = true;
+            this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
+            // 
+            // btnPreferences
+            // 
+            this.btnPreferences.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPreferences.Location = new System.Drawing.Point(1020, 647);
+            this.btnPreferences.Name = "btnPreferences";
+            this.btnPreferences.Size = new System.Drawing.Size(75, 23);
+            this.btnPreferences.TabIndex = 11;
+            this.btnPreferences.Tag = "bt";
+            this.btnPreferences.Text = "Preferences";
+            this.btnPreferences.UseVisualStyleBackColor = true;
+            this.btnPreferences.Click += new System.EventHandler(this.btnPreferences_Click);
             // 
             // btnNotif
             // 
             this.btnNotif.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNotif.Location = new System.Drawing.Point(619, 622);
+            this.btnNotif.Location = new System.Drawing.Point(620, 622);
             this.btnNotif.Name = "btnNotif";
-            this.btnNotif.Size = new System.Drawing.Size(238, 42);
+            this.btnNotif.Size = new System.Drawing.Size(237, 48);
             this.btnNotif.TabIndex = 8;
-            this.btnNotif.Tag = "i18n-text";
-            this.btnNotif.Text = "notifications";
+            this.btnNotif.Tag = "bt";
+            this.btnNotif.Text = "Notiications";
             this.btnNotif.UseVisualStyleBackColor = true;
             this.btnNotif.Click += new System.EventHandler(this.btnNotif_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Location = new System.Drawing.Point(939, 618);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(156, 23);
+            this.btnRefresh.TabIndex = 9;
+            this.btnRefresh.Tag = "bt";
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 681);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnNotif);
-            this.Controls.Add(btnPreferences);
-            this.Controls.Add(btnProducts);
+            this.Controls.Add(this.btnPreferences);
+            this.Controls.Add(this.btnProducts);
             this.Controls.Add(this.btnRemoveUser);
             this.Controls.Add(this.btnEditUser);
             this.Controls.Add(this.btnAddUser);
-            this.Controls.Add(this.properties);
+            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.btnClearFilter);
             this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.Filter);
-            this.Controls.Add(this.UserList);
+            this.Controls.Add(this.Users);
             this.MinimumSize = new System.Drawing.Size(1130, 720);
             this.Name = "Main";
             this.Tag = "";
-            this.Text = "form-main";
+            this.Text = "Teretan";
             this.Load += new System.EventHandler(this.Main_Load);
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown1)).EndInit();
-            this.properties.ResumeLayout(false);
-            this.properties.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.UserList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Users)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Filter)).EndInit();
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView UserList;
+        private System.Windows.Forms.DataGridView Users;
         private System.Windows.Forms.DataGridView Filter;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnClearFilter;
-        private System.Windows.Forms.ListBox lbOrders;
-        private System.Windows.Forms.Label labelSubscriptionStatus;
-        private System.Windows.Forms.Label labelSubscriptionExpiry;
-        private System.Windows.Forms.Button btnNotif;
-        private System.Windows.Forms.Button btnEditUser;
-        private System.Windows.Forms.GroupBox properties;
-        private System.Windows.Forms.TextBox tbAge;
-        private System.Windows.Forms.Button btnRemoveUser;
-        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.GroupBox groupBox;
+        private System.Windows.Forms.TextBox tbNotes;
+        private System.Windows.Forms.Label labelSubscriptionDate;
         private System.Windows.Forms.Button btnRemoveOrder;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnAddOrder;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ListBox lbOrders;
+        private System.Windows.Forms.Label labelSubscriptionLeft;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelSubscriptionLenght;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnExtend;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Button btnEditUser;
+        private System.Windows.Forms.Button btnRemoveUser;
+        private System.Windows.Forms.Button btnProducts;
+        private System.Windows.Forms.Button btnPreferences;
+        private System.Windows.Forms.Button btnNotif;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.TextBox tbAge;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbSurname;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbNeck;
+        private System.Windows.Forms.TextBox tbCalvR;
+        private System.Windows.Forms.TextBox tbTighR;
+        private System.Windows.Forms.TextBox tbBicepsR;
+        private System.Windows.Forms.TextBox tbHips;
+        private System.Windows.Forms.TextBox tbWaist;
+        private System.Windows.Forms.TextBox tbChest;
+        private System.Windows.Forms.TextBox tbCalvL;
+        private System.Windows.Forms.TextBox tbTighL;
+        private System.Windows.Forms.TextBox tbBicepsL;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbWeight;
+        private System.Windows.Forms.TextBox tbHeight;
+        private System.Windows.Forms.TextBox tbFat;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.CheckBox cbActive;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.TextBox tbTel;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
     }
 }

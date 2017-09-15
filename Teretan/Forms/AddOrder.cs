@@ -1,37 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Teretan
 {
     public partial class AddOrder : Form
     {
-        int uid;
-        List<Product> p;
-
         public AddOrder(int uid)
         {
             InitializeComponent();
-            I18N.TranslateControls(this);
             this.uid = uid;
         }
-        
+        int uid;
+        List<Product> p;
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                if(selectProduct.SelectedIndex == -1)
-                {
-                    Util.ShowError("select-product");
-                    return;
-                }
-                Database.AddOrder(new Order(0, p[selectProduct.SelectedIndex].ID, uid, selectDate.Value));
+                Database.AddOrder(new Order(0, p[comboBox1.SelectedIndex].ID, uid, dateTimePicker1.Value));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Util.DBError(ex);
+                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
             }
-            Close();
+            this.Close();
         }
 
         private void AddOrder_Load(object sender, EventArgs e)
@@ -39,25 +37,17 @@ namespace Teretan
             try
             {
                 p = Database.GetProducts();
-                if(p.Count == 0)
+                foreach (Product prod in p)
                 {
-                    Util.ShowError("no-products");
-                    Close();
+                    comboBox1.Items.Add(prod.Name);
                 }
-                else
-                {
-                    foreach (Product prod in p)
-                    {
-                        selectProduct.Items.Add(prod.Name);
-                    }
-                    selectProduct.SelectedIndex = 0;
-                }
+                comboBox1.SelectedIndex = 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Util.DBError(ex);
-                Close();
+                MessageBox.Show("Nije definisan ni jedan proizvod");
             }
+            
         }
     }
 }

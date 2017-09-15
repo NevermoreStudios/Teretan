@@ -434,9 +434,11 @@ namespace Teretan
             Users = Database.GetUsers();
             foreach (DataGridViewRow r in UserList.Rows)
             {
-                User u = Database.GetUserById(int.Parse((string)r.Cells[0].Value));
-                UpdateRowBack(u, r.Index);
-                r.Cells[6].Value = u.Active ? u.Expired() ? I18N.String("expired") : u.GetSubLeft().ToString() : I18N.String("inactive");
+                User u = Database.GetUsers("SELECT * FROM `users` WHERE ID='{0}'", r.Cells[0].Value)[0];
+                if (u.IsRed()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Red; }
+                else if (u.IsYellow()) { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.Yellow; }
+                else { Users.Rows[r.Index].DefaultCellStyle.BackColor = Color.White; }
+                r.Cells[5].Value = u.GetSubLeft();
             }
             CurrentUser = Users.Find(u => u.ID == CurrentUser.ID);
             UpdateSubscriptionStatus();

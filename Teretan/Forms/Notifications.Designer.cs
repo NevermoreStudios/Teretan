@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(736, 262);
             this.Controls.Add(this.notificationList);
             this.Name = "Notifications";
-            this.Text = "Notifications";
+            this.Text = "Obaveštenja";
             this.Load += new System.EventHandler(this.Notifications_Load);
             this.ResumeLayout(false);
 

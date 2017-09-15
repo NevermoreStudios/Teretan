@@ -154,7 +154,7 @@
             this.btnFilter.Size = new System.Drawing.Size(75, 23);
             this.btnFilter.TabIndex = 2;
             this.btnFilter.Tag = "bt";
-            this.btnFilter.Text = "Filter";
+            this.btnFilter.Text = "Filtriraj";
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -166,7 +166,7 @@
             this.btnClearFilter.Size = new System.Drawing.Size(75, 23);
             this.btnClearFilter.TabIndex = 3;
             this.btnClearFilter.Tag = "bt";
-            this.btnClearFilter.Text = "Clear Filter";
+            this.btnClearFilter.Text = "Skloni Filter";
             this.btnClearFilter.UseVisualStyleBackColor = true;
             this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
@@ -239,39 +239,39 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(175, 84);
+            this.label28.Location = new System.Drawing.Point(232, 85);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(80, 13);
+            this.label28.Size = new System.Drawing.Size(33, 13);
             this.label28.TabIndex = 60;
-            this.label28.Text = "Circumferences";
+            this.label28.Text = "Obimi";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(370, 112);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(32, 13);
+            this.label27.Size = new System.Drawing.Size(34, 13);
             this.label27.TabIndex = 59;
-            this.label27.Text = "Right";
+            this.label27.Text = "Desni";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(46, 112);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(25, 13);
+            this.label26.Size = new System.Drawing.Size(27, 13);
             this.label26.TabIndex = 58;
-            this.label26.Text = "Left";
+            this.label26.Text = "Levi";
             // 
             // cbActive
             // 
             this.cbActive.AutoSize = true;
             this.cbActive.Location = new System.Drawing.Point(401, 261);
             this.cbActive.Name = "cbActive";
-            this.cbActive.Size = new System.Drawing.Size(56, 17);
+            this.cbActive.Size = new System.Drawing.Size(62, 17);
             this.cbActive.TabIndex = 20;
             this.cbActive.Tag = "Tog";
-            this.cbActive.Text = "Active";
+            this.cbActive.Text = "Aktivan";
             this.cbActive.UseVisualStyleBackColor = true;
             // 
             // tbNeck
@@ -405,11 +405,11 @@
             // 
             // label23
             // 
-            this.label23.Location = new System.Drawing.Point(46, 232);
+            this.label23.Location = new System.Drawing.Point(15, 232);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(60, 13);
+            this.label23.Size = new System.Drawing.Size(91, 13);
             this.label23.TabIndex = 46;
-            this.label23.Text = "Body Fat %";
+            this.label23.Text = "Procenat Masti";
             this.label23.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label18
@@ -418,7 +418,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(104, 13);
             this.label18.TabIndex = 46;
-            this.label18.Text = "Calv";
+            this.label18.Text = "List";
             this.label18.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label19
@@ -427,7 +427,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(104, 13);
             this.label19.TabIndex = 45;
-            this.label19.Text = "Tigh";
+            this.label19.Text = "Butina";
             this.label19.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label20
@@ -445,7 +445,7 @@
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(41, 13);
             this.label22.TabIndex = 43;
-            this.label22.Text = "Weight";
+            this.label22.Text = "Težina";
             this.label22.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label12
@@ -454,7 +454,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(104, 13);
             this.label12.TabIndex = 43;
-            this.label12.Text = "Calv";
+            this.label12.Text = "List";
             this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label24
@@ -472,7 +472,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(104, 13);
             this.label16.TabIndex = 42;
-            this.label16.Text = "Tigh";
+            this.label16.Text = "Butina";
             this.label16.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label21
@@ -481,7 +481,7 @@
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(38, 13);
             this.label21.TabIndex = 40;
-            this.label21.Text = "Height";
+            this.label21.Text = "Visina";
             this.label21.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label17
@@ -499,7 +499,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(104, 13);
             this.label9.TabIndex = 40;
-            this.label9.Text = "Hip";
+            this.label9.Text = "Kukovi";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label8
@@ -508,7 +508,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 13);
             this.label8.TabIndex = 39;
-            this.label8.Text = "Waist";
+            this.label8.Text = "Struk";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label7
@@ -517,7 +517,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 38;
-            this.label7.Text = "Chest";
+            this.label7.Text = "Grudi";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label6
@@ -526,29 +526,29 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 13);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Neck";
+            this.label6.Text = "Vrat";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbAge
             // 
             this.tbAge.Enabled = false;
-            this.tbAge.Location = new System.Drawing.Point(319, 47);
+            this.tbAge.Location = new System.Drawing.Point(307, 44);
             this.tbAge.Name = "tbAge";
             this.tbAge.Size = new System.Drawing.Size(50, 20);
             this.tbAge.TabIndex = 4;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(287, 50);
+            this.label5.Location = new System.Drawing.Point(355, 47);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.Size = new System.Drawing.Size(44, 14);
             this.label5.TabIndex = 35;
-            this.label5.Text = "Age";
+            this.label5.Text = "Godina";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dtpDate
             // 
-            this.dtpDate.Location = new System.Drawing.Point(72, 44);
+            this.dtpDate.Location = new System.Drawing.Point(94, 44);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDate.TabIndex = 3;
@@ -556,11 +556,11 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 50);
+            this.label4.Location = new System.Drawing.Point(10, 50);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 33;
-            this.label4.Text = "Birth Date";
+            this.label4.Text = "Datum rođenja";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbSurname
@@ -577,7 +577,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 31;
-            this.label3.Text = "Surname";
+            this.label3.Text = "Prezime";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbName
@@ -595,7 +595,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 29;
-            this.label2.Text = "Name";
+            this.label2.Text = "Ime";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbID
@@ -620,9 +620,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(232, 307);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(101, 13);
+            this.label15.Size = new System.Drawing.Size(89, 13);
             this.label15.TabIndex = 9;
-            this.label15.Text = "SubscriptionLenght ";
+            this.label15.Text = "Trajanje pretplate";
             // 
             // labelSubscriptionLenght
             // 
@@ -641,7 +641,7 @@
             this.btnExtend.Size = new System.Drawing.Size(237, 48);
             this.btnExtend.TabIndex = 24;
             this.btnExtend.Tag = "bt";
-            this.btnExtend.Text = "Extend Subscription";
+            this.btnExtend.Text = "Produži pretplatu";
             this.btnExtend.UseVisualStyleBackColor = true;
             this.btnExtend.Click += new System.EventHandler(this.btnExtend_Click);
             // 
@@ -650,14 +650,14 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(235, 333);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(85, 13);
+            this.label11.Size = new System.Drawing.Size(83, 13);
             this.label11.TabIndex = 5;
-            this.label11.Text = "Subscipion Date";
+            this.label11.Text = "Datum Pretplate";
             // 
             // labelSubscriptionDate
             // 
             this.labelSubscriptionDate.AutoSize = true;
-            this.labelSubscriptionDate.Location = new System.Drawing.Point(326, 333);
+            this.labelSubscriptionDate.Location = new System.Drawing.Point(337, 333);
             this.labelSubscriptionDate.Name = "labelSubscriptionDate";
             this.labelSubscriptionDate.Size = new System.Drawing.Size(48, 13);
             this.labelSubscriptionDate.TabIndex = 10;
@@ -668,9 +668,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 437);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.Size = new System.Drawing.Size(45, 13);
             this.label13.TabIndex = 25;
-            this.label13.Text = "Notes";
+            this.label13.Text = "Beleške";
             // 
             // tbNotes
             // 
@@ -690,14 +690,14 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(235, 358);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.Size = new System.Drawing.Size(95, 13);
             this.label14.TabIndex = 8;
-            this.label14.Text = "Subsription Left";
+            this.label14.Text = "Preostala pretplata";
             // 
             // labelSubscriptionLeft
             // 
             this.labelSubscriptionLeft.AutoSize = true;
-            this.labelSubscriptionLeft.Location = new System.Drawing.Point(321, 358);
+            this.labelSubscriptionLeft.Location = new System.Drawing.Point(337, 358);
             this.labelSubscriptionLeft.Name = "labelSubscriptionLeft";
             this.labelSubscriptionLeft.Size = new System.Drawing.Size(48, 13);
             this.labelSubscriptionLeft.TabIndex = 7;
@@ -710,7 +710,7 @@
             this.btnRemoveOrder.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveOrder.TabIndex = 23;
             this.btnRemoveOrder.Tag = "bt";
-            this.btnRemoveOrder.Text = "Remove";
+            this.btnRemoveOrder.Text = "Ukloni";
             this.btnRemoveOrder.UseVisualStyleBackColor = true;
             this.btnRemoveOrder.Click += new System.EventHandler(this.btnRemoveOrder_Click);
             // 
@@ -721,7 +721,7 @@
             this.btnAddOrder.Size = new System.Drawing.Size(75, 23);
             this.btnAddOrder.TabIndex = 22;
             this.btnAddOrder.Tag = "bt";
-            this.btnAddOrder.Text = "Add";
+            this.btnAddOrder.Text = "Dodaj";
             this.btnAddOrder.UseVisualStyleBackColor = true;
             this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
             // 
@@ -739,9 +739,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(9, 291);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 13);
+            this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 18;
-            this.label10.Text = "Orders";
+            this.label10.Text = "Porudzbine";
             // 
             // btnAddUser
             // 
@@ -751,7 +751,7 @@
             this.btnAddUser.Size = new System.Drawing.Size(75, 23);
             this.btnAddUser.TabIndex = 5;
             this.btnAddUser.Tag = "bt";
-            this.btnAddUser.Text = "Add";
+            this.btnAddUser.Text = "Dodaj";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.bntAddUser_Click);
             // 
@@ -763,7 +763,7 @@
             this.btnEditUser.Size = new System.Drawing.Size(75, 23);
             this.btnEditUser.TabIndex = 6;
             this.btnEditUser.Tag = "bt";
-            this.btnEditUser.Text = "Edit";
+            this.btnEditUser.Text = "Izmeni";
             this.btnEditUser.UseVisualStyleBackColor = true;
             this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
@@ -775,7 +775,7 @@
             this.btnRemoveUser.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveUser.TabIndex = 7;
             this.btnRemoveUser.Tag = "bt";
-            this.btnRemoveUser.Text = "Remove";
+            this.btnRemoveUser.Text = "Ukloni";
             this.btnRemoveUser.UseVisualStyleBackColor = true;
             this.btnRemoveUser.Click += new System.EventHandler(this.btnRemoveUser_Click);
             // 
@@ -787,7 +787,7 @@
             this.btnProducts.Size = new System.Drawing.Size(75, 23);
             this.btnProducts.TabIndex = 10;
             this.btnProducts.Tag = "bt";
-            this.btnProducts.Text = "Products";
+            this.btnProducts.Text = "Proizvodi";
             this.btnProducts.UseVisualStyleBackColor = true;
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
@@ -799,7 +799,7 @@
             this.btnPreferences.Size = new System.Drawing.Size(75, 23);
             this.btnPreferences.TabIndex = 11;
             this.btnPreferences.Tag = "bt";
-            this.btnPreferences.Text = "Preferences";
+            this.btnPreferences.Text = "Preference";
             this.btnPreferences.UseVisualStyleBackColor = true;
             this.btnPreferences.Click += new System.EventHandler(this.btnPreferences_Click);
             // 
@@ -812,7 +812,7 @@
             this.btnNotif.Size = new System.Drawing.Size(237, 48);
             this.btnNotif.TabIndex = 8;
             this.btnNotif.Tag = "bt";
-            this.btnNotif.Text = "Notiications";
+            this.btnNotif.Text = "Obaveštenja";
             this.btnNotif.UseVisualStyleBackColor = true;
             this.btnNotif.Click += new System.EventHandler(this.btnNotif_Click);
             // 
@@ -824,7 +824,7 @@
             this.btnRefresh.Size = new System.Drawing.Size(156, 23);
             this.btnRefresh.TabIndex = 9;
             this.btnRefresh.Tag = "bt";
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Osveži";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 

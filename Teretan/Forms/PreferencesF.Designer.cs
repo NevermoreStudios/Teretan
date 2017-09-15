@@ -113,7 +113,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PreferencesF";
-            this.Text = "Preferences";
+            this.Text = "Preference";
             this.Load += new System.EventHandler(this.PreferencesF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.yellowVal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.redVal)).EndInit();

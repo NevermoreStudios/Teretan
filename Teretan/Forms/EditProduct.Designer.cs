@@ -38,20 +38,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 16);
+            this.label1.Location = new System.Drawing.Point(48, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Name:";
+            this.label1.Text = "Ime:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 46);
+            this.label2.Location = new System.Drawing.Point(44, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Description:";
+            this.label2.Text = "Opis:";
             // 
             // nameBox
             // 
@@ -73,7 +73,7 @@
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(96, 23);
             this.editButton.TabIndex = 4;
-            this.editButton.Text = "Edit";
+            this.editButton.Text = "Izmeni";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.Edit);
             // 
@@ -89,7 +89,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EditProduct";
-            this.Text = "EditProduct";
+            this.Text = "Izmeni Proizvod";
             this.Load += new System.EventHandler(this.EditProduct_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

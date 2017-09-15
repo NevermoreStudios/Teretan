@@ -53,11 +53,11 @@ namespace Teretan
                 Users.Columns.Clear();
                 Users.Columns.Add("ID", "ID");
                 Users.Columns.Add("Uid", "ID");
-                Users.Columns.Add("Name", "Name");
-                Users.Columns.Add("Surname", "Surname");
-                Users.Columns.Add("BirthDate", "BirthDate");
-                Users.Columns.Add("Email", "Email");
-                Users.Columns.Add("SubscriptionLeft", "SubscriptionLeft");
+                Users.Columns.Add("Name", "Ime");
+                Users.Columns.Add("Surname", "Prezime");
+                Users.Columns.Add("BirthDate", "Datum rođenja");
+                Users.Columns.Add("Email", "E-mail");
+                Users.Columns.Add("SubscriptionLeft", "Preostala pretplata");
                 Users.Columns[0].Visible = false;
                 foreach (User usr in lu)
                 {
@@ -70,7 +70,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska sa bazom pozovite korisnicku podrsku");
+                MessageBox.Show("Greška sa bazom, pozovite korisničku podršku");
             }
 
         }
@@ -131,7 +131,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska sa bazom");
+                MessageBox.Show("Greška sa bazom");
             }
 
         }
@@ -179,12 +179,12 @@ namespace Teretan
             int count = Util.GetNotif().Count;
             if (count > 0)
             {
-                btnNotif.Text = "Notifications (" + count.ToString() + ")";
+                btnNotif.Text = "Obaveštenja (" + count.ToString() + ")";
                 btnNotif.BackColor = Color.Red;
             }
             else
             {
-                btnNotif.Text = "Notifications";
+                btnNotif.Text = "Obaveštenja";
                 btnNotif.BackColor = Color.FromKnownColor(KnownColor.Control);
             }
         }
@@ -218,7 +218,7 @@ namespace Teretan
                 string nameuser = tbName.Text;
                 Product p = Database.GetProducts("SELECT * FROM `products` WHERE ID='{0}'", lo[lbOrders.SelectedIndex].Product.ToString())[0];
                 string date = lo[lbOrders.SelectedIndex].Date.ToShortDateString();
-                string f = "Name: " + nameuser + "\r\nProduct: " + p.Name + "\r\nDescription: " + p.Description + "\r\nDate: " + date;
+                string f = "Ime: " + nameuser + "\r\nProizvod: " + p.Name + "\r\nOpis: " + p.Description + "\r\nDatum: " + date;
                 MessageBox.Show(f);
             }
             catch (Exception)
@@ -295,7 +295,7 @@ namespace Teretan
                 if (addstate)
                 {
                     addstate = !addstate;
-                    btnAddUser.Text = "Add";
+                    btnAddUser.Text = "Dodaj";
                     SetVis(false);
                     SetEn(true);
                     Database.AddUser(new User(0,Convert.ToInt32(tbID.Text), tbName.Text, tbSurname.Text, dtpDate.Value, Convert.ToSingle(tbNeck.Text), Convert.ToSingle(tbChest.Text), Convert.ToSingle(tbWaist.Text), Convert.ToSingle(tbHips.Text), Convert.ToSingle(tbBicepsL.Text), Convert.ToSingle(tbBicepsR.Text), Convert.ToSingle(tbTighL.Text), Convert.ToSingle(tbTighR.Text), Convert.ToSingle(tbCalvL.Text), Convert.ToSingle(tbCalvR.Text), Convert.ToSingle(tbFat.Text), Convert.ToSingle(tbHeight.Text), Convert.ToSingle(tbWeight.Text), tbTel.Text,tbEmail.Text, DateTime.Now, new TimeSpan(0), tbNotes.Text,cbActive.Checked));
@@ -307,7 +307,7 @@ namespace Teretan
                 else
                 {
                     addstate = !addstate;
-                    btnAddUser.Text = "Done";
+                    btnAddUser.Text = "Gotovo";
                     SetVis(true);
                     SetEn(false);
                     btnAddUser.Enabled = true;
@@ -316,7 +316,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
+                MessageBox.Show("Greška: Obavezno polje nije popunjeno ili nije u potrebnom formatu");
             }
         }
 
@@ -328,7 +328,7 @@ namespace Teretan
                 if (editstate)
                 {
                     editstate = !editstate;
-                    btnEditUser.Text = "Edit";
+                    btnEditUser.Text = "Izmeni";
                     SetVis(false);
                     SetEn(true);
                     Database.UpdateUser(new User(u.ID, Convert.ToInt32(tbID.Text), tbName.Text, tbSurname.Text, dtpDate.Value, Convert.ToSingle(tbNeck.Text), Convert.ToSingle(tbChest.Text), Convert.ToSingle(tbWaist.Text), Convert.ToSingle(tbHips.Text), Convert.ToSingle(tbBicepsL.Text), Convert.ToSingle(tbBicepsR.Text), Convert.ToSingle(tbTighL.Text), Convert.ToSingle(tbTighR.Text), Convert.ToSingle(tbCalvL.Text), Convert.ToSingle(tbCalvR.Text), Convert.ToSingle(tbFat.Text), Convert.ToSingle(tbHeight.Text), Convert.ToSingle(tbWeight.Text), tbTel.Text, tbEmail.Text, u.SubscriptionDate,u.SubscriptionLength, tbNotes.Text, cbActive.Checked));
@@ -340,7 +340,7 @@ namespace Teretan
                 else
                 {
                     editstate = !editstate;
-                    btnEditUser.Text = "Done";
+                    btnEditUser.Text = "Gotovo";
                     SetVis(true);
                     SetEn(false);
                     btnEditUser.Enabled = true;
@@ -348,7 +348,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
+                MessageBox.Show("Greška: Obavezno polje nije popunjeno ili nije u potrebnom formatu");
             }
         }
 
@@ -356,7 +356,7 @@ namespace Teretan
         {
 
             User u = lu.Find(i => i.ID == uid);
-            if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + u.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Da li ste sigurni da želite da obrišete:" + u.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Database.DeepRemoveUser(u);
                 lu = Database.GetUsers();
@@ -370,8 +370,8 @@ namespace Teretan
         private void Setfilter()
         {
             Filter.Columns.Add("user_id", "ID");
-            Filter.Columns.Add("name", "Name");
-            Filter.Columns.Add("surname", "Surname");
+            Filter.Columns.Add("name", "Ime");
+            Filter.Columns.Add("surname", "Prezime");
             Filter.Columns.Add("email", "E-mail");
         }
 
@@ -435,7 +435,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska: Filter nije u tacnom obliku");
+                MessageBox.Show("Greška: Filter nije u tačnom obliku");
             }
         }
 

@@ -21,17 +21,17 @@ namespace Teretan
                     int g = item.GetSubLeft();
                     if (g > 0)
                     {
-                        notificationList.Items.Add(string.Format("User {0} {1} has only {2} days left", item.Name, item.Surname, g));
+                        notificationList.Items.Add(string.Format("Korisnik {0} {1} ima samo {2} dana preostalo", item.Name, item.Surname, g));
                     }
                     else
                     {
-                        notificationList.Items.Add(string.Format("User {0} {1} does not have a active subscription", item.Name, item.Surname));
+                        notificationList.Items.Add(string.Format("Korisnik {0} {1} nema aktivnu pretplatu", item.Name, item.Surname));
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska pri ucitavanju korisnika");
+                MessageBox.Show("Greška pri učitavanju korisnika");
             }
             
             

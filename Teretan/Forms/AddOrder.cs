@@ -27,7 +27,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska: Obavezno polje nije popunjeno");
+                MessageBox.Show("Greška: Obavezno polje nije popunjeno ili nije u potrebnom formatu");
             }
             this.Close();
         }

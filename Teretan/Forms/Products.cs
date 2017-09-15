@@ -28,9 +28,9 @@ namespace Teretan
                 grid.Rows.Clear();
                 grid.Columns.Clear();
             }
-            grid.Columns.Add("id", I18N.String("id"));
-            grid.Columns.Add("name", I18N.String("name"));
-            grid.Columns.Add("desc", I18N.String("description"));
+            grid.Columns.Add("ID", I18N.String("id"));
+            grid.Columns.Add("Ime", I18N.String("name"));
+            grid.Columns.Add("Opis", I18N.String("description"));
             grid.Columns[0].Visible = false;
             foreach(Product p in products)
             {
@@ -51,7 +51,7 @@ namespace Teretan
             // TODO: I18N
             if(grid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Morate izabrati proizvod!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace Teretan
             // TODO: I18N
             if (grid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Morate izabrati proizvod!", "Greska", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Morate izabrati proizvod!", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -76,7 +76,7 @@ namespace Teretan
                 }
                 else
                 {
-                    if (MessageBox.Show("Da li ste sigurni da zelite da obrisete:" + sel.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("Da li ste sigurni da želite da obrisete:" + sel.Name, "Da li ste sigurni?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         Database.RemoveProduct(sel);
                     }

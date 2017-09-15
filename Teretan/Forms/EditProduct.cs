@@ -12,11 +12,15 @@ namespace Teretan
         {
             InitializeComponent();
             product = new Product(0, "", "");
+            Text = "Dodaj proizvod";
+            editButton.Text = "Dodaj";
         }
 
         public EditProduct(Product product)
         {
             InitializeComponent();
+            Text = "Izmeni Proizvod";
+            editButton.Text = "Izmeni";
             edit = true;
             nameBox.Text = product.Name;
             descBox.Text = product.Description;
@@ -39,7 +43,7 @@ namespace Teretan
             }
             catch (Exception)
             {
-                MessageBox.Show("Greska: Obavezno Polje nije popunjeno");
+                MessageBox.Show("Greška: Obavezno polje nije popunjeno ili nije u potrebnom formatu");
             }
             Close();
         }

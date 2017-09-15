@@ -70,7 +70,6 @@
     <Compile Include="Forms\ExtendSub.Designer.cs">
       <DependentUpon>ExtendSub.cs</DependentUpon>
     </Compile>
-    <Compile Include="I18N.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\Order.cs" />
@@ -143,12 +142,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\i18n.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

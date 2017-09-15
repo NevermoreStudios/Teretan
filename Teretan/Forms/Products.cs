@@ -28,9 +28,9 @@ namespace Teretan
                 grid.Rows.Clear();
                 grid.Columns.Clear();
             }
-            grid.Columns.Add("ID", I18N.String("id"));
-            grid.Columns.Add("Ime", I18N.String("name"));
-            grid.Columns.Add("Opis", I18N.String("description"));
+            grid.Columns.Add("ID", "ID");
+            grid.Columns.Add("Ime", "Ime");
+            grid.Columns.Add("Opis", "Opis");
             grid.Columns[0].Visible = false;
             foreach(Product p in products)
             {

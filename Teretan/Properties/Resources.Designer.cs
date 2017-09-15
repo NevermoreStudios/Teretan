@@ -59,15 +59,5 @@ namespace Teretan.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] i18n {
-            get {
-                object obj = ResourceManager.GetObject("i18n", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

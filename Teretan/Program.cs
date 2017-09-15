@@ -14,7 +14,6 @@ namespace Teretan
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            I18N.Init();
             Database.Init();
             Preferences.Init();
 
